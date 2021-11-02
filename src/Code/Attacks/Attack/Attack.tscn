@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Code/Attacks/Attack/Attack.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 15.4147, 10 )
+
+[node name="Attack" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource( 1 )
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2( 15.7668, 0 )
+shape = SubResource( 1 )
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

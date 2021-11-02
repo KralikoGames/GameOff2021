@@ -1,0 +1,90 @@
+[gd_scene format=2]
+
+[node name="Skilltree" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mantis" type="Panel" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 400, 200 )
+
+[node name="Passive" type="TextureButton" parent="TabContainer/Mantis"]
+margin_left = 31.498
+margin_top = 40.3175
+margin_right = 71.498
+margin_bottom = 80.3175
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Points" type="Label" parent="TabContainer/Mantis/Passive"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+margin_right = 40.0
+text = "0/5"
+
+[node name="Passive2" type="TextureButton" parent="TabContainer/Mantis"]
+margin_left = 124.732
+margin_top = 18.2688
+margin_right = 164.732
+margin_bottom = 58.2688
+
+[node name="Points" type="Label" parent="TabContainer/Mantis/Passive2"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+margin_right = 40.0
+text = "0/5"
+
+[node name="Passive3" type="TextureButton" parent="TabContainer/Mantis"]
+margin_left = 120.322
+margin_top = 83.7847
+margin_right = 160.322
+margin_bottom = 123.785
+
+[node name="Points" type="Label" parent="TabContainer/Mantis/Passive3"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+margin_right = 40.0
+text = "0/5"
+
+[node name="Beetle" type="Panel" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 400, 200 )
+
+[node name="Moth" type="Panel" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 400, 200 )

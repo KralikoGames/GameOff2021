@@ -1,0 +1,447 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Code/GUI/gui/Inventory.gd" type="Script" id=7]
+[ext_resource path="res://Code/GUI/gui/slot/RestrictedSlot.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Code/GUI/gui/slot/MouseSlot.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Code/GUI/gui/SlotsGUI.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Code/GUI/gui/ToolTipInfo.gd" type="Script" id=13]
+[ext_resource path="res://Code/GUI/gui/GoldInventoryController.gd" type="Script" id=14]
+[ext_resource path="res://Code/GUI/gui/EquipmentInventoryController.gd" type="Script" id=15]
+[ext_resource path="res://Code/GUI/gui/DropInventoryController.gd" type="Script" id=16]
+[ext_resource path="res://Code/GUI/gui/slot/Slot.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Code/GUI/gui/UseInventoryController.gd" type="Script" id=18]
+
+[node name="Inventory" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 570 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -49.9999
+margin_bottom = -49.9999
+custom_constants/separation = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="VBoxContainer" parent="HBox"]
+margin_right = 560.0
+margin_bottom = 470.0
+rect_min_size = Vector2( 560, 0 )
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Stats"]
+margin_right = 560.0
+margin_bottom = 14.0
+text = "Player Stats"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="HBox/Stats"]
+margin_top = 34.0
+margin_right = 560.0
+margin_bottom = 38.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="Label" parent="HBox/Stats"]
+margin_top = 58.0
+margin_right = 560.0
+margin_bottom = 72.0
+text = "Health:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="ProgressBar" parent="HBox/Stats/Health"]
+margin_left = 120.0
+margin_top = 4.0
+margin_right = 520.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 0, 5 )
+size_flags_horizontal = 3
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_horizontal_guides_": [ 61.5652 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 399.934, 249.638 ]
+}
+
+[node name="Strength" type="Label" parent="HBox/Stats"]
+margin_top = 92.0
+margin_right = 560.0
+margin_bottom = 106.0
+text = "Strength:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="ProgressBar" parent="HBox/Stats/Strength"]
+margin_left = 120.0
+margin_top = 4.0
+margin_right = 520.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 0, 5 )
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_horizontal_guides_": [ 61.5652 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 399.934, 249.638 ]
+}
+
+[node name="Speed" type="Label" parent="HBox/Stats"]
+margin_top = 126.0
+margin_right = 560.0
+margin_bottom = 140.0
+text = "Speed:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="ProgressBar" parent="HBox/Stats/Speed"]
+margin_left = 120.0
+margin_top = 4.0
+margin_right = 520.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 0, 5 )
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_horizontal_guides_": [ 61.5652 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 399.934, 249.638 ]
+}
+
+[node name="HealthTexture" type="TextureRect" parent="HBox/Stats"]
+visible = false
+margin_top = 255.0
+margin_right = 560.0
+margin_bottom = 483.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthPotionQty" type="Label" parent="HBox/Stats/HealthTexture"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 300.0
+margin_top = -16.5
+margin_right = 454.0
+margin_bottom = 16.5
+text = "Health Potions: 3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StrengthTexture" type="TextureRect" parent="HBox/Stats"]
+visible = false
+margin_top = 255.0
+margin_right = 560.0
+margin_bottom = 607.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StrengthPotionQty" type="Label" parent="HBox/Stats/StrengthTexture"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -14.0
+margin_right = 190.0
+margin_bottom = 19.0
+text = "Strength Potions: 5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpeedTexture" type="TextureRect" parent="HBox/Stats"]
+visible = false
+margin_top = 255.0
+margin_right = 560.0
+margin_bottom = 980.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpeedPotionQty" type="Label" parent="HBox/Stats/SpeedTexture"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -14.0
+margin_right = 169.0
+margin_bottom = 19.0
+text = "Speed Potions: 2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inventory" type="VBoxContainer" parent="HBox"]
+visible = false
+margin_left = 610.0
+margin_right = 1820.0
+margin_bottom = 980.0
+rect_min_size = Vector2( 800, 800 )
+size_flags_horizontal = 3
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Inventory"]
+margin_right = 1210.0
+margin_bottom = 52.0
+text = "Inventory"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator2" type="HSeparator" parent="HBox/Inventory"]
+margin_top = 72.0
+margin_right = 1210.0
+margin_bottom = 76.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DescriptonLabel" type="Label" parent="HBox/Inventory"]
+margin_top = 96.0
+margin_right = 1210.0
+margin_bottom = 129.0
+align = 1
+
+[node name="GridContainer" type="GridContainer" parent="HBox/Inventory"]
+margin_top = 149.0
+margin_right = 1210.0
+margin_bottom = 980.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 21
+custom_constants/hseparation = 21
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Backpack" parent="." instance=ExtResource( 12 )]
+margin_left = 1274.66
+margin_top = 368.036
+margin_right = 1770.66
+margin_bottom = 964.036
+script = ExtResource( 14 )
+mouse_slot_path = NodePath("../MouseSlot")
+additional_slots = NodePath("../MouseSlot")
+trade_inventory_controller = NodePath("../MerchantSlots")
+
+[node name="Equipment" type="Control" parent="."]
+margin_left = 778.0
+margin_top = 91.0
+margin_right = 1155.0
+margin_bottom = 550.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+mouse_slot_path = NodePath("../MouseSlot")
+
+[node name="Helmet" parent="Equipment" instance=ExtResource( 10 )]
+margin_left = 116.131
+margin_top = 21.3574
+margin_right = 212.131
+margin_bottom = 117.357
+disable_highlight = false
+
+[node name="Weapon" parent="Equipment" instance=ExtResource( 10 )]
+margin_left = 8.00903
+margin_top = 94.7736
+margin_right = 104.009
+margin_bottom = 190.774
+disable_highlight = false
+item_type = 0
+
+[node name="Shield" parent="Equipment" instance=ExtResource( 10 )]
+margin_left = 224.253
+margin_top = 97.4433
+margin_right = 320.253
+margin_bottom = 193.443
+disable_highlight = false
+item_type = 1
+
+[node name="Chest" parent="Equipment" instance=ExtResource( 10 )]
+margin_left = 116.131
+margin_top = 137.488
+margin_right = 212.131
+margin_bottom = 233.488
+disable_highlight = false
+
+[node name="Boots" parent="Equipment" instance=ExtResource( 10 )]
+margin_left = 117.466
+margin_top = 249.615
+margin_right = 213.466
+margin_bottom = 345.615
+disable_highlight = false
+
+[node name="MerchantSlots" parent="." instance=ExtResource( 12 )]
+visible = false
+margin_left = 181.291
+margin_top = 368.036
+margin_right = 677.294
+margin_bottom = 964.036
+script = ExtResource( 14 )
+mouse_slot_path = NodePath("../MouseSlot")
+trade_inventory_controller = NodePath("../Backpack")
+
+[node name="DropSlots" type="Control" parent="."]
+margin_left = 1176.0
+margin_top = 55.0
+margin_right = 1852.0
+margin_bottom = 309.0
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+mouse_slot_path = NodePath("../MouseSlot")
+
+[node name="Slot" parent="DropSlots" instance=ExtResource( 17 )]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
+disable_highlight = true
+
+[node name="Label" type="Label" parent="DropSlots"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Drop items"
+align = 1
+valign = 1
+
+[node name="UseSlots" type="Control" parent="."]
+margin_left = 703.0
+margin_top = 455.0
+margin_right = 1252.0
+margin_bottom = 764.0
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+mouse_slot_path = NodePath("../MouseSlot")
+
+[node name="Slot" parent="UseSlots" instance=ExtResource( 17 )]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
+disable_highlight = true
+
+[node name="Label" type="Label" parent="UseSlots"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Use Item"
+align = 1
+valign = 1
+
+[node name="GoldName" type="Label" parent="."]
+margin_left = 1277.71
+margin_top = 311.482
+margin_right = 1366.71
+margin_bottom = 363.482
+text = "Gold"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gold" type="Label" parent="."]
+margin_left = 1368.32
+margin_top = 311.482
+margin_right = 1457.32
+margin_bottom = 363.482
+text = "999"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ToolTipInfo" type="Control" parent="."]
+margin_left = 737.986
+margin_top = 775.932
+margin_right = 1189.99
+margin_bottom = 892.932
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="ToolTipInfo"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="ToolTipInfo/VBox"]
+margin_right = 452.0
+margin_bottom = 14.0
+text = "Item Name"
+autowrap = true
+
+[node name="Description" type="Label" parent="ToolTipInfo/VBox"]
+margin_top = 18.0
+margin_right = 452.0
+margin_bottom = 32.0
+text = "Description"
+autowrap = true
+
+[node name="SellValue" type="Label" parent="ToolTipInfo/VBox"]
+margin_top = 36.0
+margin_right = 452.0
+margin_bottom = 50.0
+text = "Sell Value: "
+autowrap = true
+
+[node name="Power" type="Label" parent="ToolTipInfo/VBox"]
+margin_top = 54.0
+margin_right = 452.0
+margin_bottom = 68.0
+text = "Power: "
+autowrap = true
+
+[node name="MouseSlot" parent="." instance=ExtResource( 11 )]
+position = Vector2( 331.736, 334.133 )
