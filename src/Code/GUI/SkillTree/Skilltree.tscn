@@ -1,8 +1,13 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Code/GUI/SkillTree/Skilltree.gd" type="Script" id=1]
+[ext_resource path="res://Code/GUI/SkillTree/PassiveButton/PassiveButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Code/GUI/SkillTree/ResetPoints.gd" type="Script" id=3]
 
 [node name="Skilltree" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -27,47 +32,27 @@ margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 400, 200 )
 
-[node name="Passive" type="TextureButton" parent="TabContainer/Mantis"]
-margin_left = 31.498
-margin_top = 40.3175
-margin_right = 71.498
-margin_bottom = 80.3175
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="PassiveButton" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
+id = "Spinning_Scythe"
+max_points = 2
 
-[node name="Points" type="Label" parent="TabContainer/Mantis/Passive"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -14.0
-margin_right = 40.0
-text = "0/5"
+[node name="PassiveButton2" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
+margin_left = 162.53
+margin_top = 43.4673
+margin_right = 202.53
+margin_bottom = 83.4673
+required_passive_path = NodePath("../PassiveButton")
+id = "Twin_Shot"
+max_points = 3
 
-[node name="Passive2" type="TextureButton" parent="TabContainer/Mantis"]
-margin_left = 124.732
-margin_top = 18.2688
-margin_right = 164.732
-margin_bottom = 58.2688
-
-[node name="Points" type="Label" parent="TabContainer/Mantis/Passive2"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -14.0
-margin_right = 40.0
-text = "0/5"
-
-[node name="Passive3" type="TextureButton" parent="TabContainer/Mantis"]
-margin_left = 120.322
-margin_top = 83.7847
-margin_right = 160.322
-margin_bottom = 123.785
-
-[node name="Points" type="Label" parent="TabContainer/Mantis/Passive3"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -14.0
-margin_right = 40.0
-text = "0/5"
+[node name="PassiveButton3" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
+margin_left = 285.372
+margin_top = 43.4673
+margin_right = 325.372
+margin_bottom = 83.4673
+required_passive_path = NodePath("../PassiveButton2")
+id = "Massive_Scythes"
+max_points = 2
 
 [node name="Beetle" type="Panel" parent="TabContainer"]
 visible = false
@@ -88,3 +73,58 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 400, 200 )
+
+[node name="Skillpoints" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -101.0
+margin_top = -31.0
+margin_right = -17.0
+margin_bottom = -17.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="Skillpoints"]
+margin_left = 2.0
+margin_right = 72.0
+margin_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Skillpoints:"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skillpoints" type="Label" parent="Skillpoints"]
+margin_left = 76.0
+margin_right = 84.0
+margin_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "3"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetPoints" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -110.899
+margin_top = 46.6171
+margin_right = -18.8989
+margin_bottom = 66.6171
+grow_horizontal = 0
+text = "Reset Points"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="ResetPoints" to="ResetPoints" method="_on_ResetPoints_pressed"]

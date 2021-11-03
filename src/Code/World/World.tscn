@@ -70,7 +70,6 @@ tracks/0/keys = {
 script = ExtResource( 8 )
 
 [node name="Skilltree" parent="GUI" instance=ExtResource( 6 )]
-visible = false
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
@@ -89,6 +88,7 @@ target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -1.22963, 209.569 )
+passive_points = 3
 
 [node name="Signs" type="Node2D" parent="."]
 __meta__ = {
