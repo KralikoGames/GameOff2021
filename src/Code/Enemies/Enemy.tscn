@@ -1,11 +1,48 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Code/Enemies/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Code/Enemies/Hitbox.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Art/whiteshader.gdshader" type="Shader" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
 [sub_resource type="CircleShape2D" id=2]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+shader_param/active = false
+
+[sub_resource type="Animation" id=4]
+resource_name = "Start"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Stop"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 0
@@ -21,7 +58,24 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource( 2 )
 
+[node name="Timer" type="Timer" parent="Hitbox"]
+
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 2 )
 
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 3 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Start = SubResource( 4 )
+anims/Stop = SubResource( 5 )
+
+[connection signal="damaged" from="." to="Hitbox" method="_on_Enemy_damaged"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
+[connection signal="invincibility_ended" from="Hitbox" to="." method="_on_Hitbox_invincibility_ended"]
+[connection signal="invincibility_ended" from="Hitbox" to="Hitbox" method="_on_Hitbox_invincibility_ended"]
+[connection signal="invincibility_started" from="Hitbox" to="." method="_on_Hitbox_invincibility_started"]
+[connection signal="invincibility_started" from="Hitbox" to="Hitbox" method="_on_Hitbox_invincibility_started"]
+[connection signal="timeout" from="Hitbox/Timer" to="Hitbox" method="_on_Timer_timeout"]

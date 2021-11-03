@@ -1,6 +1,6 @@
 extends Area2D
 
-
+export (float, 0,200,5) var knockback = 100;
 export(float, 0, 1) var input_lock = 0.1
 export(float) var damage = 1.0
 
