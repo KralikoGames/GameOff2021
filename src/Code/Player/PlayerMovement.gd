@@ -7,6 +7,7 @@ signal died
 signal health_changed
 signal mana_changed
 signal direction_changed
+signal attacked
 
 
 export var wasd_movement: bool = true
@@ -120,6 +121,8 @@ func _spawn_selected_attack():
 #	if attack.has_method("multiply_damage"): attack.multiply_damage(1.0) # for later
 	
 	if "input_lock" in attack: freeze_player(attack.input_lock)
+	
+	emit_signal("attacked")
 
 
 func _get_selected_attack() -> PackedScene:

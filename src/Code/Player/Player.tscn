@@ -68,4 +68,6 @@ script = ExtResource( 2 )
 shape = SubResource( 6 )
 
 [node name="bloodplay_stacks" type="Node" parent="."]
+
+[node name="drenched_in_blood_stacks" type="Node" parent="."]
 [connection signal="area_entered" from="EnemyTriggerRadius" to="EnemyTriggerRadius" method="_on_EnemyTriggerRadius_area_entered"]

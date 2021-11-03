@@ -90,7 +90,7 @@ target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -242.505, 194.45 )
-passive_points = 3
+passive_points = 30
 
 [node name="Signs" type="Node2D" parent="."]
 __meta__ = {

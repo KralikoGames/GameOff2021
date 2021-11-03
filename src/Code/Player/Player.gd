@@ -26,3 +26,10 @@ func _add_bloodplay_stack():
 		var bloodplay = GameInit.bloodplay_buff.instance()
 		bloodplay.target = self
 		$bloodplay_stacks.add_child(bloodplay)
+
+
+func _add_drenched_in_blood_stack():
+	if GameInit.skilltree.passives["Drenched_In_Blood"].points > 0:
+		var drenched = GameInit.drenched_in_blood_tscn.instance()
+		drenched.target = self
+		$drenched_in_blood_stacks.add_child(drenched)

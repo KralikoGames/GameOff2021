@@ -24,11 +24,20 @@ const bloodplay_buff = preload("res://Code/Attacks/Mantis/Bleeding/Bloodplay/Blo
 
 const exsanguinate_bleed_dps_percentage = 0.5
 
+const drenched_in_blood_tscn = preload("res://Code/Attacks/Mantis/Assassinate/Drenched_In_Blood/Drenched_In_Blood.tscn")
 
 
 func _on_enemy_died(enemy:Node2D):
 	_bloodplay(enemy)
 	_gratuitous_violence(enemy)
+	_drenched_in_blood(enemy)
+
+
+func _drenched_in_blood(enemy: Node2D):
+	var bleeding_debuffs = enemy.get_node_or_null("bleeding_debuffs")
+	if not bleeding_debuffs: return 
+	if bleeding_debuffs.get_child_count() > 0:
+		player._add_drenched_in_blood_stack()
 
 
 func _gratuitous_violence(enemy:Node2D):
