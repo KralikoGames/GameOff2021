@@ -29,9 +29,7 @@ var health = 0 setget _set_health
 var is_dead = false
 var air_jump_counter = 0
 var input_lock = false
-var is_charging = false
-var is_manad = false
-var laser_dir = "right"
+
 
 
 func _ready():
@@ -55,19 +53,6 @@ func _unhandled_input(event):
 		return
 	if event.is_action_pressed("attack"):
 		_spawn_selected_attack()
-#	if event.is_action_pressed("move_to"):
-#		$Node/move_target.global_position = get_global_mouse_position()
-#	if event.is_action_pressed("jump") and event.is_pressed():
-#		last_jump_time = OS.get_system_time_msecs()
-#	if event.is_action_pressed("shoot") and event.is_pressed():
-#		last_shoot_time = OS.get_system_time_msecs()
-#		if _can_shoot_laser():
-#			mana_laser()
-##			shoot_laser()
-#		elif _can_shoot_bullet():
-#			shoot_bullet()
-#	if event.is_action_released("shoot") and is_charging:
-#		shoot_laser()
 	pass
 
 
@@ -87,23 +72,22 @@ func damage(amt:float, dir:Vector2, knockback_amt:float=0):
 	emit_signal("health_changed")
 
 
-func die():
+func die(delay: float=0.0):
 	if is_dead: return 
 	is_dead = true
 #	set_physics_process(false)
 	set_process_input(false)
 	set_block_signals(true)
 	
-#	$Sprite.play("Die")
-#	yield($Sprite, "animation_finished")
-#	yield(get_tree().create_timer(0.3), "timeout")
+	
+	# delay for animations?
+	if delay > 0:
+		yield(get_tree().create_timer(delay), "timeout")
 	
 	set_block_signals(false)
 	emit_signal("died")
 	
-#	var lid = lid_tscn.instance()
-#	lid.global_position = global_position
-#	get_parent().add_child(lid)
+	# apply post death effects (corpse etc...)
 	
 	queue_free()
 
@@ -116,6 +100,10 @@ func freeze_player(time: float):
 
 func unfreeze_player():
 	input_lock = false
+
+
+
+
 
 
 func _spawn_selected_attack():
