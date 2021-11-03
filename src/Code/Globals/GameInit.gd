@@ -13,6 +13,7 @@ var skilltree: SkillTree setget _set_skilltree
 const trishot_angle = 35 # degrees that spinning scythe will spread out
 const massive_scythe_multiplier = 1.5
 const blood_explosion_damage: float = 3.0
+const blood_explosion_tscn = preload("res://Code/Attacks/Mantis/Scythe/BloodExplosion/BloodExplosion.tscn")
 
 const bleed_damage_perc = 0.5
 const haemophilia_stacks = 8
@@ -25,6 +26,13 @@ const bloodplay_buff = preload("res://Code/Attacks/Mantis/Bleeding/Bloodplay/Blo
 
 func _on_enemy_died(enemy:Node2D):
 	_bloodplay(enemy)
+	_gratuitous_violence(enemy)
+
+
+func _gratuitous_violence(enemy:Node2D):
+	var boom = blood_explosion_tscn.instance()
+	boom.global_position = enemy.global_position
+	enemy.get_parent().add_child(boom)
 
 
 func _bloodplay(enemy:Node2D):

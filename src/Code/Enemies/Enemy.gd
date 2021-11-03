@@ -73,16 +73,7 @@ func damage(amt: float):
 
 
 func die():
-	_on_death_effects()
 	queue_free()
-
-
-func _on_death_effects():
-	_gratuitous_violence()
-
-
-func _gratuitous_violence():
-	pass
 
 
 func _on_hit_effects(amt: float):

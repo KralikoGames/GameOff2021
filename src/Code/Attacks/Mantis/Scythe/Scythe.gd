@@ -10,7 +10,6 @@ export var damage: float = 30
 
 var creator: Node2D
 var dir_reversed = false
-var blood_explosion_tscn = preload("res://Code/Attacks/Mantis/Scythe/BloodExplosion/BloodExplosion.tscn")
 
 
 const speed_decay: float = 300.0
@@ -61,7 +60,7 @@ func _massive_scythes():
 
 func _spawn_blood_explosion():
 	if GameInit.skilltree.passives["Blood_Explosion"].points > 0:
-		var b = blood_explosion_tscn.instance()
+		var b = GameInit.blood_explosion_tscn.instance()
 		b.global_position = global_position
 		get_parent().add_child(b)
 
