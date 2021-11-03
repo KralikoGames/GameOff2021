@@ -40,7 +40,6 @@ func _physics_process(delta):
 
 func set_target(t: Node2D):
 	target = t
-	print("hiohi")
 	set_physics_process(true)
 
 

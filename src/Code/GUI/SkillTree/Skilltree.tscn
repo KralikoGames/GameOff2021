@@ -147,6 +147,13 @@ margin_right = 410.097
 margin_bottom = 189.33
 draggable_skill = true
 
+[node name="Path_Of_Blood" parent="TabContainer/Mantis/ShadowHopNodes" instance=ExtResource( 2 )]
+margin_left = 370.097
+margin_top = 98.1028
+margin_right = 410.097
+margin_bottom = 138.103
+draggable_skill = true
+
 [node name="Beetle" type="Panel" parent="TabContainer"]
 visible = false
 anchor_right = 1.0

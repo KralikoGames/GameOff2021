@@ -39,7 +39,7 @@ var attacks = {
 var attack_cooldowns = {
 	"Spinning_Scythe":1.3, 
 	"Assassinate":2.2, 
-	"ShadowHop":1.0,
+	"ShadowHop":100.0,
 }
 
 
@@ -81,12 +81,20 @@ func _on_enemy_died(enemy:Node2D):
 	_bloodplay(enemy)
 	_gratuitous_violence(enemy)
 	_drenched_in_blood(enemy)
+	_path_of_blood(enemy)
+
+
+func _path_of_blood(enemy: Node2D):
+	if _is_enemy_bleeding(enemy):
+		for key in keybinds:
+			if keybinds[key] == "ShadowHop":
+				var t: Timer = get_node("timer_%s" % key)
+				t.stop()
+				
 
 
 func _drenched_in_blood(enemy: Node2D):
-	var bleeding_debuffs = enemy.get_node_or_null("bleeding_debuffs")
-	if not bleeding_debuffs: return 
-	if bleeding_debuffs.get_child_count() > 0:
+	if _is_enemy_bleeding(enemy):
 		player._add_drenched_in_blood_stack()
 
 
@@ -97,11 +105,14 @@ func _gratuitous_violence(enemy:Node2D):
 
 
 func _bloodplay(enemy:Node2D):
-	var bleeding_debuffs = enemy.get_node_or_null("bleeding_debuffs")
-	if not bleeding_debuffs: return 
-	if bleeding_debuffs.get_child_count() > 0:
+	if _is_enemy_bleeding(enemy):
 		player._add_bloodplay_stack()
-	
+
+
+func _is_enemy_bleeding(enemy):
+	var bleeding_debuffs = enemy.get_node_or_null("bleeding_debuffs")
+	if not bleeding_debuffs: return false 
+	return bleeding_debuffs.get_child_count() > 0
 
 
 func _set_player(v): 
