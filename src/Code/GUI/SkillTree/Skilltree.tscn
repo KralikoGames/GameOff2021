@@ -32,31 +32,73 @@ margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 400, 200 )
 
-[node name="Spinning_Scythe" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
+[node name="ScytheNodes" type="Control" parent="TabContainer/Mantis"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spinning_Scythe" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
 margin_left = 29.2505
 margin_top = 158.309
 margin_right = 69.2505
 margin_bottom = 198.309
 
-[node name="Tri_Shot" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
-margin_left = 58.0231
-margin_top = 84.2962
-margin_right = 98.0231
-margin_bottom = 124.296
-required_passive_path = NodePath("../Spinning_Scythe")
+[node name="Tri_Shot" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
+margin_left = 11.9501
+margin_top = 96.6572
+margin_right = 51.9501
+margin_bottom = 136.657
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
 
-[node name="Massive_Scythes" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
-margin_left = 119.06
-margin_top = 132.617
-margin_right = 159.06
-margin_bottom = 172.617
-required_passive_path = NodePath("../Tri_Shot")
+[node name="Massive_Scythes" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
+margin_left = 60.2514
+margin_top = 97.0318
+margin_right = 100.251
+margin_bottom = 137.032
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
 
-[node name="Blood_Explosion" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
-margin_left = 127.675
-margin_top = 62.1961
-margin_right = 167.675
-margin_bottom = 102.196
+[node name="Blood_Explosion" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
+margin_left = 39.2751
+margin_top = 53.2063
+margin_right = 79.2751
+margin_bottom = 93.2063
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="BleedingNodes" type="Control" parent="TabContainer/Mantis"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blood_Rite" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
+margin_left = 142.373
+margin_top = 158.684
+margin_right = 182.373
+margin_bottom = 198.684
+
+[node name="Gratuitous_Violence" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
+margin_left = 125.072
+margin_top = 97.0318
+margin_right = 165.072
+margin_bottom = 137.032
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="Haemophilia" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
+margin_left = 173.374
+margin_top = 97.4064
+margin_right = 213.374
+margin_bottom = 137.406
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="Bloodplay" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
+margin_left = 152.397
+margin_top = 53.5809
+margin_right = 192.397
+margin_bottom = 93.5809
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
 
 [node name="Beetle" type="Panel" parent="TabContainer"]
 visible = false

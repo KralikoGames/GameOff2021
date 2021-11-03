@@ -14,6 +14,10 @@ const trishot_angle = 35 # degrees that spinning scythe will spread out
 const massive_scythe_multiplier = 1.5
 const blood_explosion_damage: float = 3.0
 
+const bleed_damage_perc = 0.5
+const haemophilia_stacks = 8
+const bleeding_debuff = preload("res://Code/Attacks/Mantis/Bleeding/Bleeding.tscn")
+
 
 func _set_player(v): 
 	if not player:

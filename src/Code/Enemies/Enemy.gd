@@ -23,8 +23,8 @@ func _ready():
 	set_physics_process(false)
 
 
-func _physics_process(delta):
-	var move_dir = _get_dir_to_target() # _get_input_dir() if not is_dead else Vector2()
+func _physics_process(_delta):
+	move_dir = _get_dir_to_target() # _get_input_dir() if not is_dead else Vector2()
 	vel += move_dir * acceleration
 	vel = vel.clamped(max_speed)
 	
@@ -41,24 +41,6 @@ func set_target(t: Node2D):
 	set_physics_process(true)
 
 
-func _on_Hitbox_area_entered(area):
-	if "damage" in area:
-		if area.has_method("can_damage"):
-			if not area.can_damage(self):
-				return
-		_damage(area.damage)
-
-
-func _damage(amt: float):
-	health -= amt
-	_update_hp()
-	if health <= 0:
-		emit_signal("died")
-		queue_free()
-	else:
-		emit_signal("damaged")
-
-
 func _get_dir_to_target() -> Vector2:
 	if target:
 		var t = (target.global_position - global_position)
@@ -69,3 +51,49 @@ func _get_dir_to_target() -> Vector2:
 
 func _update_hp():
 	$hp.value = health
+
+
+func _on_Hitbox_area_entered(area):
+	if "damage" in area:
+		if area.has_method("can_damage"):
+			if not area.can_damage(self):
+				return
+		damage(area.damage)
+		_on_hit_effects(area.damage)
+
+
+func damage(amt: float):
+	health -= amt
+	_update_hp()
+	if health <= 0:
+		emit_signal("died")
+		queue_free()
+	else:
+		emit_signal("damaged")
+
+
+func _on_hit_effects(amt: float):
+	_blood_rite(amt)
+	
+
+func _blood_rite(amt: float):
+	if GameInit.skilltree.passives["Blood_Rite"].points > 0:
+		add_bleed_debuff(amt)
+
+
+func add_bleed_debuff(damage_amt: float):
+	var bleeding = GameInit.bleeding_debuff.instance()
+	bleeding.target = self
+	bleeding.dps = GameInit.bleed_damage_perc * damage_amt
+	$bleeding_debuffs.add_child(bleeding)
+	$bleeding_debuffs.move_child(bleeding, 0)
+	
+	_haemophilia_bleed_limit()
+
+
+func _haemophilia_bleed_limit():
+	# remove extra bleed stacks
+	var max_bleeds = GameInit.haemophilia_stacks if GameInit.skilltree.passives["Haemophilia"].points > 0 else 1
+	for i in range($bleeding_debuffs.get_child_count()):
+		if i >= max_bleeds:
+			$bleeding_debuffs.get_child(i).queue_free()

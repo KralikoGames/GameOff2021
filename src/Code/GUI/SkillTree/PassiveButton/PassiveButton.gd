@@ -20,7 +20,7 @@ func init():
 	
 	var required_passive = get_node_or_null(required_passive_path)
 	if not required_passive:
-		push_error("no required passive found")
+		push_warning("no required passive found")
 		return # this passive is a root
 	
 	required_passive.connect("pressed", self, "_on_parent_passive_pressed")
