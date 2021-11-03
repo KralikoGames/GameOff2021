@@ -5,7 +5,6 @@
 [ext_resource path="res://Code/GUI/SkillTree/ResetPoints.gd" type="Script" id=3]
 
 [node name="Skilltree" type="Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -46,6 +45,7 @@ margin_left = 29.2505
 margin_top = 158.309
 margin_right = 69.2505
 margin_bottom = 198.309
+draggable_skill = true
 
 [node name="Tri_Shot" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
 margin_left = 11.9501
@@ -116,6 +116,7 @@ margin_left = 252.498
 margin_top = 158.684
 margin_right = 292.498
 margin_bottom = 198.684
+draggable_skill = true
 
 [node name="Exsanguinate" parent="TabContainer/Mantis/AssassinateNodes" instance=ExtResource( 2 )]
 margin_left = 235.198
@@ -130,6 +131,21 @@ margin_top = 97.4064
 margin_right = 323.499
 margin_bottom = 137.406
 required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="ShadowHopNodes" type="Control" parent="TabContainer/Mantis"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShadowHop" parent="TabContainer/Mantis/ShadowHopNodes" instance=ExtResource( 2 )]
+margin_left = 370.097
+margin_top = 149.33
+margin_right = 410.097
+margin_bottom = 189.33
+draggable_skill = true
 
 [node name="Beetle" type="Panel" parent="TabContainer"]
 visible = false
@@ -160,6 +176,7 @@ margin_left = -101.0
 margin_top = -31.0
 margin_right = -17.0
 margin_bottom = -17.0
+mouse_filter = 2
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -204,5 +221,4 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
 [connection signal="pressed" from="ResetPoints" to="ResetPoints" method="_on_ResetPoints_pressed"]

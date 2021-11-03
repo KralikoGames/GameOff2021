@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Code/GUI/HUD/AbilitySlot.tscn" type="PackedScene" id=1]
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftClickAbility" parent="." instance=ExtResource( 1 )]
+margin_left = 390.292
+margin_top = 7.55087
+margin_right = 414.292
+margin_bottom = 31.5509
+
+[node name="SpaceAbility" parent="." instance=ExtResource( 1 )]
+margin_left = 419.553
+margin_top = 7.55087
+margin_right = 443.553
+margin_bottom = 31.5509
+keybind = "attack3"
+
+[node name="RightClickAbility" parent="." instance=ExtResource( 1 )]
+margin_left = 446.925
+margin_top = 7.55087
+margin_right = 470.925
+margin_bottom = 31.5509
+keybind = "attack2"

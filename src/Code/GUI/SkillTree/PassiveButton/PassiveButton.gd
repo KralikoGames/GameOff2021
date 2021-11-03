@@ -5,6 +5,7 @@ signal points_changed
 
 
 export(NodePath) var required_passive_path: NodePath
+export(bool) var draggable_skill: bool = false
 export(int) var required_points_in_parent: int = 1
 export(int) var points: int = 0 setget _set_points
 export(int) var max_points: int = 1
@@ -20,10 +21,37 @@ func init():
 	
 	var required_passive = get_node_or_null(required_passive_path)
 	if not required_passive:
-		push_warning("no required passive found")
+#		push_warning("no required passive found")
 		return # this passive is a root
 	
 	required_passive.connect("pressed", self, "_on_parent_passive_pressed")
+
+
+
+
+
+
+func can_drop_data(position, data):
+	pass
+
+func drop_data(position, data):
+	pass
+	
+
+func get_drag_data(position):
+	if not draggable_skill: return
+	if points != max_points: return
+	var t = TextureRect.new()
+	t.texture = load("res://icon.png") # TODO: replace this with the the proper texture
+	set_drag_preview(t)
+	return name
+
+
+
+
+
+
+
 
 
 func _update_disabled():

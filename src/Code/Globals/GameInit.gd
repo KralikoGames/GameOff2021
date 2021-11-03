@@ -8,6 +8,7 @@ signal skilltree_ready
 var player: Player setget _set_player
 var skilltree: SkillTree setget _set_skilltree
 
+var keybinds = {}
 
 #Mantis passive constants
 const trishot_angle = 35 # degrees that spinning scythe will spread out
@@ -25,6 +26,55 @@ const bloodplay_buff = preload("res://Code/Attacks/Mantis/Bleeding/Bloodplay/Blo
 const exsanguinate_bleed_dps_percentage = 0.5
 
 const drenched_in_blood_tscn = preload("res://Code/Attacks/Mantis/Assassinate/Drenched_In_Blood/Drenched_In_Blood.tscn")
+
+#Other
+const dash_buff_tscn = preload("res://Code/Attacks/Movement/Dash.tscn")
+
+var active_ability_names = ["Spinning_Scythe", "Assassinate", "ShadowHop"]
+var attacks = {
+	"Spinning_Scythe":preload("res://Code/Attacks/Mantis/Scythe/Scythe.tscn") , 
+	"Assassinate":preload("res://Code/Attacks/Mantis/Assassinate/Assassinate.tscn"), 
+#	"ShadowHop": ,
+}
+var attack_cooldowns = {
+	"Spinning_Scythe":1.3, 
+	"Assassinate":2.2, 
+	"ShadowHop":1.0,
+}
+
+
+func _ready():
+	for n in ["timer_attack", "timer_attack2", "timer_attack3"]:
+		var t = Timer.new()
+		t.name = n
+		t.one_shot = true
+		add_child(t)
+		
+
+
+func _unhandled_input(event):
+	if player.input_lock: return
+	
+	for keybind in keybinds:
+		if not event.is_action_pressed(keybind): continue
+		
+		# get the timers and start them
+		var t: Timer = get_node("timer_%s" % keybind)
+		if not t.is_stopped(): continue # ability is on cooldown
+		t.start()
+		
+		match keybinds[keybind]:
+			"Spinning_Scythe", "Assassinate":
+				player.spawn_selected_attack(attacks[keybinds[keybind]])
+			"ShadowHop":
+				player.dash()
+
+
+func set_ability(keybind, attack_name):
+	keybinds[keybind] = attack_name
+	var t: Timer = get_node("timer_%s" % keybind)
+	t.wait_time = attack_cooldowns[attack_name]
+	
 
 
 func _on_enemy_died(enemy:Node2D):
