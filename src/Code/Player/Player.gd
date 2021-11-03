@@ -1,6 +1,9 @@
 extends KinematicBody2D
 class_name Player
 
+## this is a text by Alex
+## remove on sight
+
 
 signal moved
 signal stopped
