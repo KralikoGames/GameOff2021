@@ -113,6 +113,7 @@ func _spawn_selected_attack():
 #	$aimer/offset.add_child(attack)
 	get_parent().add_child(attack)
 	
+	if attack.has_method("init"): attack.init(self)
 #	if attack.has_method("multiply_size"): attack.multiply_size(1.0)
 #	if attack.has_method("multiply_damage"): attack.multiply_damage(1.0) # for later
 	
@@ -120,7 +121,8 @@ func _spawn_selected_attack():
 
 
 func _get_selected_attack() -> PackedScene:
-	return preload("res://Code/Attacks/Attack/Attack.tscn")
+	return preload("res://Code/Attacks/Mantis/Scythe/Scythe.tscn")
+#	return preload("res://Code/Attacks/Attack/Attack.tscn")
 
 
 func _apply_knockback():

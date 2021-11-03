@@ -18,6 +18,8 @@ var vel: Vector2 = Vector2()
 
 
 func _ready():
+	$hp.max_value = health
+	
 	set_physics_process(false)
 
 
@@ -41,11 +43,15 @@ func set_target(t: Node2D):
 
 func _on_Hitbox_area_entered(area):
 	if "damage" in area:
+		if area.has_method("can_damage"):
+			if not area.can_damage(self):
+				return
 		_damage(area.damage)
 
 
 func _damage(amt: float):
 	health -= amt
+	_update_hp()
 	if health <= 0:
 		emit_signal("died")
 		queue_free()
@@ -59,3 +65,7 @@ func _get_dir_to_target() -> Vector2:
 		if t.length() < 10: return Vector2()
 		return t.normalized()
 	return Vector2()
+
+
+func _update_hp():
+	$hp.value = health

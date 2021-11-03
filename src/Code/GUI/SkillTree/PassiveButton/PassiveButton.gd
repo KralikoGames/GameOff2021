@@ -5,7 +5,6 @@ signal points_changed
 
 
 export(NodePath) var required_passive_path: NodePath
-export(String) var id: String = "None"
 export(int) var required_points_in_parent: int = 1
 export(int) var points: int = 0 setget _set_points
 export(int) var max_points: int = 1

@@ -32,26 +32,25 @@ margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 400, 200 )
 
-[node name="PassiveButton" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
-id = "Spinning_Scythe"
-max_points = 2
+[node name="Spinning_Scythe" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
+margin_left = 29.2505
+margin_top = 158.309
+margin_right = 69.2505
+margin_bottom = 198.309
 
-[node name="PassiveButton2" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
-margin_left = 162.53
-margin_top = 43.4673
-margin_right = 202.53
-margin_bottom = 83.4673
-required_passive_path = NodePath("../PassiveButton")
-id = "Twin_Shot"
-max_points = 3
+[node name="Tri_Shot" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
+margin_left = 58.0231
+margin_top = 84.2962
+margin_right = 98.0231
+margin_bottom = 124.296
+required_passive_path = NodePath("../Spinning_Scythe")
 
 [node name="PassiveButton3" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
-margin_left = 285.372
-margin_top = 43.4673
-margin_right = 325.372
-margin_bottom = 83.4673
-required_passive_path = NodePath("../PassiveButton2")
-id = "Massive_Scythes"
+margin_left = 119.06
+margin_top = 132.617
+margin_right = 159.06
+margin_bottom = 172.617
+required_passive_path = NodePath("../Tri_Shot")
 max_points = 2
 
 [node name="Beetle" type="Panel" parent="TabContainer"]

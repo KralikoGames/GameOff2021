@@ -9,6 +9,9 @@ var player: Player setget _set_player
 var skilltree: SkillTree setget _set_skilltree
 
 
+const trishot_angle = 35 # degrees that spinning scythe will spread out
+
+
 func _set_player(v): 
 	if not player:
 		player = v
