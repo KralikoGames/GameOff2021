@@ -19,7 +19,7 @@ var vel: Vector2 = Vector2()
 
 func _ready():
 	$hp.max_value = health
-	
+	connect("died", GameInit, "_on_enemy_died", [self])
 	set_physics_process(false)
 
 
@@ -67,9 +67,22 @@ func damage(amt: float):
 	_update_hp()
 	if health <= 0:
 		emit_signal("died")
-		queue_free()
+		die()
 	else:
 		emit_signal("damaged")
+
+
+func die():
+	_on_death_effects()
+	queue_free()
+
+
+func _on_death_effects():
+	_gratuitous_violence()
+
+
+func _gratuitous_violence():
+	pass
 
 
 func _on_hit_effects(amt: float):

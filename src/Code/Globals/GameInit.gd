@@ -18,6 +18,22 @@ const bleed_damage_perc = 0.5
 const haemophilia_stacks = 8
 const bleeding_debuff = preload("res://Code/Attacks/Mantis/Bleeding/Bleeding.tscn")
 
+const bloodplay_ms_increase = 50.0
+const bloodplay_buff = preload("res://Code/Attacks/Mantis/Bleeding/Bloodplay/Bloodplay.tscn")
+
+
+
+func _on_enemy_died(enemy:Node2D):
+	_bloodplay(enemy)
+
+
+func _bloodplay(enemy:Node2D):
+	var bleeding_debuffs = enemy.get_node_or_null("bleeding_debuffs")
+	if not bleeding_debuffs: return 
+	if bleeding_debuffs.get_child_count() > 0:
+		player._add_bloodplay_stack()
+	
+
 
 func _set_player(v): 
 	if not player:

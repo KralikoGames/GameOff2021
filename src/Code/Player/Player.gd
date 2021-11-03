@@ -19,3 +19,10 @@ func has_spare_passive_points() -> bool:
 func _set_passive_points(v):
 	passive_points = v
 	emit_signal("passive_points_changed")
+
+
+func _add_bloodplay_stack():
+	if GameInit.skilltree.passives["Bloodplay"].points > 0:
+		var bloodplay = GameInit.bloodplay_buff.instance()
+		bloodplay.target = self
+		$bloodplay_stacks.add_child(bloodplay)
