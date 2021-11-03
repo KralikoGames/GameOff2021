@@ -22,6 +22,8 @@ const bleeding_debuff = preload("res://Code/Attacks/Mantis/Bleeding/Bleeding.tsc
 const bloodplay_ms_increase = 50.0
 const bloodplay_buff = preload("res://Code/Attacks/Mantis/Bleeding/Bloodplay/Bloodplay.tscn")
 
+const exsanguinate_bleed_dps_percentage = 0.5
+
 
 
 func _on_enemy_died(enemy:Node2D):

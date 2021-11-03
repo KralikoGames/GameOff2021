@@ -59,7 +59,7 @@ func _on_Hitbox_area_entered(area):
 			if not area.can_damage(self):
 				return
 		damage(area.damage)
-		_on_hit_effects(area.damage)
+		_on_hit_effects(area)
 
 
 func damage(amt: float):
@@ -76,9 +76,20 @@ func die():
 	queue_free()
 
 
-func _on_hit_effects(amt: float):
-	_blood_rite(amt)
+func _on_hit_effects(area: Area2D):
+	_blood_rite(area.damage)
+	_exsanguinate(area) # ORDER MATTERS HERE. 
+
+
+func _exsanguinate(area: Area2D):
+	if area.get_class() != "Assassinate": return
+	if not GameInit.skilltree.passives["Exsanguinate"].points > 0: return
 	
+	# removes all bleeding stacks and does half the damage immediately
+	for bleed in $bleeding_debuffs.get_children():
+		bleed.queue_free()
+		damage(bleed.time_left * bleed.dps * GameInit.exsanguinate_bleed_dps_percentage)
+
 
 func _blood_rite(amt: float):
 	if GameInit.skilltree.passives["Blood_Rite"].points > 0:

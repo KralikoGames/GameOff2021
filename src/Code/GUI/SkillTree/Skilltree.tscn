@@ -35,6 +35,7 @@ rect_min_size = Vector2( 400, 200 )
 [node name="ScytheNodes" type="Control" parent="TabContainer/Mantis"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -69,6 +70,7 @@ required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
 [node name="BleedingNodes" type="Control" parent="TabContainer/Mantis"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -98,6 +100,34 @@ margin_left = 152.397
 margin_top = 53.5809
 margin_right = 192.397
 margin_bottom = 93.5809
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="AssassinateNodes" type="Control" parent="TabContainer/Mantis"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Assassinate" parent="TabContainer/Mantis/AssassinateNodes" instance=ExtResource( 2 )]
+margin_left = 252.498
+margin_top = 158.684
+margin_right = 292.498
+margin_bottom = 198.684
+
+[node name="Exsanguinate" parent="TabContainer/Mantis/AssassinateNodes" instance=ExtResource( 2 )]
+margin_left = 235.198
+margin_top = 97.0318
+margin_right = 275.198
+margin_bottom = 137.032
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="Drenched_In_Blood" parent="TabContainer/Mantis/AssassinateNodes" instance=ExtResource( 2 )]
+margin_left = 283.499
+margin_top = 97.4064
+margin_right = 323.499
+margin_bottom = 137.406
 required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
 
 [node name="Beetle" type="Panel" parent="TabContainer"]

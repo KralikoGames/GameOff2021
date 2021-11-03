@@ -52,7 +52,9 @@ func _unhandled_input(event):
 		return
 	if event.is_action_pressed("attack"):
 		_spawn_selected_attack()
-	pass
+	if event.is_action_pressed("move_skill"): # TODO???
+#		_move_skill()
+		pass
 
 
 func damage(amt:float, dir:Vector2, knockback_amt:float=0):
@@ -121,7 +123,8 @@ func _spawn_selected_attack():
 
 
 func _get_selected_attack() -> PackedScene:
-	return preload("res://Code/Attacks/Mantis/Scythe/Scythe.tscn")
+	return preload("res://Code/Attacks/Mantis/Assassinate/Assassinate.tscn")
+#	return preload("res://Code/Attacks/Mantis/Scythe/Scythe.tscn")
 #	return preload("res://Code/Attacks/Attack/Attack.tscn")
 
 
