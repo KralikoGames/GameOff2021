@@ -113,8 +113,8 @@ func _spawn_selected_attack():
 #	$aimer/offset.add_child(attack)
 	get_parent().add_child(attack)
 	
-	if attack.has_method("multiply_size"): attack.multiply_size(1.0)
-	if attack.has_method("multiply_damage"): attack.multiply_damage(1.0) # for later
+#	if attack.has_method("multiply_size"): attack.multiply_size(1.0)
+#	if attack.has_method("multiply_damage"): attack.multiply_damage(1.0) # for later
 	
 	if "input_lock" in attack: freeze_player(attack.input_lock)
 
