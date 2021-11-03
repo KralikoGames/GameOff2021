@@ -1,21 +1,20 @@
 extends KinematicBody2D
 
-
 signal damaged
 signal died
-
 
 export(float, 1, 100, 1) var health = 3
 export(float, 0, 1000, 10) var acceleration: float = 300.0
 export(float, 0, 1, 0.025) var damping: float = 0.80
 export(float, 0, 1000, 10) var max_speed: float = 400.0
-
+export(float, 0, 500, 10) var friction: float = 200
 
 var target
+var knockback_dir: Vector2 = Vector2()
 var move_dir: Vector2 = Vector2()
 var look_dir: Vector2 = Vector2()
 var vel: Vector2 = Vector2()
-
+onready var animationPlayer = $AnimationPlayer
 
 func _ready():
 	$hp.max_value = health
@@ -23,15 +22,19 @@ func _ready():
 	set_physics_process(false)
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	move_dir = _get_dir_to_target() # _get_input_dir() if not is_dead else Vector2()
+
+	knockback_dir = knockback_dir.move_toward(Vector2.ZERO, friction * delta)
+	knockback_dir = move_and_slide(knockback_dir)
+
 	vel += move_dir * acceleration
 	vel = vel.clamped(max_speed)
-	
+
 	vel = move_and_slide(vel)
-	
+
 	vel *= damping
-	
+
 	vel = move_and_slide(vel)
 
 
@@ -60,6 +63,8 @@ func _on_Hitbox_area_entered(area):
 				return
 		damage(area.damage)
 		_on_hit_effects(area)
+	if "knockback" in area:
+		knockback_dir = (global_position - area.global_position).normalized() * area.knockback
 
 
 func damage(amt: float):
@@ -72,19 +77,20 @@ func damage(amt: float):
 		emit_signal("damaged")
 
 
+
 func die():
 	queue_free()
 
 
 func _on_hit_effects(area: Area2D):
 	_blood_rite(area.damage)
-	_exsanguinate(area) # ORDER MATTERS HERE. 
+	_exsanguinate(area) # ORDER MATTERS HERE.
 
 
 func _exsanguinate(area: Area2D):
 	if area.get_class() != "Assassinate": return
 	if not GameInit.skilltree.passives["Exsanguinate"].points > 0: return
-	
+
 	# removes all bleeding stacks and does half the damage immediately
 	for bleed in $bleeding_debuffs.get_children():
 		bleed.queue_free()
@@ -102,7 +108,7 @@ func add_bleed_debuff(damage_amt: float):
 	bleeding.dps = GameInit.bleed_damage_perc * damage_amt
 	$bleeding_debuffs.add_child(bleeding)
 	$bleeding_debuffs.move_child(bleeding, 0)
-	
+
 	_haemophilia_bleed_limit()
 
 
@@ -112,3 +118,11 @@ func _haemophilia_bleed_limit():
 	for i in range($bleeding_debuffs.get_child_count()):
 		if i >= max_bleeds:
 			$bleeding_debuffs.get_child(i).queue_free()
+
+
+func _on_Hitbox_invincibility_started():
+	animationPlayer.play("Start")
+
+
+func _on_Hitbox_invincibility_ended():
+	animationPlayer.play("Stop")

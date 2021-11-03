@@ -71,7 +71,6 @@ tracks/0/keys = {
 script = ExtResource( 8 )
 
 [node name="Skilltree" parent="GUI" instance=ExtResource( 6 )]
-visible = false
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
