@@ -5,6 +5,7 @@
 [ext_resource path="res://Code/GUI/SkillTree/ResetPoints.gd" type="Script" id=3]
 
 [node name="Skilltree" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -124,4 +125,5 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="ResetPoints" to="ResetPoints" method="_on_ResetPoints_pressed"]

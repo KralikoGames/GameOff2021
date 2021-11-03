@@ -125,5 +125,4 @@ __meta__ = {
 position = Vector2( -12, -252 )
 
 [editable path="Signs/Sign"]
-
 [editable path="Signs/Sign2"]
