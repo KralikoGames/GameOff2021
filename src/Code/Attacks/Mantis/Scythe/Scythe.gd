@@ -18,6 +18,7 @@ const speed_decay: float = 300.0
 
 func init(source: Node2D, procedural:bool=false):
 	creator = source
+	_massive_scythes()
 	if not procedural:
 		_trishot()
 	
@@ -50,6 +51,12 @@ func _trishot():
 			get_parent().add_child(attack)
 			
 			attack.init(creator, true)
+
+
+func _massive_scythes():
+	if GameInit.skilltree.passives["Massive_Scythes"].points > 0:
+		scale *= GameInit.massive_scythe_multiplier
+	
 
 
 func die():

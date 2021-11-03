@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 25.0
+radius = 16.5
 
 [node name="Scythe" type="KinematicBody2D"]
 collision_layer = 0
