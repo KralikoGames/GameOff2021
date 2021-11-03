@@ -1,7 +1,11 @@
 extends Button
 
 
+signal points_changed
+
+
 export(NodePath) var required_passive_path: NodePath
+export(String) var id: String = "None"
 export(int) var required_points_in_parent: int = 1
 export(int) var points: int = 0 setget _set_points
 export(int) var max_points: int = 1
@@ -56,5 +60,6 @@ func _can_I_accept_points() -> bool:
 
 func _set_points(v):
 	points = v
+	emit_signal("points_changed")
 	_update_point_count()
 	_update_disabled()

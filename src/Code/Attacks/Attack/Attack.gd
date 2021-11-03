@@ -6,7 +6,9 @@ export(float) var damage = 1.0
 
 
 func _ready():
-	pass
+	var passive = GameInit.skilltree.passives["Spinning_Scythe"]
+	multiply_size(1+(1.5*passive.points))
+	
 
 
 func multiply_size(perc: float):
