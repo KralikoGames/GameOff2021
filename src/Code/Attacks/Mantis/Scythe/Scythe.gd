@@ -10,6 +10,7 @@ export var damage: float = 30
 
 var creator: Node2D
 var dir_reversed = false
+var blood_explosion_tscn = preload("res://Code/Attacks/Mantis/Scythe/BloodExplosion/BloodExplosion.tscn")
 
 
 const speed_decay: float = 300.0
@@ -28,6 +29,7 @@ func _physics_process(delta):
 	if speed < 0 and creator: # home in on the player
 		if not dir_reversed:
 			dir_reversed = true
+			_spawn_blood_explosion()
 			emit_signal("direction_reversed")
 		
 		rotation = global_position.angle_to_point(creator.global_position)
@@ -42,7 +44,6 @@ func _physics_process(delta):
 
 func _trishot():
 	if GameInit.skilltree.passives["Tri_Shot"].points > 0:
-		print("Tri Shot enabled")
 		for i in [-1,1]:
 			var attack_tscn = load(filename)
 			var attack = attack_tscn.instance()
@@ -56,7 +57,13 @@ func _trishot():
 func _massive_scythes():
 	if GameInit.skilltree.passives["Massive_Scythes"].points > 0:
 		scale *= GameInit.massive_scythe_multiplier
-	
+
+
+func _spawn_blood_explosion():
+	if GameInit.skilltree.passives["Blood_Explosion"].points > 0:
+		var b = blood_explosion_tscn.instance()
+		b.global_position = global_position
+		get_parent().add_child(b)
 
 
 func die():

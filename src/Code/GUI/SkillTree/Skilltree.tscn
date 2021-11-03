@@ -52,6 +52,12 @@ margin_right = 159.06
 margin_bottom = 172.617
 required_passive_path = NodePath("../Tri_Shot")
 
+[node name="Blood_Explosion" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
+margin_left = 127.675
+margin_top = 62.1961
+margin_right = 167.675
+margin_bottom = 102.196
+
 [node name="Beetle" type="Panel" parent="TabContainer"]
 visible = false
 anchor_right = 1.0
