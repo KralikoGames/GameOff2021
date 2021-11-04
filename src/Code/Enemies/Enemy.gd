@@ -104,7 +104,8 @@ func _blood_rite(amt: float):
 func add_bleed_debuff(damage_amt: float):
 	var bleeding = GameInit.bleeding_debuff.instance()
 	bleeding.target = self
-	bleeding.dps = GameInit.bleed_damage_perc * damage_amt
+	bleeding.dps = GameInit.bleed_damage_perc * damage_amt / GameInit.bleed_duration
+	bleeding.wait_time = GameInit.bleed_duration
 	$bleeding_debuffs.add_child(bleeding)
 	$bleeding_debuffs.move_child(bleeding, 0)
 

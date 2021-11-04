@@ -107,7 +107,8 @@ func dash(speed: float=0.0):
 
 
 func teleport(offset: Vector2):
-	global_position += offset
+#	move_and_collide(offset)
+	global_position += offset # This can go over walls
 	
 
 

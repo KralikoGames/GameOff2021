@@ -17,6 +17,7 @@ const blood_explosion_damage: float = 3.0
 const blood_explosion_tscn = preload("res://Code/Attacks/Mantis/Scythe/BloodExplosion/BloodExplosion.tscn")
 
 const bleed_damage_perc = 0.5
+const bleed_duration = 4.0 # seconds
 const haemophilia_stacks = 8
 const bleeding_debuff = preload("res://Code/Attacks/Mantis/Bleeding/Bleeding.tscn")
 
@@ -38,8 +39,8 @@ var attacks = {
 }
 var attack_cooldowns = {
 	"Spinning_Scythe":1.3, 
-	"Assassinate":2.2, 
-	"Shadow_Hop":100.0,
+	"Assassinate":3.2, 
+	"Shadow_Hop":1.5,
 }
 
 

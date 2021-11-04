@@ -79,6 +79,13 @@ func _on_PassiveButton_pressed():
 	_update_point_count()
 	_update_disabled()
 	GameInit.player.passive_points -= 1
+	
+	if draggable_skill: # try occupying an open ability slot
+		var slots = get_tree().get_nodes_in_group("ability_slots")
+		for slot in slots:
+			if not slot.is_occupied():
+				slot.occupy_slot(name, texture_normal)
+				break
 
 
 func _update_point_count():

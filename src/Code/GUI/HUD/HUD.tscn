@@ -10,20 +10,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftClickAbility" parent="." instance=ExtResource( 1 )]
+[node name="LeftClickAbility" parent="." groups=[
+"ability_slots",
+] instance=ExtResource( 1 )]
 margin_left = 362.0
 margin_top = 4.0
 margin_right = 397.0
 margin_bottom = 39.0
 
-[node name="SpaceAbility" parent="." instance=ExtResource( 1 )]
+[node name="SpaceAbility" parent="." groups=[
+"ability_slots",
+] instance=ExtResource( 1 )]
 margin_left = 400.0
 margin_top = 4.0
 margin_right = 435.0
 margin_bottom = 39.0
 keybind = "attack3"
 
-[node name="RightClickAbility" parent="." instance=ExtResource( 1 )]
+[node name="RightClickAbility" parent="." groups=[
+"ability_slots",
+] instance=ExtResource( 1 )]
 margin_left = 438.0
 margin_top = 4.0
 margin_right = 473.0

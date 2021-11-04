@@ -7,16 +7,31 @@ var curr_name: String
 var default_text: Texture = preload("res://Art/white_square.png")
 
 
+func is_occupied() -> bool:
+	return curr_name != ""
+
+
+func occupy_slot(n: String, t: Texture):
+	curr_text = t
+	curr_name = n
+	texture = t
+	GameInit.set_ability(keybind, n)
+
+
+func clear_slot():
+	curr_name = ""
+	curr_text = null
+	texture = default_text
+	GameInit.get_node("timer_%s" % keybind).stop() # reset the cooldown on the timer
+
+
 func can_drop_data(position, data):
 	# data should be a string of an active ability
 	return data["name"] in GameInit.active_ability_names
 
 
 func drop_data(position, data):
-	curr_text = data["texture"]
-	curr_name = data["name"]
-	texture = data["texture"]
-	GameInit.set_ability(keybind, data["name"])
+	occupy_slot(data["name"], data["texture"])
 
 
 func get_drag_data(position):
@@ -35,9 +50,7 @@ func get_drag_data(position):
 	
 	var data = {"name":curr_name, "texture":curr_text}
 	
-	curr_name = ""
-	curr_text = null
-	texture = default_text
+	clear_slot()
 	
 	return data
 

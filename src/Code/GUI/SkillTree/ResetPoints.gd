@@ -8,4 +8,7 @@ func _on_ResetPoints_pressed():
 	for passive in passives:
 		GameInit.player.passive_points += passive.points
 		passive.points = 0
-	pass # Replace with function body.
+	
+	var ability_slots = get_tree().get_nodes_in_group("ability_slots")
+	for slot in ability_slots:
+		slot.clear_slot()
