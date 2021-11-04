@@ -33,7 +33,7 @@ func init():
 
 
 
-func get_drag_data(position):
+func get_drag_data(_position):
 	if not draggable_skill: return
 	if points != max_points: return
 	

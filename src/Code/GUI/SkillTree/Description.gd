@@ -15,5 +15,5 @@ func _on_passive_hovered(passive):
 	$VBoxContainer/skillname.text = passive.name.replace("_", " ")
 
 
-func _on_passive_exited(passive):
+func _on_passive_exited(_passive):
 	hide()

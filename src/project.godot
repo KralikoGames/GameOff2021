@@ -76,6 +76,10 @@ config/icon="res://icon.png"
 
 GameInit="*res://Code/Globals/GameInit.gd"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/size/width=480

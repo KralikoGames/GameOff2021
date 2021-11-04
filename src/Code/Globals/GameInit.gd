@@ -87,7 +87,7 @@ func _on_enemy_died(source:String, enemy:Node2D):
 	_cloaked_in_blood(enemy, source)
 
 
-func _path_of_blood(enemy: Node2D):
+func _path_of_blood(_enemy: Node2D):
 	if skilltree.passives["Path_Of_Blood"].points > 0:
 		for key in keybinds:
 			if keybinds[key] == "Shadow_Hop":
@@ -95,7 +95,7 @@ func _path_of_blood(enemy: Node2D):
 				t.stop()
 
 
-func _cloaked_in_blood(enemy: Node2D, source: String):
+func _cloaked_in_blood(_enemy: Node2D, source: String):
 	if skilltree.passives["Cloaked_In_Blood"].points > 0 and \
 		source == "Assassinate":
 		player._add_cloaked_in_blood_stack()
@@ -108,7 +108,7 @@ func _gratuitous_violence(enemy:Node2D):
 		enemy.get_parent().add_child(boom)
 
 
-func _bloodplay(enemy:Node2D):
+func _bloodplay(_enemy:Node2D):
 	if skilltree.passives["Bloodplay"].points > 0:
 		player._add_bloodplay_stack()
 

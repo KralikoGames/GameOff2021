@@ -25,16 +25,16 @@ func clear_slot():
 	GameInit.get_node("timer_%s" % keybind).stop() # reset the cooldown on the timer
 
 
-func can_drop_data(position, data):
+func can_drop_data(_position, data):
 	# data should be a string of an active ability
 	return data["name"] in GameInit.active_ability_names
 
 
-func drop_data(position, data):
+func drop_data(_position, data):
 	occupy_slot(data["name"], data["texture"])
 
 
-func get_drag_data(position):
+func get_drag_data(_position):
 	if not curr_name or not curr_text: return
 	
 	var t = TextureRect.new()
@@ -54,7 +54,7 @@ func get_drag_data(position):
 	
 	return data
 
-func _process(delta):
+func _process(_delta):
 	var timer: Timer = GameInit.get_node("timer_%s" % keybind)
 	$cooldown.max_value = timer.wait_time
 	$cooldown.value = timer.time_left
