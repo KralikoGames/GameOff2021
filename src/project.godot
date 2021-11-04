@@ -68,7 +68,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Ninth_Dawn_IV"
+config/name="GameOff2021"
 run/main_scene="res://Code/World/World.tscn"
 config/icon="res://icon.png"
 
