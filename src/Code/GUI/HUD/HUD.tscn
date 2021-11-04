@@ -11,21 +11,21 @@ __meta__ = {
 }
 
 [node name="LeftClickAbility" parent="." instance=ExtResource( 1 )]
-margin_left = 390.292
-margin_top = 7.55087
-margin_right = 414.292
-margin_bottom = 31.5509
+margin_left = 362.0
+margin_top = 4.0
+margin_right = 397.0
+margin_bottom = 39.0
 
 [node name="SpaceAbility" parent="." instance=ExtResource( 1 )]
-margin_left = 419.553
-margin_top = 7.55087
-margin_right = 443.553
-margin_bottom = 31.5509
+margin_left = 400.0
+margin_top = 4.0
+margin_right = 435.0
+margin_bottom = 39.0
 keybind = "attack3"
 
 [node name="RightClickAbility" parent="." instance=ExtResource( 1 )]
-margin_left = 446.925
-margin_top = 7.55087
-margin_right = 470.925
-margin_bottom = 31.5509
+margin_left = 438.0
+margin_top = 4.0
+margin_right = 473.0
+margin_bottom = 39.0
 keybind = "attack2"

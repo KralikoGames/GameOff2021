@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 
 
 signal points_changed
@@ -31,20 +31,22 @@ func init():
 
 
 
-func can_drop_data(position, data):
-	pass
-
-func drop_data(position, data):
-	pass
-	
-
 func get_drag_data(position):
 	if not draggable_skill: return
 	if points != max_points: return
+	
 	var t = TextureRect.new()
-	t.texture = load("res://icon.png") # TODO: replace this with the the proper texture
-	set_drag_preview(t)
-	return name
+	var c = Control.new()
+	c.add_child(t)
+	
+	t.texture = texture_normal
+	t.expand = true
+	t.rect_size = Vector2(30, 30)
+	t.rect_position = -0.5 * t.rect_size
+	
+	set_drag_preview(c)
+	
+	return {"name":name, "texture":texture_normal}
 
 
 
@@ -90,3 +92,14 @@ func _set_points(v):
 	emit_signal("points_changed")
 	_update_point_count()
 	_update_disabled()
+
+
+
+### Procedural hover/click for the button
+
+func _darken(): self_modulate *= 0.9
+func _lighten(): self_modulate *= 1.1
+func _on_PassiveButton_mouse_entered(): if _can_I_accept_points(): _darken()
+func _on_PassiveButton_mouse_exited():  if _can_I_accept_points(): _lighten()
+func _on_PassiveButton_button_down():   if _can_I_accept_points(): _darken()
+func _on_PassiveButton_button_up():     self_modulate = Color(1,1,1,1)

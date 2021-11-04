@@ -78,34 +78,35 @@ func set_ability(keybind, attack_name):
 
 
 func _on_enemy_died(enemy:Node2D):
-	_bloodplay(enemy)
-	_gratuitous_violence(enemy)
-	_drenched_in_blood(enemy)
-	_path_of_blood(enemy)
+	if _is_enemy_bleeding(enemy):
+		_bloodplay(enemy)
+		_gratuitous_violence(enemy)
+		_drenched_in_blood(enemy)
+		_path_of_blood(enemy)
 
 
 func _path_of_blood(enemy: Node2D):
-	if _is_enemy_bleeding(enemy):
+	if skilltree.passives["Path_Of_Blood"].points > 0:
 		for key in keybinds:
 			if keybinds[key] == "ShadowHop":
 				var t: Timer = get_node("timer_%s" % key)
 				t.stop()
-				
 
 
 func _drenched_in_blood(enemy: Node2D):
-	if _is_enemy_bleeding(enemy):
+	if skilltree.passives["Drenched_In_Blood"].points > 0:
 		player._add_drenched_in_blood_stack()
 
 
 func _gratuitous_violence(enemy:Node2D):
-	var boom = blood_explosion_tscn.instance()
-	boom.global_position = enemy.global_position
-	enemy.get_parent().add_child(boom)
+	if skilltree.passives["Gratuitous_Violence"].points > 0:
+		var boom = blood_explosion_tscn.instance()
+		boom.global_position = enemy.global_position
+		enemy.get_parent().add_child(boom)
 
 
 func _bloodplay(enemy:Node2D):
-	if _is_enemy_bleeding(enemy):
+	if skilltree.passives["Bloodplay"].points > 0:
 		player._add_bloodplay_stack()
 
 
