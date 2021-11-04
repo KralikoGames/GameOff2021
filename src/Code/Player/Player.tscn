@@ -54,6 +54,7 @@ shape = SubResource( 4 )
 [node name="Node" type="Node" parent="."]
 
 [node name="move_target" type="Position2D" parent="Node"]
+visible = false
 
 [node name="temp" type="CollisionShape2D" parent="Node/move_target"]
 shape = SubResource( 5 )
@@ -69,5 +70,5 @@ shape = SubResource( 6 )
 
 [node name="bloodplay_stacks" type="Node" parent="."]
 
-[node name="drenched_in_blood_stacks" type="Node" parent="."]
+[node name="cloaked_in_blood_stacks" type="Node" parent="."]
 [connection signal="area_entered" from="EnemyTriggerRadius" to="EnemyTriggerRadius" method="_on_EnemyTriggerRadius_area_entered"]

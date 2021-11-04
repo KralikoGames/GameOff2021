@@ -4,7 +4,7 @@ extends KinematicBody2D
 signal direction_reversed
 
 
-export var speed: float = 300
+export var speed: float = 380
 export var damage: float = 30
 
 
@@ -12,9 +12,9 @@ var creator: Node2D
 var dir_reversed = false
 
 
-const speed_decay: float = 300.0
+const speed_decay: float = 640.0
 
-
+func get_class(): return "Spinning_Scythe"
 
 func init(source: Node2D, procedural:bool=false):
 	creator = source
@@ -25,6 +25,9 @@ func init(source: Node2D, procedural:bool=false):
 
 
 func _physics_process(delta):
+	var vel = Vector2(1,0).rotated(rotation) * speed
+	speed -= speed_decay * delta
+	
 	if speed < 0 and creator: # home in on the player
 		if not dir_reversed:
 			dir_reversed = true
@@ -34,11 +37,11 @@ func _physics_process(delta):
 		rotation = global_position.angle_to_point(creator.global_position)
 		if global_position.distance_squared_to(creator.global_position) < 150:
 			die()
-	
-	var vel = Vector2(1,0).rotated(rotation) * speed
-	speed -= speed_decay * delta
-	
-	move_and_slide(vel)
+		var col: KinematicCollision2D = move_and_collide(vel * delta)
+		if col and speed < -50:
+			die()
+	else: # forward motion
+		move_and_slide(vel)
 
 
 func _trishot():
