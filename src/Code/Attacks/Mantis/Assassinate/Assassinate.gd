@@ -4,8 +4,7 @@ extends Area2D
 var damage: float = 10
 
 
-func get_class():
-	return "Assassinate"
+func get_class(): return "Assassinate"
 
 
 

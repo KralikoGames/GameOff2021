@@ -14,7 +14,7 @@ var dir_reversed = false
 
 const speed_decay: float = 640.0
 
-
+func get_class(): return "Spinning_Scythe"
 
 func init(source: Node2D, procedural:bool=false):
 	creator = source

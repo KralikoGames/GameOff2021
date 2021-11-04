@@ -60,17 +60,17 @@ func _on_Hitbox_area_entered(area):
 		if area.has_method("can_damage"):
 			if not area.can_damage(self):
 				return
-		damage(area.damage)
+		damage(area.damage, area.get_class())
 		_on_hit_effects(area)
 	if "knockback" in area:
 		knockback_dir = (global_position - area.global_position).normalized() * area.knockback
 
 
-func damage(amt: float):
+func damage(amt: float, ability_source:String=""):
 	health -= amt
 	_update_hp()
 	if health <= 0:
-		emit_signal("died")
+		emit_signal("died", ability_source)
 		die()
 	else:
 		emit_signal("damaged")
@@ -93,7 +93,7 @@ func _exsanguinate(area: Area2D):
 	# removes all bleeding stacks and does half the damage immediately
 	for bleed in $bleeding_debuffs.get_children():
 		bleed.queue_free()
-		damage(bleed.time_left * bleed.dps * GameInit.exsanguinate_bleed_dps_percentage)
+		damage(bleed.time_left * bleed.dps * GameInit.exsanguinate_bleed_dps_percentage, "Assassinate")
 
 
 func _blood_rite(amt: float):

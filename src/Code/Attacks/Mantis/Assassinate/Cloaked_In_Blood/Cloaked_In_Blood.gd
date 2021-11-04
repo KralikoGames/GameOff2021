@@ -4,7 +4,7 @@ extends Timer
 var target: Node2D
 
 
-const invisiblility_amount = 0.7
+const invisiblility_amount = 0.3
 
 
 func _ready():
@@ -13,14 +13,17 @@ func _ready():
 		queue_free()
 		return
 	
-	target.modulate.a -= invisiblility_amount
+	target.modulate.a = invisiblility_amount
 	
 	if target.has_signal("attacked"):
 		target.connect("attacked", self, "end_effect")
 	
+	wait_time = GameInit.cloaked_in_blood_duration
+	start()
+	
 
 func end_effect():
-	target.modulate.a += invisiblility_amount
+	target.modulate.a = 1
 	queue_free()
 	
 

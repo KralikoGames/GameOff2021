@@ -27,6 +27,7 @@ const bloodplay_buff = preload("res://Code/Attacks/Mantis/Bleeding/Bloodplay/Blo
 const exsanguinate_bleed_dps_percentage = 0.5
 
 const cloaked_in_blood_tscn = preload("res://Code/Attacks/Mantis/Assassinate/Cloaked_In_Blood/Cloaked_In_Blood.tscn")
+const cloaked_in_blood_duration = 0.5
 
 #Other
 const dash_buff_tscn = preload("res://Code/Attacks/Movement/Dash.tscn")
@@ -39,7 +40,7 @@ var attacks = {
 }
 var attack_cooldowns = {
 	"Spinning_Scythe":1.3, 
-	"Assassinate":3.2, 
+	"Assassinate":0.2, 
 	"Shadow_Hop":1.5,
 }
 
@@ -78,12 +79,12 @@ func set_ability(keybind, attack_name):
 	
 
 
-func _on_enemy_died(enemy:Node2D):
+func _on_enemy_died(source:String, enemy:Node2D):
 	if _is_enemy_bleeding(enemy):
 		_bloodplay(enemy)
 		_gratuitous_violence(enemy)
-		_cloaked_in_blood(enemy)
 		_path_of_blood(enemy)
+	_cloaked_in_blood(enemy, source)
 
 
 func _path_of_blood(enemy: Node2D):
@@ -94,8 +95,9 @@ func _path_of_blood(enemy: Node2D):
 				t.stop()
 
 
-func _cloaked_in_blood(enemy: Node2D):
-	if skilltree.passives["Cloaked_In_Blood"].points > 0:
+func _cloaked_in_blood(enemy: Node2D, source: String):
+	if skilltree.passives["Cloaked_In_Blood"].points > 0 and \
+		source == "Assassinate":
 		player._add_cloaked_in_blood_stack()
 
 
