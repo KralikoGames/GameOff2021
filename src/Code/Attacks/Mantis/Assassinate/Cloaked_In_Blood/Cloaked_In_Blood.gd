@@ -9,7 +9,7 @@ const invisiblility_amount = 0.7
 
 func _ready():
 	if not target:
-		push_error("Drenched In Blood has no target, doesn't do anything")
+		push_error("Cloaked In Blood has no target, doesn't do anything")
 		queue_free()
 		return
 	
@@ -25,5 +25,5 @@ func end_effect():
 	
 
 
-func _on_Drenched_In_Blood_timeout():
+func _on_Cloaked_In_Blood_timeout():
 	end_effect()

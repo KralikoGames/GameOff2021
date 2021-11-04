@@ -10,6 +10,8 @@ export(int) var required_points_in_parent: int = 1
 export(int) var points: int = 0 setget _set_points
 export(int) var max_points: int = 1
 
+export(String, MULTILINE) var skill_description
+
 
 func _ready():
 	add_to_group("passives")
