@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Code/Attacks/Mantis/Bleeding/Bleeding.gd" type="Script" id=1]
+
+[node name="Bleeding" type="Timer"]
+wait_time = 100.0
+autostart = true
+script = ExtResource( 1 )
+[connection signal="timeout" from="." to="." method="_on_Bleeding_timeout"]

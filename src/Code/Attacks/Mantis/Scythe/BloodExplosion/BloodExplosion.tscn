@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Code/Attacks/Mantis/Scythe/BloodExplosion/BloodExplosion.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 25.0
+
+[node name="BloodExplosion" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource( 1 )
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

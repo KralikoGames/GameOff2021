@@ -26,6 +26,6 @@ func _on_player_passive_points_changed():
 func _populate_passives_dictionary():
 	var ps = get_tree().get_nodes_in_group("passives")
 	for p in ps:
-		if p.id in passives:
+		if p.name in passives:
 			push_error("Two passives have the same ID")
-		passives[p.id] = p
+		passives[p.name] = p

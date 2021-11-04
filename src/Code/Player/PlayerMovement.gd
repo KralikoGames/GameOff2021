@@ -7,12 +7,13 @@ signal died
 signal health_changed
 signal mana_changed
 signal direction_changed
+signal attacked
 
 
 export var wasd_movement: bool = true
 export(float, 0, 1000, 10) var acceleration: float = 300.0
 export(float, 0, 1, 0.025) var damping: float = 0.80
-export(float, 0, 1000, 10) var max_speed: float = 400.0
+export(float, 0, 1000, 10) var max_speed: float = 170.0
 export(float, 0, 1, 0.05) var knockback_decay: float = 0.5
 export(float, 0, 20, 1) var max_health: float = 3
 export var immortal: bool = false
@@ -45,14 +46,6 @@ func _physics_process(delta):
 	_apply_knockback()
 	if not input_lock:
 		_move_player()
-
-
-func _unhandled_input(event):
-	if input_lock:
-		return
-	if event.is_action_pressed("attack"):
-		_spawn_selected_attack()
-	pass
 
 
 func damage(amt:float, dir:Vector2, knockback_amt:float=0):
@@ -102,25 +95,35 @@ func unfreeze_player():
 
 
 
+func dash(speed: float=0.0):
+	var dash_range = 100
+	var distance = min(get_global_mouse_position().distance_to(global_position), dash_range)
+	if speed == 0.0:
+		teleport(look_dir * distance)
+	else:
+		var d = GameInit.dash_buff_tscn.instance()
+		d.init(look_dir, speed, distance)
+		add_child(d)
 
 
+func teleport(offset: Vector2):
+	global_position += offset
+	
 
-func _spawn_selected_attack():
-	var attack_tscn = _get_selected_attack()
-	var attack = attack_tscn.instance()
+
+func spawn_selected_attack(selected_attack: PackedScene):
+#	var attack_tscn = _get_selected_attack()
+#	var attack = attack_tscn.instance()
+	var attack = selected_attack.instance()
 	attack.global_position = $aimer/offset.global_position
 	attack.global_rotation = $aimer/offset.global_rotation
-#	$aimer/offset.add_child(attack)
 	get_parent().add_child(attack)
 	
-#	if attack.has_method("multiply_size"): attack.multiply_size(1.0)
-#	if attack.has_method("multiply_damage"): attack.multiply_damage(1.0) # for later
+	if attack.has_method("init"): attack.init(self)
 	
 	if "input_lock" in attack: freeze_player(attack.input_lock)
-
-
-func _get_selected_attack() -> PackedScene:
-	return preload("res://Code/Attacks/Attack/Attack.tscn")
+	
+	emit_signal("attacked")
 
 
 func _apply_knockback():

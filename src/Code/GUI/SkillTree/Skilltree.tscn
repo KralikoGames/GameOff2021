@@ -5,7 +5,6 @@
 [ext_resource path="res://Code/GUI/SkillTree/ResetPoints.gd" type="Script" id=3]
 
 [node name="Skilltree" type="Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -33,27 +32,127 @@ margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 400, 200 )
 
-[node name="PassiveButton" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
-id = "Spinning_Scythe"
-max_points = 2
+[node name="ScytheNodes" type="Control" parent="TabContainer/Mantis"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="PassiveButton2" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
-margin_left = 162.53
-margin_top = 43.4673
-margin_right = 202.53
-margin_bottom = 83.4673
-required_passive_path = NodePath("../PassiveButton")
-id = "Twin_Shot"
-max_points = 3
+[node name="Spinning_Scythe" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
+margin_left = 29.2505
+margin_top = 158.309
+margin_right = 69.2505
+margin_bottom = 198.309
+draggable_skill = true
 
-[node name="PassiveButton3" parent="TabContainer/Mantis" instance=ExtResource( 2 )]
-margin_left = 285.372
-margin_top = 43.4673
-margin_right = 325.372
-margin_bottom = 83.4673
-required_passive_path = NodePath("../PassiveButton2")
-id = "Massive_Scythes"
-max_points = 2
+[node name="Tri_Shot" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
+margin_left = 11.9501
+margin_top = 96.6572
+margin_right = 51.9501
+margin_bottom = 136.657
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="Massive_Scythes" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
+margin_left = 60.2514
+margin_top = 97.0318
+margin_right = 100.251
+margin_bottom = 137.032
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="Blood_Explosion" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
+margin_left = 39.2751
+margin_top = 53.2063
+margin_right = 79.2751
+margin_bottom = 93.2063
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="BleedingNodes" type="Control" parent="TabContainer/Mantis"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blood_Rite" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
+margin_left = 142.373
+margin_top = 158.684
+margin_right = 182.373
+margin_bottom = 198.684
+
+[node name="Gratuitous_Violence" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
+margin_left = 125.072
+margin_top = 97.0318
+margin_right = 165.072
+margin_bottom = 137.032
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="Haemophilia" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
+margin_left = 173.374
+margin_top = 97.4064
+margin_right = 213.374
+margin_bottom = 137.406
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="Bloodplay" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
+margin_left = 152.397
+margin_top = 53.5809
+margin_right = 192.397
+margin_bottom = 93.5809
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="AssassinateNodes" type="Control" parent="TabContainer/Mantis"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Assassinate" parent="TabContainer/Mantis/AssassinateNodes" instance=ExtResource( 2 )]
+margin_left = 252.498
+margin_top = 158.684
+margin_right = 292.498
+margin_bottom = 198.684
+draggable_skill = true
+
+[node name="Exsanguinate" parent="TabContainer/Mantis/AssassinateNodes" instance=ExtResource( 2 )]
+margin_left = 235.198
+margin_top = 97.0318
+margin_right = 275.198
+margin_bottom = 137.032
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="Drenched_In_Blood" parent="TabContainer/Mantis/AssassinateNodes" instance=ExtResource( 2 )]
+margin_left = 283.499
+margin_top = 97.4064
+margin_right = 323.499
+margin_bottom = 137.406
+required_passive_path = NodePath("../ScytheNodes/Spinning_Scythe")
+
+[node name="ShadowHopNodes" type="Control" parent="TabContainer/Mantis"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShadowHop" parent="TabContainer/Mantis/ShadowHopNodes" instance=ExtResource( 2 )]
+margin_left = 370.097
+margin_top = 149.33
+margin_right = 410.097
+margin_bottom = 189.33
+draggable_skill = true
+
+[node name="Path_Of_Blood" parent="TabContainer/Mantis/ShadowHopNodes" instance=ExtResource( 2 )]
+margin_left = 370.097
+margin_top = 98.1028
+margin_right = 410.097
+margin_bottom = 138.103
+draggable_skill = true
 
 [node name="Beetle" type="Panel" parent="TabContainer"]
 visible = false
@@ -84,6 +183,7 @@ margin_left = -101.0
 margin_top = -31.0
 margin_right = -17.0
 margin_bottom = -17.0
+mouse_filter = 2
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -128,5 +228,4 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
 [connection signal="pressed" from="ResetPoints" to="ResetPoints" method="_on_ResetPoints_pressed"]
