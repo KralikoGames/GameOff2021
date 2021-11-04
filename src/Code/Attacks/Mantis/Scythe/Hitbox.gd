@@ -1,8 +1,8 @@
 extends Area2D
 
+export (float, 0,200,5) var knockback = 100;
 
 var damage: float setget , get_damage
-
 var enemies_damaged = []
 
 

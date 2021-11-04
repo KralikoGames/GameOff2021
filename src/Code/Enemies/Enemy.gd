@@ -3,7 +3,7 @@ extends KinematicBody2D
 signal damaged
 signal died
 
-export(float, 1, 100, 1) var health = 3
+export(float, 1, 1000, 1) var health = 3
 export(float, 0, 1000, 10) var acceleration: float = 300.0
 export(float, 0, 1, 0.025) var damping: float = 0.80
 export(float, 0, 1000, 10) var max_speed: float = 400.0
