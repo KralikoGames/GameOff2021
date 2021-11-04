@@ -38,7 +38,7 @@ func _ready():
 	_reset_move_target()
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	_set_move_target()
 	look_dir = _get_dir_to_mouse()
 	$aimer.rotation = look_dir.angle()
@@ -107,7 +107,8 @@ func dash(speed: float=0.0):
 
 
 func teleport(offset: Vector2):
-	global_position += offset
+#	move_and_collide(offset)
+	global_position += offset # This can go over walls
 	
 
 
@@ -133,7 +134,7 @@ func _apply_knockback():
 
 
 func _move_player() -> void:
-	var move_dir = _get_input_dir() if wasd_movement else _get_dir_to_target() 
+	move_dir = _get_input_dir() if wasd_movement else _get_dir_to_target() 
 	vel += move_dir * acceleration
 	vel = vel.clamped(max_speed)
 	

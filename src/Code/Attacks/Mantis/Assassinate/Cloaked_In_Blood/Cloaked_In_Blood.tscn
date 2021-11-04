@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Code/Attacks/Mantis/Assassinate/Cloaked_In_Blood/Cloaked_In_Blood.gd" type="Script" id=1]
+
+[node name="Cloaked_In_Blood" type="Timer"]
+autostart = true
+script = ExtResource( 1 )
+[connection signal="timeout" from="." to="." method="_on_Cloaked_In_Blood_timeout"]
