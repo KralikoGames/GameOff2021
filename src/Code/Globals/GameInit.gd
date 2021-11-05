@@ -4,6 +4,17 @@ extends Node
 signal player_ready
 signal skilltree_ready
 
+### Scenes ###
+
+var scenes = {
+	"world" : preload("res://Code/World/World.tscn"),
+	"menu" : preload("res://Code/Menu/Main_Menu.tscn"),
+}
+
+var current_scene = null
+
+### Scenes ###
+
 
 var player: Player setget _set_player
 var skilltree: SkillTree setget _set_skilltree
@@ -46,17 +57,47 @@ var attack_cooldowns = {
 
 
 func _ready():
+	_create_ability_timers()
+	var root = get_tree().root
+	yield(root, "ready")
+	current_scene = root.get_child(root.get_child_count()-1)
+
+
+func _unhandled_input(event):
+	if not is_instance_valid(player): return
+	if player.input_lock: return
+	
+	_cast_abilities(event)
+
+
+########################## Scene Handling ##########################
+
+
+func change_scene(scene_name):
+	if not scene_name in scenes:
+		push_error("can't change to scene %s. Scene does not exist.")
+		return
+	
+	var new_scene = scenes[scene_name].instance()
+	current_scene.queue_free()
+	get_tree().root.add_child(new_scene)
+	current_scene = new_scene
+
+
+########################## Scene Handling ##########################
+
+########################## Abilities ##########################
+
+
+func _create_ability_timers():
 	for n in ["timer_attack", "timer_attack2", "timer_attack3"]:
 		var t = Timer.new()
 		t.name = n
 		t.one_shot = true
 		add_child(t)
-		
 
 
-func _unhandled_input(event):
-	if player.input_lock: return
-	
+func _cast_abilities(event):
 	for keybind in keybinds:
 		if not event.is_action_pressed(keybind): continue
 		
@@ -76,7 +117,11 @@ func set_ability(keybind, attack_name):
 	keybinds[keybind] = attack_name
 	var t: Timer = get_node("timer_%s" % keybind)
 	t.wait_time = attack_cooldowns[attack_name]
-	
+
+
+########################## Abilities ##########################
+
+########################## On death Effects ##########################
 
 
 func _on_enemy_died(source:String, enemy:Node2D):
@@ -117,6 +162,9 @@ func _is_enemy_bleeding(enemy):
 	var bleeding_debuffs = enemy.get_node_or_null("bleeding_debuffs")
 	if not bleeding_debuffs: return false 
 	return bleeding_debuffs.get_child_count() > 0
+
+
+########################## On death Effects ##########################
 
 
 func _set_player(v): 
