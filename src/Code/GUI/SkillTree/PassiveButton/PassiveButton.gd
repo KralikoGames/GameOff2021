@@ -62,6 +62,8 @@ func _update_disabled():
 	if not _can_I_accept_points():
 		disabled = true
 		return 
+	if GameInit.player == null:
+		return
 	
 	var parent_passive = get_node_or_null(required_passive_path)
 	if parent_passive:
