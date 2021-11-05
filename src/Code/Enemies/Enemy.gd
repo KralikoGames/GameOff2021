@@ -3,7 +3,7 @@ extends KinematicBody2D
 signal damaged
 signal died
 
-export(float, 1, 1000, 1) var health = 3
+export(float, 1, 100, 1) var health = 3
 export(float, 0, 1000, 10) var acceleration: float = 300.0
 export(float, 0, 1, 0.025) var damping: float = 0.80
 export(float, 0, 1000, 10) var max_speed: float = 400.0
@@ -14,7 +14,6 @@ var knockback_dir: Vector2 = Vector2()
 var move_dir: Vector2 = Vector2()
 var look_dir: Vector2 = Vector2()
 var vel: Vector2 = Vector2()
-onready var animationPlayer = $AnimationPlayer
 
 func _ready():
 	$hp.max_value = health
@@ -118,11 +117,3 @@ func _haemophilia_bleed_limit():
 	for i in range($bleeding_debuffs.get_child_count()):
 		if i >= max_bleeds:
 			$bleeding_debuffs.get_child(i).queue_free()
-
-
-func _on_Hitbox_invincibility_started():
-	animationPlayer.play("Start")
-
-
-func _on_Hitbox_invincibility_ended():
-	animationPlayer.play("Stop")
