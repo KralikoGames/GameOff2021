@@ -1,7 +1,9 @@
 extends Node
 
-func _attack():
-	pass
-	#Animate the enemy and let the animation inform what happens while we are attacking!
-	#animationState.travel("Attack")
-	
+signal changeAnimation
+
+export var associatedAnimation = ""
+
+func _attack(target):
+	print("Receiving attack state!")
+	emit_signal("changeAnimation", associatedAnimation)

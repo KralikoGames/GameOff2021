@@ -14,7 +14,6 @@ export(float, 0, 1, 0.025) var damping: float = 0.80
 func _physics_process(delta):
 	if move_dir != Vector2.ZERO:
 		vel = vel.move_toward(move_dir * max_speed, acceleration * delta)
-		print(str(vel))
 		vel = vel.clamped(max_speed)
 		
 		#Inform the animator which direction we are facing. Let the states handle things otherwise.

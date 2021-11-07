@@ -1,11 +1,15 @@
 extends Node2D
 
-var target : Node2D setget set_target
+export var associatedAnimation = ""
 export var distanceToTarget = 0
 export var attack_range = 0
 export var finishOnRangeEnter = true
+
 onready var body = get_parent()
 
+var target : Node2D setget set_target
+
+signal changeAnimation
 signal onEnterAttackRange
 signal onStartChase
 
@@ -25,10 +29,8 @@ func chase(delta):
 		if(distanceToTarget < attack_range):
 			emit_signal("onEnterAttackRange", target)
 			if(finishOnRangeEnter):
-				print("Entered Range, setting target null!")
 				target = null
 	else:
-		#stop or found animation if needed
 		body.move_dir = Vector2.ZERO
 
 func _get_dir_to_target(target: Node2D) -> Vector2:
@@ -40,4 +42,6 @@ func _get_dir_to_target(target: Node2D) -> Vector2:
 
 
 func _chaseAnimation():
-	pass
+	emit_signal("changeAnimation", associatedAnimation)
+	
+	
