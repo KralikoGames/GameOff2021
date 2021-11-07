@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Icons13.png-56ea0e0e2ac634d6e92763aed70fd983.stex"
+path="res://.import/Button 9-slice2.png-66a76a8abc26d161c4251b22323f10fe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Skill Icons/Icons13.png"
-dest_files=[ "res://.import/Icons13.png-56ea0e0e2ac634d6e92763aed70fd983.stex" ]
+source_file="res://Art/UI/Button 9-slice2.png"
+dest_files=[ "res://.import/Button 9-slice2.png-66a76a8abc26d161c4251b22323f10fe.stex" ]
 
 [params]
 

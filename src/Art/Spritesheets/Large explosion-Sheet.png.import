@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Icons1.png-1700cb0143aab864eefbb9485b384638.stex"
+path="res://.import/Large explosion-Sheet.png-f8f09290e530c7dca720ed9ddf22bda5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Skill Icons/Icons1.png"
-dest_files=[ "res://.import/Icons1.png-1700cb0143aab864eefbb9485b384638.stex" ]
+source_file="res://Art/Spritesheets/Large explosion-Sheet.png"
+dest_files=[ "res://.import/Large explosion-Sheet.png-f8f09290e530c7dca720ed9ddf22bda5.stex" ]
 
 [params]
 

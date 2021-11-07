@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Code/Menu/Main_Menu.gd" type="Script" id=1]
+
+[node name="Main_Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="buttons" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Play" type="Button" parent="buttons"]
+margin_left = 219.45
+margin_top = 108.545
+margin_right = 257.45
+margin_bottom = 128.545
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="buttons"]
+margin_left = 219.45
+margin_top = 134.03
+margin_right = 257.45
+margin_bottom = 154.03
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="buttons/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="buttons/Exit" to="." method="_on_Exit_pressed"]
