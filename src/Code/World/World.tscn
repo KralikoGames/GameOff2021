@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Art/white_square.png" type="Texture" id=1]
 [ext_resource path="res://Code/World/Camera.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Code/Interactables/Sign/Sign.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Code/GUI/GUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Code/Enemies/Dummy/Dummy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Code/Enemies/MeleeEnemy/MeleeEnemy.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
@@ -118,6 +119,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="NewEnemy" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( -194.438, 3.77545 )
+
 [node name="Enemy" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( -12, -252 )
 
@@ -143,5 +147,4 @@ position = Vector2( -158.808, 364.988 )
 position = Vector2( -109.254, 348.943 )
 
 [editable path="Signs/Sign"]
-
 [editable path="Signs/Sign2"]

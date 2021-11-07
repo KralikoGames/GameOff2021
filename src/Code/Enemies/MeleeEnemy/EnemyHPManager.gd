@@ -1,34 +1,19 @@
-extends Node
+extends ProgressBar
 
-var health = 0 setget _update_hp
+var health = 0
 export(int, 1, 500, 10) var max_health = 5 setget _update_max_hp
 signal die
 
 
 func _ready():
 	health = max_health
-	$hp.max_value = max_health
-	$hp.value = max_health
-
-
-func _on_Hitbox_area_entered(area):
-	if "damage" in area:
-		if area.has_method("can_damage") and area.can_damage(self):
-			damage(area.damage, area.get_class())
-			_on_hit_effects(area)
+	max_value = max_health
+	value = max_health
 	
 
 func _update_max_hp(newmaxhealth):
 	max_health = newmaxhealth
-	if ($hp):
-		$hp.max_value = newmaxhealth
-		print("Can update max health.")
-	else:
-		print("Can't update max health.")
-
-func _update_hp(newhealth):
-	health = newhealth
-	$hp.value = newhealth
+	max_value = newmaxhealth
 
 
 func damage(amt: float, ability_source:String=""):
@@ -37,6 +22,7 @@ func damage(amt: float, ability_source:String=""):
 		emit_signal("die", ability_source)
 		get_parent().queue_free()
 	else:
+		value = health
 		emit_signal("damaged")
 
 
@@ -77,3 +63,10 @@ func _haemophilia_bleed_limit():
 	for i in range($bleeding_debuffs.get_child_count()):
 		if i >= max_bleeds:
 			$bleeding_debuffs.get_child(i).queue_free()
+
+
+func DamageEnemy(area):
+	if "damage" in area:
+		if area.has_method("can_damage") and area.can_damage(self):
+			damage(area.damage, area.get_class())
+			_on_hit_effects(area)

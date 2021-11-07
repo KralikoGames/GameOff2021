@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Code/Enemies/NewEnemy/Hurtbox.gd" type="Script" id=1]
-[ext_resource path="res://Code/Enemies/NewEnemy/NewEnemy.gd" type="Script" id=2]
-[ext_resource path="res://Code/Enemies/NewEnemy/EnemyHPManager.gd" type="Script" id=3]
+[ext_resource path="res://Code/Enemies/MeleeEnemy/Hurtbox.gd" type="Script" id=1]
+[ext_resource path="res://Code/Enemies/MeleeEnemy/MeleeEnemy.gd" type="Script" id=2]
+[ext_resource path="res://Code/Enemies/MeleeEnemy/EnemyHPManager.gd" type="Script" id=3]
 [ext_resource path="res://Art/whiteshader.gdshader" type="Shader" id=4]
-[ext_resource path="res://Code/Enemies/NewEnemy/EnemyFlash.gd" type="Script" id=5]
+[ext_resource path="res://Code/Enemies/MeleeEnemy/EnemyFlash.gd" type="Script" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://Code/Enemies/MeleeEnemy/ChaseAI.gd" type="Script" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -19,7 +20,7 @@ shader_param/active = false
 
 [sub_resource type="Animation" id=5]
 
-[node name="NewEnemy" type="KinematicBody2D"]
+[node name="MeleeEnemy" type="KinematicBody2D"]
 script = ExtResource( 2 )
 acceleration = 70.0
 max_speed = 70.0
@@ -63,5 +64,12 @@ script = ExtResource( 5 )
 anims/Start = SubResource( 4 )
 anims/Stop = SubResource( 5 )
 
+[node name="MeleeAttackAI" type="Node" parent="."]
+
+[node name="ChaseAI" type="Node2D" parent="."]
+script = ExtResource( 7 )
+attack_range = 30
+
 [connection signal="area_entered" from="Hurtbox" to="." method="knockback"]
 [connection signal="area_entered" from="Hurtbox" to="hp" method="DamageEnemy"]
+[connection signal="onTargetFound" from="Hurtbox" to="ChaseAI" method="set_target"]
