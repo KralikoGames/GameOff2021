@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Enemy
 
 signal damaged
 signal died
@@ -9,12 +10,13 @@ export(float, 0, 1, 0.025) var damping: float = 0.80
 export(float, 0, 1000, 10) var max_speed: float = 400.0
 export(float, 0, 500, 10) var friction: float = 200
 
-var target
-var knockback_dir: Vector2 = Vector2()
-var move_dir: Vector2 = Vector2()
+var target: Node2D
+#var knockback_dir: Vector2 = Vector2()
+var move_dir: Vector2 = Vector2() setget set_move_dir
 var look_dir: Vector2 = Vector2()
 var vel: Vector2 = Vector2()
-onready var animationPlayer = $AnimationPlayer
+var frozen: bool = false
+
 
 func _ready():
 	$hp.max_value = health
@@ -23,24 +25,52 @@ func _ready():
 
 
 func _physics_process(delta):
-	move_dir = _get_dir_to_target() # _get_input_dir() if not is_dead else Vector2()
-
-	knockback_dir = knockback_dir.move_toward(Vector2.ZERO, friction * delta)
-	knockback_dir = move_and_slide(knockback_dir)
-
-	vel += move_dir * acceleration
-	vel = vel.clamped(max_speed)
-
-	vel = move_and_slide(vel)
-
-	vel *= damping
-
-	vel = move_and_slide(vel)
+	if Engine.editor_hint:
+		update()
+		return
+	
+	_move()
 
 
 func set_target(t: Node2D):
 	target = t
-	set_physics_process(true)
+	set_physics_process(target!=null)
+
+
+func freeze(duration:float):
+	frozen = true
+	yield(get_tree().create_timer(duration), "timeout")
+	frozen = false
+
+
+func move_to_target():
+	set_move_dir(_get_dir_to_target())
+
+func stop():
+	set_move_dir(Vector2())
+
+
+func damage(amt: float, ability_source:String=""):
+	health -= amt
+	_update_hp()
+	if health <= 0:
+		emit_signal("died", ability_source)
+		die()
+	else:
+		emit_signal("damaged")
+
+
+func die():
+	queue_free()
+
+
+func _move():
+	vel += move_dir * acceleration
+	vel = vel.clamped(max_speed)
+
+	vel *= damping
+
+	vel = move_and_slide(vel)
 
 
 func _get_dir_to_target() -> Vector2:
@@ -55,6 +85,10 @@ func _update_hp():
 	$hp.value = health
 
 
+func set_move_dir(v):
+	move_dir = v if not frozen else Vector2()
+
+
 func _on_Hitbox_area_entered(area):
 	if "damage" in area:
 		if area.has_method("can_damage"):
@@ -63,22 +97,8 @@ func _on_Hitbox_area_entered(area):
 		damage(area.damage, area.get_class())
 		_on_hit_effects(area)
 	if "knockback" in area:
-		knockback_dir = (global_position - area.global_position).normalized() * area.knockback
-
-
-func damage(amt: float, ability_source:String=""):
-	health -= amt
-	_update_hp()
-	if health <= 0:
-		emit_signal("died", ability_source)
-		die()
-	else:
-		emit_signal("damaged")
-
-
-
-func die():
-	queue_free()
+		vel += (global_position - area.global_position).normalized() * area.knockback
+#		knockback_dir = (global_position - area.global_position).normalized() * area.knockback
 
 
 func _on_hit_effects(area: Area2D):
@@ -120,9 +140,3 @@ func _haemophilia_bleed_limit():
 			$bleeding_debuffs.get_child(i).queue_free()
 
 
-func _on_Hitbox_invincibility_started():
-	animationPlayer.play("Start")
-
-
-func _on_Hitbox_invincibility_ended():
-	animationPlayer.play("Stop")

@@ -51,4 +51,4 @@ func _helper(s:String="circle"):
 	var colshape = get_node_or_null("%s_shape" % s)
 	if colshape:
 		colshape.set_deferred("disabled", shape!=s)
-		var __ = colshape.hide() if shape!=s else colshape.show()
+#		var __ = colshape.hide() if shape!=s else colshape.show()
