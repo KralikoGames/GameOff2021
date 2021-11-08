@@ -51,7 +51,7 @@ var attacks = {
 }
 var attack_cooldowns = {
 	"Spinning_Scythe":1.3, 
-	"Assassinate":0.2, 
+	"Assassinate":0.4, 
 	"Shadow_Hop":1.5,
 }
 
