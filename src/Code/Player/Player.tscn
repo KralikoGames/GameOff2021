@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Code/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Code/Player/EnemyTriggerRadius.gd" type="Script" id=2]
@@ -9,16 +9,13 @@
 
 [sub_resource type="CircleShape2D" id=2]
 
-[sub_resource type="Animation" id=3]
-resource_name = "I-Frames"
-
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 28.9759, 19.9968 )
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=4]
 radius = 4.0
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=5]
 radius = 144.191
 
 [node name="Player" type="KinematicBody2D"]
@@ -36,9 +33,6 @@ collision_mask = 0
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 2 )
 
-[node name="anim" type="AnimationPlayer" parent="."]
-anims/I-Frames = SubResource( 3 )
-
 [node name="aimer" type="Position2D" parent="."]
 
 [node name="offset" type="Position2D" parent="aimer"]
@@ -51,7 +45,7 @@ collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="aimer/offset/InteractionArea"]
 position = Vector2( -3.5555, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Node" type="Node" parent="."]
 
@@ -59,7 +53,7 @@ shape = SubResource( 4 )
 visible = false
 
 [node name="temp" type="CollisionShape2D" parent="Node/move_target"]
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="EnemyTriggerRadius" type="Area2D" parent="."]
 visible = false
@@ -68,7 +62,7 @@ collision_mask = 4
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTriggerRadius"]
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="bloodplay_stacks" type="Node" parent="."]
 
@@ -79,4 +73,8 @@ position = Vector2( 0, -6.88651 )
 frames = ExtResource( 3 )
 animation = "Idle"
 script = ExtResource( 4 )
+
+[node name="IFramesTimer" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
 [connection signal="area_entered" from="EnemyTriggerRadius" to="EnemyTriggerRadius" method="_on_EnemyTriggerRadius_area_entered"]
