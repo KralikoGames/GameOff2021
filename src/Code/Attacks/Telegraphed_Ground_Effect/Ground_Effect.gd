@@ -9,6 +9,7 @@ export(float) var knockback_amt: float = 1.0
 
 
 func _ready():
+	if Engine.editor_hint: return
 	$Tween.connect("tween_all_completed", self, "deal_damage")
 	$Tween.interpolate_method(self, "set_perc_dist", 0.0, 1.0, wait_time, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$Tween.start()

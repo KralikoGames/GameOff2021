@@ -51,8 +51,7 @@ func _physics_process(_delta):
 
 func damage(amt:float, dir:Vector2, knockback_amt:float=0):
 	if immortal: return 
-	
-	immortal = true
+	i_frames()
 	
 	_set_health(health - amt)
 	
@@ -60,9 +59,17 @@ func damage(amt:float, dir:Vector2, knockback_amt:float=0):
 		die()
 		return
 	
-	$anim.play("I-Frames")
 	knockback += dir * knockback_amt
 	emit_signal("health_changed")
+
+
+func i_frames():
+	immortal = true
+#	if duration > 0.0: $IFramesTimer.wait_time = duration
+	$IFramesTimer.start()
+	yield($IFramesTimer, "timeout")
+	immortal = false
+	
 
 
 func die(delay: float=0.0):

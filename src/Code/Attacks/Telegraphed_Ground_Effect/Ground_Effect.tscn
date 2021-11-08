@@ -8,8 +8,8 @@ resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/perc_dist = 0.288
 shader_param/solid = false
-shader_param/circle = false
-shader_param/cone = true
+shader_param/circle = true
+shader_param/cone = false
 shader_param/rect = false
 
 [sub_resource type="CircleShape2D" id=2]
@@ -25,12 +25,11 @@ scale = Vector2( 10, 10 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
+shape = "circle"
 wait_time = 1.5
 
 [node name="circle_shape" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 2 )
-disabled = true
 
 [node name="rect_shape" type="CollisionShape2D" parent="."]
 visible = false
@@ -39,6 +38,8 @@ shape = SubResource( 3 )
 disabled = true
 
 [node name="cone_shape" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PoolVector2Array( 0.000692368, -0.0171661, 8.94372, -4.46527, 9.77481, -2.10075, 9.9738, -0.0171661, 9.63434, 2.54634, 8.94372, 4.44264 )
+disabled = true
 
 [node name="Tween" type="Tween" parent="."]
