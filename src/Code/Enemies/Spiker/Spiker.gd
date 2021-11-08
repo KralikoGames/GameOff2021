@@ -1,6 +1,14 @@
 extends Enemy
 tool
 
+
+signal summoned_slam
+signal spike_cooldown
+signal summoned_spike
+signal begin_attack # when the attack starts
+signal attacked # when the attack is complete
+
+
 export var attack_range_close: float = 75
 export var attack_range_long: float = 200
 export var debug: bool = false
@@ -39,33 +47,29 @@ func _in_long_range() -> bool:
 
 
 func _begin_close_range_attack_sequence() -> void:
-	attacking = true
-	frozen = true
-	stop()
+	_begin_attack()
 	
 	spawn_slam()
 	$SlamTimer.start()
 	yield($SlamTimer, "timeout")
 	
-	attacking = false
-	frozen = false
+	_end_attack()
 
 
 func _begin_long_range_attack_sequence() -> void:
-	attacking = true
-	frozen = true
-	stop()
+	_begin_attack()
 	
 	for i in range(number_of_attacks):
 		spawn_long_spike()
 		$SingleSpikeTimer.start()
 		yield($SingleSpikeTimer, "timeout")
 	
+	emit_signal("spike_cooldown")
+	
 	$PostSpikeTimer.start()
 	yield($PostSpikeTimer, "timeout")
 	
-	attacking = false
-	frozen = false
+	_end_attack()
 
 
 func spawn_slam():
@@ -78,6 +82,7 @@ func spawn_slam():
 	effect.global_position = global_position
 	effect.rotation = _get_dir_to_target().angle()
 	$SlamTimer.add_child(effect)
+	emit_signal("summoned_slam")
 
 
 func spawn_long_spike():
@@ -90,6 +95,20 @@ func spawn_long_spike():
 	effect.global_position = global_position
 	effect.rotation = _get_dir_to_target().angle()
 	$SingleSpikeTimer.add_child(effect)
+	emit_signal("summoned_spike")
+
+
+func _end_attack():
+	attacking = false
+	frozen = false
+	emit_signal("attacked")
+
+
+func _begin_attack():
+	attacking = true
+	frozen = true
+	stop()
+	emit_signal("begin_attack")
 
 
 var font = Control.new().get_font("default")
