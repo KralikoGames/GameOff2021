@@ -31,4 +31,5 @@ __meta__ = {
 }
 
 [node name="bleeding_debuffs" type="Node" parent="."]
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
