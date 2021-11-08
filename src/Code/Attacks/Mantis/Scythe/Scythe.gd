@@ -6,6 +6,7 @@ signal direction_reversed
 
 export var speed: float = 380
 export var damage: float = 30
+export var input_lock: float = 0.25
 
 
 var creator: Node2D
