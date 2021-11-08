@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 signal moved
 signal stopped
+signal begin_death
 signal died
 signal health_changed
 signal mana_changed
@@ -70,7 +71,7 @@ func die(delay: float=0.0):
 #	set_physics_process(false)
 	set_process_input(false)
 	set_block_signals(true)
-	
+	emit_signal("begin_death")
 	
 	# delay for animations?
 	if delay > 0:
