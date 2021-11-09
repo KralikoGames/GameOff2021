@@ -77,4 +77,5 @@ script = ExtResource( 4 )
 [node name="IFramesTimer" type="Timer" parent="."]
 wait_time = 0.35
 one_shot = true
+
 [connection signal="area_entered" from="EnemyTriggerRadius" to="EnemyTriggerRadius" method="_on_EnemyTriggerRadius_area_entered"]
