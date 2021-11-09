@@ -6,7 +6,8 @@ export var attack_range_close: float = 75
 export var debug: bool = false
 
 onready var attackTimer = $AttackTimer
-onready var display = $Display
+onready var deathTimer = $DeathTimer
+onready var display = $AnimatedSprite
 
 var explosion_tscn = preload("res://Code/Attacks/Explosion_Effect/Explosion.tscn")
 var attack_tscn = preload("res://Code/Attacks/Telegraphed_Ground_Effect/Ground_Effect.tscn")
@@ -17,7 +18,7 @@ var dead: bool = false
 
 func _ready():
 	freeze(1)
-
+	
 
 func _physics_process(delta): # target is guarranteed to be assigned
 	if not is_instance_valid(target): 
@@ -41,6 +42,11 @@ func die():
 		frozen = true
 		move_dir = Vector2.ZERO
 		display.play("Die")
+		
+		deathTimer.start()
+		yield(deathTimer, "timeout")
+		
+		queue_free()
 
 func _attack() -> void:
 	emit_signal("begin_attack")
