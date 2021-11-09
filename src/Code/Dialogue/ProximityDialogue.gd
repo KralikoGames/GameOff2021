@@ -6,7 +6,6 @@ export var one_shot: bool = true
 
 
 func _get_configuration_warning():
-#	if dialogue_name
 	var result = Dialogic._get_timeline_file_from_name(name)
 	if not result:
 		return "dialogue name is not valid"
