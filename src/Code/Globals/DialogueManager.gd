@@ -16,3 +16,7 @@ func on_conversation_complete():
 	var tree = get_tree()
 	if tree:
 		tree.paused = false
+
+
+func get_skillpoint():
+	GameInit.player.passive_points += 1

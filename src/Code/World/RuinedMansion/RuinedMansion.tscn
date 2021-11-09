@@ -108,3 +108,7 @@ scale = Vector2( 3.108, 2.338 )
 [node name="ruinedmansion_tutorial_audiencehall" parent="DialogueTriggers" instance=ExtResource( 6 )]
 position = Vector2( 143.364, 746.622 )
 scale = Vector2( 8.277, 16.177 )
+
+[node name="ruinedmansion_tutorial_randomskillpoint" parent="DialogueTriggers" instance=ExtResource( 6 )]
+position = Vector2( 686.682, 737.348 )
+scale = Vector2( 8.277, 16.177 )
