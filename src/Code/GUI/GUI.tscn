@@ -20,9 +20,11 @@ __meta__ = {
 visible = false
 
 [node name="HUD" parent="Control" instance=ExtResource( 3 )]
+visible = false
 
 [node name="PauseMenu" type="Control" parent="."]
 pause_mode = 2
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -71,4 +73,5 @@ margin_top = 48.0
 margin_right = 132.0
 margin_bottom = 69.0
 size_flags_vertical = 3
+
 [connection signal="pressed" from="PauseMenu/Panel/MarginContainer/VBoxContainer/ToMainMenu" to="PauseMenu" method="_on_ToMainMenu_pressed"]

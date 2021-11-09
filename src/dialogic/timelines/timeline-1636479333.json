@@ -1,0 +1,41 @@
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Home sweet home!"
+		},
+		{
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I can't wait to..."
+		},
+		{
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "What in the world. The mansion is in shambles!"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4 - DEV",
+		"file": "timeline-1636479333.json",
+		"name": "ruinedmansion_tutorial_firstlook"
+	}
+}
