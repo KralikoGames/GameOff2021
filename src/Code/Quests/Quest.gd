@@ -2,6 +2,7 @@ extends Resource
 class_name Quest
 
 
+# warning-ignore:unused_signal
 signal quest_completed
 
 

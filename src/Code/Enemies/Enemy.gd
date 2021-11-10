@@ -37,7 +37,7 @@ func _ready():
 	set_physics_process(false)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Engine.editor_hint:
 		update()
 		set_physics_process(false)

@@ -35,7 +35,6 @@ func give_quest(args: Array):
 		push_error("give_quest failed. improper input")
 		return
 	var quest_path = get_file_path("res://Code/Quests/Quests/", quest_name)
-	push_warning(quest_path)
 	if quest_path:
 		var quest = load(quest_path)
 		add_quest(quest)

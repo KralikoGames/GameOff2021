@@ -27,7 +27,7 @@ func deal_damage():
 	queue_free()
 
 
-func _process(delta):
+func _process(_delta):
 	update()
 
 

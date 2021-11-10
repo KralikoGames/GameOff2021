@@ -1,6 +1,9 @@
 extends Node
 
 
+signal dialogue_started
+
+
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
 
@@ -10,6 +13,7 @@ func start_dialogue(dialogue_name: String):
 	conversation.connect("tree_exited", self, "on_conversation_complete")
 	get_tree().paused = true
 	add_child(conversation)
+	emit_signal("dialogue_started")
 
 
 func on_conversation_complete():
