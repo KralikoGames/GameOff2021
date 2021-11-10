@@ -216,6 +216,7 @@ script = ExtResource( 10 )
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 688.184, 505.007 )
 current = true
+zoom = Vector2( 0.75, 0.75 )
 process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 10.0
@@ -224,6 +225,7 @@ target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 692.004, 502.008 )
+max_speed = 120.0
 max_health = 20.0
 passive_points = 30
 
