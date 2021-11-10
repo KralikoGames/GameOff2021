@@ -41,7 +41,7 @@ func flip_to_target():
 func _in_close_range() -> bool:
 	return target.global_position.distance_to(global_position) <= attack_range_close
 
-func die():
+func die(abilitysource):
 	if !dead:
 		dead = true
 		frozen = true
@@ -51,7 +51,7 @@ func die():
 		deathTimer.start()
 		yield(deathTimer, "timeout")
 		
-		queue_free()
+		.die(abilitysource)
 
 func _attack() -> void:
 	emit_signal("begin_attack")
