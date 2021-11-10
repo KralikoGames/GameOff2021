@@ -54,14 +54,14 @@ func damage(amt: float, ability_source:String=""):
 	health -= amt
 	_update_hp()
 	if health <= 0:
-		emit_signal("died", ability_source)
-		die()
+		die(ability_source)
 	else:
 		emit_signal("damaged")
 
 
-func die():
+func die(ability_source):
 	queue_free()
+	emit_signal("died", ability_source)
 
 
 func _move():
