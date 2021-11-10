@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://tumblr_05392c8c891e70a77c7c21aef31616fe_c5d3a4f0_1280.jpg" type="Texture" id=1]
 [ext_resource path="res://Code/Player/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Code/World/Camera.gd" type="Script" id=5]
 [ext_resource path="res://Code/Dialogue/ProximityDialogue.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Code/Interactables/DialogueInteractable/DialogueInteractable.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Code/World/RuinedMansion/RuinedMansion.gd" type="Script" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
@@ -35,6 +36,7 @@ points = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
 0/z_index = 0
 
 [node name="RuinedMansion" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="GUI" parent="." instance=ExtResource( 3 )]
 
