@@ -7,6 +7,7 @@ export var debug: bool = false
 
 onready var attackTimer = $AttackTimer
 onready var display = $Display
+onready var deathTimer = $DeathTimer
 
 var explosion_tscn = preload("res://Code/Attacks/Explosion_Effect/Explosion.tscn")
 var attack_tscn = preload("res://Code/Attacks/Telegraphed_Ground_Effect/Ground_Effect.tscn")
@@ -29,7 +30,12 @@ func _physics_process(delta): # target is guarranteed to be assigned
 			_attack()
 		else:
 			move_to_target()
+			flip_to_target()
 			display.play("Run")
+
+
+func flip_to_target():
+	display.flip_h = move_dir.x > 0
 
 
 func _in_close_range() -> bool:
@@ -41,6 +47,11 @@ func die():
 		frozen = true
 		move_dir = Vector2.ZERO
 		display.play("Die")
+		
+		deathTimer.start()
+		yield(deathTimer, "timeout")
+		
+		queue_free()
 
 func _attack() -> void:
 	emit_signal("begin_attack")
