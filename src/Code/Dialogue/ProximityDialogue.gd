@@ -20,6 +20,8 @@ func _on_ProximityDialogue_body_entered(body: Player):
 		push_warning("A non-player is on the player collision layer")
 		return
 	
+	if body.has_method("entered_area"): body.entered_area(self)
+	
 	DialogueManager.start_dialogue(name)
 	
 	if one_shot: queue_free()
