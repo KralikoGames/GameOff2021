@@ -6,7 +6,9 @@ export(String, "rect", "circle", "cone") var shape: String = "cone" setget _set_
 export(float, 0.0, 3.0, 0.02) var wait_time: float = 1.0
 export(float) var damage_amt: float = 1.0
 export(float) var knockback_amt: float = 1.0
+export var use_ground_effect_knockback = true
 
+var knockback_dir = Vector2()
 
 func _ready():
 	if Engine.editor_hint: return
@@ -23,7 +25,10 @@ func deal_damage():
 	for a in get_overlapping_bodies():
 		var b: Player = a as Player
 		if b:
-			b.damage(damage_amt, (b.global_position - global_position).normalized(), knockback_amt)
+			if(use_ground_effect_knockback):
+				knockback_dir = (b.global_position - global_position)
+				
+			b.damage(damage_amt, knockback_dir.normalized(), knockback_amt)
 	queue_free()
 
 

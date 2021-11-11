@@ -3,7 +3,7 @@
 [ext_resource path="res://Art/white_square.png" type="Texture" id=1]
 [ext_resource path="res://Code/World/Camera.gd" type="Script" id=2]
 [ext_resource path="res://Code/Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Code/Enemies/Termite/Termite.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Code/Enemies/Termite/MeleeTermite.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Code/Interactables/Sign/Sign.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Code/GUI/GUI.tscn" type="PackedScene" id=6]
 
@@ -63,7 +63,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="World" type="Node2D"]
+[node name="TermiteWorld" type="Node2D"]
 
 [node name="GUI" parent="." instance=ExtResource( 6 )]
 
@@ -119,22 +119,22 @@ __meta__ = {
 }
 
 [node name="Termite" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -333.279, 197.77 )
+position = Vector2( -392.088, 146.041 )
 
 [node name="Termite2" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -440.405, 109.872 )
+position = Vector2( -336.529, 52.3844 )
 
 [node name="Termite3" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -579.119, 178.085 )
+position = Vector2( -427.011, 68.2585 )
 
 [node name="Termite4" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -335.11, -11.9028 )
+position = Vector2( -385.738, 85.7198 )
 
 [node name="Termite5" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -442.236, -99.8007 )
+position = Vector2( -330.179, -7.93678 )
 
 [node name="Termite6" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -580.95, -31.5883 )
+position = Vector2( -420.661, 7.93724 )
 
 [editable path="Signs/Sign"]
 [editable path="Signs/Sign2"]
