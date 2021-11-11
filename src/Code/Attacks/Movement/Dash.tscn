@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Code/Attacks/Movement/Dash.gd" type="Script" id=1]
+[ext_resource path="res://Art/Spritesheets/Player-Sheet.png" type="Texture" id=2]
 
 [node name="Dash" type="Timer"]
 process_mode = 0
 script = ExtResource( 1 )
+
+[node name="SilhouetteTimer" type="Timer" parent="."]
+wait_time = 0.005
+
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 0.1, 0.1, 0.1, 0.6 )
+texture = ExtResource( 2 )
+hframes = 15
+
 [connection signal="timeout" from="." to="." method="_on_Dash_timeout"]
+[connection signal="timeout" from="SilhouetteTimer" to="." method="_on_SilhouetteTimer_timeout"]
