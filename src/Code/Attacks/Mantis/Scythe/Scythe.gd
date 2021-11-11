@@ -61,15 +61,16 @@ func _close_to_player() -> bool:
 
 
 func _trishot():
-	if GameInit.skilltree.passives["Tri_Shot"].points > 0:
-		for i in [-1,1]:
-			var attack_tscn = load(filename)
-			var attack = attack_tscn.instance()
-			attack.global_position = global_position
-			attack.global_rotation = global_rotation + deg2rad(GameInit.trishot_angle * i)
-			get_parent().add_child(attack)
-			
-			attack.init(creator, true)
+	var attack_tscn = load(filename)
+	var angs = [-1,1,-2,2,-3,3,-4,4,-5,5,-6,6,-7,7,-8,8,-9,9]
+	for point_i in range(GameInit.skilltree.passives["Tri_Shot"].points):
+		var i = angs[point_i % angs.size()]
+		var attack = attack_tscn.instance()
+		attack.global_position = global_position
+		attack.global_rotation = global_rotation + deg2rad(GameInit.trishot_angle * i)
+		get_parent().add_child(attack)
+		
+		attack.init(creator, true)
 
 
 func _massive_scythes():

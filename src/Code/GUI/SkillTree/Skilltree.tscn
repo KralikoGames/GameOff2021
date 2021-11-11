@@ -72,7 +72,8 @@ margin_top = 104.666
 margin_right = 50.6153
 margin_bottom = 144.666
 texture_normal = ExtResource( 6 )
-skill_description = "Two additional Scythes travel along with the main scythe"
+max_points = 4
+skill_description = "Additional Scythes travel along with the main scythe"
 
 [node name="Massive_Scythes" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
 margin_left = 59.2503
@@ -307,5 +308,6 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="ResetPoints" to="ResetPoints" method="_on_ResetPoints_pressed"]
 [connection signal="pressed" from="CloseSkilltree" to="CloseSkilltree" method="_on_CloseSkilltree_pressed"]
