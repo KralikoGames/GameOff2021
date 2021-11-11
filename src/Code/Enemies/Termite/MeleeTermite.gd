@@ -70,17 +70,19 @@ func _attack() -> void:
 	frozen = true
 	stop()
 
-	target_position  = global_position.linear_interpolate(target.global_position, 0.95)
+	#target_position  = global_position.linear_interpolate(target.global_position, 0.95)
+	target_position = target.global_position
 	dashDir = (target_position - global_position)
 	dashTime = dashDir.length()/dash_speed
 	
 	#create a warning.
 	var effect = attack_tscn.instance()
+	effect.visible = false
 	effect.shape = "circle"
 	effect.scale = Vector2(1, 1)
 	effect.use_ground_effect_knockback
 	effect.knockback_dir = dashDir
-	effect.wait_time = warning_time
+	effect.wait_time = warning_time + dashTime
 	effect.knockback_amt = 1000.0
 	effect.damage_amt = 5.0
 	effect.global_position = target_position
@@ -88,6 +90,7 @@ func _attack() -> void:
 	emit_signal("create_warning")
 	
 	#stop us and our animation
+	display.play("Charge")
 	display.frame = 0
 	display.speed_scale = 0
 	
