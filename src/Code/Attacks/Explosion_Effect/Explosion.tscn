@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Art/Sprite Frames/Explosion_large_spriteframes.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Code/Attacks/Explosion_Effect/Explosion.gd" type="Script" id=2]
+
+[node name="Explosion" type="AnimatedSprite"]
+frames = ExtResource( 1 )
+script = ExtResource( 2 )
