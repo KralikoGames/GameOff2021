@@ -17,6 +17,11 @@ const speed_decay: float = 640.0
 
 func get_class(): return "Spinning_Scythe"
 
+
+func _ready():
+	$Sprite.playing = true
+
+
 func init(source: Node2D, procedural:bool=false):
 	creator = source
 	_massive_scythes()
@@ -36,13 +41,23 @@ func _physics_process(delta):
 			emit_signal("direction_reversed")
 		
 		rotation = global_position.angle_to_point(creator.global_position)
-		if global_position.distance_squared_to(creator.global_position) < 150:
+		if _close_to_player():
 			die()
-		var col: KinematicCollision2D = move_and_collide(vel * delta)
-		if col and speed < -50:
-			die()
+		move_and_slide(vel)
+		_die_if_colliding_with_wall_for_duration()
 	else: # forward motion
 		move_and_slide(vel)
+
+
+func _die_if_colliding_with_wall_for_duration():
+	if get_slide_count() == 0 and not $WallHitTimer.is_stopped(): 
+		$WallHitTimer.stop()
+	elif $WallHitTimer.is_stopped(): 
+		$WallHitTimer.start()
+
+
+func _close_to_player() -> bool:
+	return global_position.distance_squared_to(creator.global_position) < 150
 
 
 func _trishot():
@@ -74,4 +89,8 @@ func die():
 
 
 func _on_DeathTimer_timeout():
+	die()
+
+
+func _on_WallHitTimer_timeout():
 	die()
