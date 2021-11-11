@@ -75,13 +75,14 @@ func _trishot():
 
 func _massive_scythes():
 	if GameInit.skilltree.passives["Massive_Scythes"].points > 0:
-		scale *= GameInit.massive_scythe_multiplier
+		scale *= 1 + GameInit.massive_scythe_multiplier * GameInit.skilltree.passives["Massive_Scythes"].points
 
 
 func _spawn_blood_explosion():
 	if GameInit.skilltree.passives["Blood_Explosion"].points > 0:
 		var b = GameInit.blood_explosion_tscn.instance()
 		b.global_position = global_position
+		b.scale *= 1 + GameInit.blood_explosion_size_multiplier * GameInit.skilltree.passives["Blood_Explosion"].points
 		get_parent().add_child(b)
 
 

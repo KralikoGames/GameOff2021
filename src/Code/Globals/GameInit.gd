@@ -22,9 +22,10 @@ var skilltree: SkillTree setget _set_skilltree
 var keybinds = {}
 
 #Mantis passive constants
-const trishot_angle = 35 # degrees that spinning scythe will spread out
-const massive_scythe_multiplier = 1.5
+const trishot_angle = 20 # degrees that spinning scythe will spread out
+const massive_scythe_multiplier = 0.1 # a percent
 const blood_explosion_damage: float = 3.0
+const blood_explosion_size_multiplier: float = 0.15 # a percent
 const blood_explosion_tscn = preload("res://Code/Attacks/Mantis/Scythe/BloodExplosion/BloodExplosion.tscn")
 
 const bleed_damage_perc = 0.5

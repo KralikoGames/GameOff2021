@@ -81,6 +81,7 @@ margin_top = 106.709
 margin_right = 99.2499
 margin_bottom = 146.71
 texture_normal = ExtResource( 7 )
+max_points = 10
 skill_description = "Scythes are larger"
 
 [node name="Blood_Explosion" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
@@ -89,7 +90,8 @@ margin_top = 48.5344
 margin_right = 61.9222
 margin_bottom = 88.5344
 texture_normal = ExtResource( 5 )
-skill_description = "At the end of its travel the scythe explodes dealing moderate damage in an area."
+max_points = 5
+skill_description = "At the end of its travel the scythe explodes dealing moderate damage in an area. Increased size of explosion per point."
 
 [node name="BleedingNodes" type="Control" parent="TabContainer/Mantis"]
 mouse_filter = 2
