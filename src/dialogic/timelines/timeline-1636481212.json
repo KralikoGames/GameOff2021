@@ -1,0 +1,35 @@
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "At least the wagon is still intact..."
+		},
+		{
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "...but where are the carrier beetles?"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4 - DEV",
+		"file": "timeline-1636481212.json",
+		"name": "ruinedmansion_tutorial_wagon"
+	}
+}

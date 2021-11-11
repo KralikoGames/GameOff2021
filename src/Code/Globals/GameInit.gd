@@ -3,6 +3,7 @@ extends Node
 
 signal player_ready
 signal skilltree_ready
+signal enemy_died(enemy)
 
 ### Scenes ###
 
@@ -124,15 +125,17 @@ func set_ability(keybind, attack_name):
 ########################## On death Effects ##########################
 
 
-func _on_enemy_died(source:String, enemy:Node2D):
+func _on_enemy_died(source:String, enemy:Enemy):
 	if _is_enemy_bleeding(enemy):
 		_bloodplay(enemy)
 		_gratuitous_violence(enemy)
 		_path_of_blood(enemy)
 	_cloaked_in_blood(enemy, source)
+	
+	emit_signal("enemy_died", enemy)
 
 
-func _path_of_blood(_enemy: Node2D):
+func _path_of_blood(_enemy: Enemy):
 	if skilltree.passives["Path_Of_Blood"].points > 0:
 		for key in keybinds:
 			if keybinds[key] == "Shadow_Hop":
@@ -140,25 +143,25 @@ func _path_of_blood(_enemy: Node2D):
 				t.stop()
 
 
-func _cloaked_in_blood(_enemy: Node2D, source: String):
+func _cloaked_in_blood(_enemy: Enemy, source: String):
 	if skilltree.passives["Cloaked_In_Blood"].points > 0 and \
 		source == "Assassinate":
 		player._add_cloaked_in_blood_stack()
 
 
-func _gratuitous_violence(enemy:Node2D):
+func _gratuitous_violence(enemy: Enemy):
 	if skilltree.passives["Gratuitous_Violence"].points > 0:
 		var boom = blood_explosion_tscn.instance()
 		boom.global_position = enemy.global_position
 		enemy.get_parent().add_child(boom)
 
 
-func _bloodplay(_enemy:Node2D):
+func _bloodplay(_enemy: Enemy):
 	if skilltree.passives["Bloodplay"].points > 0:
 		player._add_bloodplay_stack()
 
 
-func _is_enemy_bleeding(enemy):
+func _is_enemy_bleeding(enemy: Enemy):
 	var bleeding_debuffs = enemy.get_node_or_null("bleeding_debuffs")
 	if not bleeding_debuffs: return false 
 	return bleeding_debuffs.get_child_count() > 0

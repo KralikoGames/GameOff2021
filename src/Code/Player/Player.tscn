@@ -6,6 +6,7 @@
 [ext_resource path="res://Code/Player/Sprite.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -69,7 +70,8 @@ shape = SubResource( 5 )
 [node name="cloaked_in_blood_stacks" type="Node" parent="."]
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -6.88651 )
+position = Vector2( 0, -5.29732 )
+scale = Vector2( 0.629453, 0.629453 )
 frames = ExtResource( 3 )
 animation = "Idle"
 script = ExtResource( 4 )

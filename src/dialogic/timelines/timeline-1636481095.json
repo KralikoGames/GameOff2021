@@ -1,0 +1,35 @@
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "This was the entrance hall."
+		},
+		{
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Brother ned always loved to climb the support pillars..."
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4 - DEV",
+		"file": "timeline-1636481095.json",
+		"name": "ruinedmansion_tutorial_entrancehall"
+	}
+}

@@ -1,14 +1,19 @@
 extends KinematicBody2D
 class_name Enemy
+tool
+
 
 signal damaged
 signal died
 
+
+export(String) var id: String = ""
 export(float, 1, 100, 1) var health = 3
 export(float, 0, 1000, 10) var acceleration: float = 300.0
 export(float, 0, 1, 0.025) var damping: float = 0.80
 export(float, 0, 1000, 10) var max_speed: float = 400.0
 export(float, 0, 500, 10) var friction: float = 200
+
 
 var target: Node2D
 #var knockback_dir: Vector2 = Vector2()
@@ -18,15 +23,24 @@ var vel: Vector2 = Vector2()
 var frozen: bool = false
 
 
+func _get_configuration_warning():
+	if not id:
+		return "Enemy requires an ID to function"
+	return ""
+
+
 func _ready():
+	if Engine.editor_hint: return
+	
 	$hp.max_value = health
 	connect("died", GameInit, "_on_enemy_died", [self])
 	set_physics_process(false)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Engine.editor_hint:
 		update()
+		set_physics_process(false)
 		return
 	
 	_move()
