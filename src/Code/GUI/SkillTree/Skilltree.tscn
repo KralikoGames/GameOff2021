@@ -72,7 +72,8 @@ margin_top = 104.666
 margin_right = 50.6153
 margin_bottom = 144.666
 texture_normal = ExtResource( 6 )
-skill_description = "Two additional Scythes travel along with the main scythe"
+max_points = 4
+skill_description = "Additional Scythes travel along with the main scythe"
 
 [node name="Massive_Scythes" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
 margin_left = 59.2503
@@ -80,6 +81,7 @@ margin_top = 106.709
 margin_right = 99.2499
 margin_bottom = 146.71
 texture_normal = ExtResource( 7 )
+max_points = 10
 skill_description = "Scythes are larger"
 
 [node name="Blood_Explosion" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
@@ -88,7 +90,8 @@ margin_top = 48.5344
 margin_right = 61.9222
 margin_bottom = 88.5344
 texture_normal = ExtResource( 5 )
-skill_description = "At the end of its travel the scythe explodes dealing moderate damage in an area."
+max_points = 5
+skill_description = "At the end of its travel the scythe explodes dealing moderate damage in an area. Increased size of explosion per point."
 
 [node name="BleedingNodes" type="Control" parent="TabContainer/Mantis"]
 mouse_filter = 2
@@ -111,7 +114,8 @@ margin_top = 84.0171
 margin_right = 160.066
 margin_bottom = 124.017
 texture_normal = ExtResource( 15 )
-skill_description = "Enemies killed while bleeding explode dealing half the potential bleed damage to nearby enemies."
+max_points = 5
+skill_description = "Enemies killed while bleeding explode dealing half the potential bleed damage to nearby enemies. Increased size of explosion per point"
 
 [node name="Haemophilia" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
 margin_left = 171.038
@@ -119,7 +123,8 @@ margin_top = 106.083
 margin_right = 211.038
 margin_bottom = 146.082
 texture_normal = ExtResource( 9 )
-skill_description = "Bleeding can stack up to 8 times. "
+max_points = 4
+skill_description = "Bleeding can stack 2 additional times."
 
 [node name="Bloodplay" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
 margin_left = 115.021
@@ -127,7 +132,8 @@ margin_top = 32.2235
 margin_right = 155.021
 margin_bottom = 72.2235
 texture_normal = ExtResource( 16 )
-skill_description = "Slaying a bleeding enemy grants a short duration boost in movement speed."
+max_points = 5
+skill_description = "Slaying a bleeding enemy grants a short duration boost in movement speed. Points increase magnitude of speed boost."
 
 [node name="AssassinateNodes" type="Control" parent="TabContainer/Mantis"]
 mouse_filter = 2
@@ -307,5 +313,6 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="ResetPoints" to="ResetPoints" method="_on_ResetPoints_pressed"]
 [connection signal="pressed" from="CloseSkilltree" to="CloseSkilltree" method="_on_CloseSkilltree_pressed"]
