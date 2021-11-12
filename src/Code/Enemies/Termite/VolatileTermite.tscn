@@ -1,14 +1,36 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Code/Enemies/Enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Code/Enemies/Termite/Termite.gd" type="Script" id=2]
+[ext_resource path="res://Code/Enemies/Termite/VolatileTermite.gd" type="Script" id=2]
 [ext_resource path="res://Art/Sprite Frames/Termite_volotile_spriteframes.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://Art/Shaders/WhiteFlash.shader" type="Shader" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 6.63
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 11.0898
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/active = false
+
+[sub_resource type="Animation" id=4]
+resource_name = "OnHit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Display:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="ExplodingTermite" instance=ExtResource( 1 )]
 collision_layer = 4
@@ -33,5 +55,9 @@ visible = false
 wait_time = 0.6
 
 [node name="Display" type="AnimatedSprite" parent="." index="6"]
+material = SubResource( 3 )
 frames = ExtResource( 3 )
 animation = "Run"
+
+[node name="OnHitFeedback" type="AnimationPlayer" parent="." index="7"]
+anims/OnHit = SubResource( 4 )
