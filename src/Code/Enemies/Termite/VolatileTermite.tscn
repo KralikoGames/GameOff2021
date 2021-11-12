@@ -2,11 +2,13 @@
 
 [ext_resource path="res://Code/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/Enemies/Termite/Termite.gd" type="Script" id=2]
-[ext_resource path="res://Art/Sprite Frames/Termite_small_spriteframes.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://Art/Sprite Frames/Termite_volotile_spriteframes.tres" type="SpriteFrames" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 6.63
 
 [sub_resource type="CircleShape2D" id=2]
+radius = 11.0898
 
 [node name="ExplodingTermite" instance=ExtResource( 1 )]
 collision_layer = 4

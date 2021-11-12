@@ -6,7 +6,7 @@
 [ext_resource path="res://Code/Enemies/Termite/MeleeTermite.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Code/Interactables/Sign/Sign.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Code/GUI/GUI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Code/Enemies/Termite/Termite.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Code/Enemies/Termite/VolatileTermite.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
@@ -119,29 +119,23 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Termite" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -392.088, 146.041 )
+[node name="ExplodingTermite" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( -218.753, 23.9729 )
 
-[node name="Termite2" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -336.529, 52.3844 )
+[node name="MeleeTermite" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( -335.621, 22.4746 )
 
-[node name="Termite3" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -427.011, 68.2585 )
+[node name="ExplodingTermite2" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( -179.861, -6.18771 )
 
-[node name="Termite4" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -385.738, 85.7198 )
+[node name="MeleeTermite2" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( -296.729, -7.686 )
 
-[node name="Termite5" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -330.179, -7.93678 )
+[node name="ExplodingTermite3" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( -251.294, -6.18771 )
 
-[node name="Termite6" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -420.661, 7.93724 )
-
-[node name="Termite7" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( -185.969, 36.7695 )
-
-[node name="Termite8" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( -230.173, -3.1748 )
+[node name="MeleeTermite3" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( -368.162, -7.686 )
 
 [editable path="Signs/Sign"]
 [editable path="Signs/Sign2"]
