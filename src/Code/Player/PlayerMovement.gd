@@ -9,6 +9,7 @@ signal health_changed
 signal mana_changed
 signal direction_changed
 signal attacked
+signal area_entered
 
 
 export var wasd_movement: bool = true
@@ -133,6 +134,10 @@ func spawn_selected_attack(selected_attack: PackedScene):
 	if "input_lock" in attack: freeze_player(attack.input_lock)
 	
 	emit_signal("attacked")
+
+
+func entered_area(area: Area2D):
+	emit_signal("area_entered", area)
 
 
 func _apply_knockback():

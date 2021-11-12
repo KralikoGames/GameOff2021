@@ -23,7 +23,7 @@ func _ready():
 	freeze(1)
 
 
-func _physics_process(delta): # target is guarranteed to be assigned
+func _physics_process(_delta): # target is guarranteed to be assigned
 	if not is_instance_valid(target): 
 		target = null
 		return
@@ -59,7 +59,7 @@ func _begin_close_range_attack_sequence() -> void:
 func _begin_long_range_attack_sequence() -> void:
 	_begin_attack()
 	
-	for i in range(number_of_attacks):
+	for _i in range(number_of_attacks):
 		spawn_long_spike()
 		$SingleSpikeTimer.start()
 		yield($SingleSpikeTimer, "timeout")

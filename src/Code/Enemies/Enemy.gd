@@ -1,14 +1,19 @@
 extends KinematicBody2D
 class_name Enemy
+tool
+
 
 signal damaged
 signal died
 
+
+export(String) var id: String = ""
 export(float, 1, 100, 1) var health = 3
 export(float, 0, 1000, 10) var acceleration: float = 300.0
 export(float, 0, 1, 0.025) var damping: float = 0.80
 export(float, 0, 1000, 10) var max_speed: float = 400.0
 export(float, 0, 500, 10) var friction: float = 200
+
 
 var target: Node2D
 #var knockback_dir: Vector2 = Vector2()
@@ -18,15 +23,24 @@ var vel: Vector2 = Vector2()
 var frozen: bool = false
 
 
+func _get_configuration_warning():
+	if not id:
+		return "Enemy requires an ID to function"
+	return ""
+
+
 func _ready():
+	if Engine.editor_hint: return
+	
 	$hp.max_value = health
 	connect("died", GameInit, "_on_enemy_died", [self])
 	set_physics_process(false)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Engine.editor_hint:
 		update()
+		set_physics_process(false)
 		return
 	
 	_move()
@@ -134,7 +148,7 @@ func add_bleed_debuff(damage_amt: float):
 
 func _haemophilia_bleed_limit():
 	# remove extra bleed stacks
-	var max_bleeds = GameInit.haemophilia_stacks if GameInit.skilltree.passives["Haemophilia"].points > 0 else 1
+	var max_bleeds = 1 + GameInit.haemophilia_stacks * GameInit.skilltree.passives["Haemophilia"].points
 	for i in range($bleeding_debuffs.get_child_count()):
 		if i >= max_bleeds:
 			$bleeding_debuffs.get_child(i).queue_free()

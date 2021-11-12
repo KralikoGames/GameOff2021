@@ -8,11 +8,12 @@
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 14.7225
+radius = 7.0
 
 [node name="Scythe" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 1 )
+damage = 2.0
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 visible = false
@@ -31,9 +32,14 @@ wait_time = 3.0
 autostart = true
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.461827, 0.461827 )
 frames = ExtResource( 3 )
 animation = "default2"
-frame = 3
-playing = true
+
+[node name="WallHitTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="direction_reversed" from="." to="Hitbox" method="_on_Scythe_direction_reversed"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="timeout" from="WallHitTimer" to="." method="_on_WallHitTimer_timeout"]
