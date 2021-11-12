@@ -10,7 +10,8 @@ radius = 8.87896
 [sub_resource type="CircleShape2D" id=2]
 
 [node name="MeleeTermite" instance=ExtResource( 1 )]
-collision_layer = 7
+collision_layer = 4
+collision_mask = 7
 script = ExtResource( 2 )
 attack_range_close = 30.0
 dash_speed = 300
