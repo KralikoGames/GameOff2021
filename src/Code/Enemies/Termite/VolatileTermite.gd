@@ -11,7 +11,7 @@ onready var deathTimer = $DeathTimer
 
 var explosion_tscn = preload("res://Code/Attacks/Explosion_Effect/Explosion.tscn")
 var attack_tscn = preload("res://Code/Attacks/Telegraphed_Ground_Effect/Ground_Effect.tscn")
-
+var corpse_tscn = preload("res://Code/Enemies/Corpse.tscn")
 var attacking: bool = false
 var dead: bool = false
 
@@ -46,12 +46,31 @@ func die(abilitysource):
 		dead = true
 		frozen = true
 		move_dir = Vector2.ZERO
-		display.play("Die")
-		
-		deathTimer.start()
-		yield(deathTimer, "timeout")
-		
+		corpse()
 		.die(abilitysource)
+
+func corpse():
+	var corpse = corpse_tscn.instance()
+	var root = get_tree().get_root()
+	
+	corpse.global_position = global_position
+	display.global_position = global_position
+
+	root.add_child(corpse)
+	remove_child(display)
+	corpse.add_child(display)
+
+	display.play("Die")
+	
+	var tween = corpse.get_node("Tween")
+	tween.interpolate_property(display, "modulate", 
+	  Color(1, 1, 1, 1), Color(1, 1, 1, 0), 3.0, 
+	  Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
+	
+	
+	
+	
 
 func _attack() -> void:
 	emit_signal("begin_attack")
