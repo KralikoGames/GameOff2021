@@ -1,0 +1,20 @@
+{
+	"color": "#ff619ede",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1636479358.json",
+	"mirror_portraits": false,
+	"name": "MainCharacter",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": -40,
+	"offset_y": -90,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://icon.png"
+		}
+	],
+	"scale": 100
+}

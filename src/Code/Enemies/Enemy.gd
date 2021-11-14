@@ -1,35 +1,50 @@
 extends KinematicBody2D
 class_name Enemy
+tool
+
 
 signal damaged
 signal died
 
+
+export(String) var id: String = ""
 export(float, 1, 100, 1) var health = 3
 export(float, 0, 1000, 10) var acceleration: float = 300.0
 export(float, 0, 1, 0.025) var damping: float = 0.80
 export(float, 0, 1000, 10) var max_speed: float = 400.0
 export(float, 0, 500, 10) var friction: float = 200
 
+
 var target: Node2D
+onready var hit_feedback = $OnHitFeedback
 #var knockback_dir: Vector2 = Vector2()
 var move_dir: Vector2 = Vector2() setget set_move_dir
 var look_dir: Vector2 = Vector2()
 var vel: Vector2 = Vector2()
 var frozen: bool = false
+var knockback_dir = Vector2.ZERO
+
+func _get_configuration_warning():
+	if not id:
+		return "Enemy requires an ID to function"
+	return ""
 
 
 func _ready():
+	if Engine.editor_hint: return
+	
 	$hp.max_value = health
 	connect("died", GameInit, "_on_enemy_died", [self])
 	set_physics_process(false)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Engine.editor_hint:
 		update()
+		set_physics_process(false)
 		return
 	
-	_move()
+	_move(_delta)
 
 
 func set_target(t: Node2D):
@@ -51,25 +66,29 @@ func stop():
 
 
 func damage(amt: float, ability_source:String=""):
+	if(hit_feedback):
+		hit_feedback.play("OnHit")
+		
 	health -= amt
 	_update_hp()
 	if health <= 0:
-		emit_signal("died", ability_source)
-		die()
+		die(ability_source)
 	else:
 		emit_signal("damaged")
 
 
-func die():
+func die(ability_source):
 	queue_free()
+	emit_signal("died", ability_source)
 
 
-func _move():
+func _move(_delta):
+	knockback_dir = knockback_dir.move_toward(Vector2.ZERO, friction * _delta)
+	knockback_dir = move_and_slide(knockback_dir)
+	
 	vel += move_dir * acceleration
 	vel = vel.clamped(max_speed)
-
 	vel *= damping
-
 	vel = move_and_slide(vel)
 
 
@@ -97,8 +116,7 @@ func _on_Hitbox_area_entered(area):
 		damage(area.damage, area.get_class())
 		_on_hit_effects(area)
 	if "knockback" in area:
-		vel += (global_position - area.global_position).normalized() * area.knockback
-#		knockback_dir = (global_position - area.global_position).normalized() * area.knockback
+		knockback_dir = (global_position - area.global_position).normalized() * area.knockback
 
 
 func _on_hit_effects(area: Area2D):
@@ -134,7 +152,7 @@ func add_bleed_debuff(damage_amt: float):
 
 func _haemophilia_bleed_limit():
 	# remove extra bleed stacks
-	var max_bleeds = GameInit.haemophilia_stacks if GameInit.skilltree.passives["Haemophilia"].points > 0 else 1
+	var max_bleeds = 1 + GameInit.haemophilia_stacks * GameInit.skilltree.passives["Haemophilia"].points
 	for i in range($bleeding_debuffs.get_child_count()):
 		if i >= max_bleeds:
 			$bleeding_debuffs.get_child(i).queue_free()

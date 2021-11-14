@@ -3,7 +3,7 @@ extends Area2D
 
 var damage: float = 10
 var input_lock: float
-
+var knockback: float = 200
 
 func get_class(): return "Assassinate"
 

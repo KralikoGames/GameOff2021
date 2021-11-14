@@ -1,0 +1,39 @@
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Aha! A skillpoint!"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "get_skillpoint",
+				"target_node_path": "DialogueManager"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4 - DEV",
+		"file": "timeline-1636482647.json",
+		"name": "ruinedmansion_tutorial_randomskillpoint"
+	}
+}

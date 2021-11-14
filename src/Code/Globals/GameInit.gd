@@ -3,6 +3,7 @@ extends Node
 
 signal player_ready
 signal skilltree_ready
+signal enemy_died(enemy)
 
 ### Scenes ###
 
@@ -22,18 +23,22 @@ var skilltree: SkillTree setget _set_skilltree
 var keybinds = {}
 
 #Mantis passive constants
-const trishot_angle = 35 # degrees that spinning scythe will spread out
-const massive_scythe_multiplier = 1.5
+const trishot_angle = 20 # degrees that spinning scythe will spread out
+const massive_scythe_multiplier = 0.1 # a percent
 const blood_explosion_damage: float = 3.0
+const blood_explosion_size_multiplier: float = 0.15 # a percent
 const blood_explosion_tscn = preload("res://Code/Attacks/Mantis/Scythe/BloodExplosion/BloodExplosion.tscn")
 
 const bleed_damage_perc = 0.5
 const bleed_duration = 4.0 # seconds
-const haemophilia_stacks = 8
+const haemophilia_stacks = 2
 const bleeding_debuff = preload("res://Code/Attacks/Mantis/Bleeding/Bleeding.tscn")
 
-const bloodplay_ms_increase = 50.0
+const base_bloodplay_ms_increase = 50.0 # base amount of ms
+const bloodplay_ms_increase = 15.0 # per point increase
 const bloodplay_buff = preload("res://Code/Attacks/Mantis/Bleeding/Bloodplay/Bloodplay.tscn")
+
+const gratuitous_violence_size_multiplier = 0.25
 
 const exsanguinate_bleed_dps_percentage = 0.5
 
@@ -50,7 +55,7 @@ var attacks = {
 #	"Shadow_Hop": ,
 }
 var attack_cooldowns = {
-	"Spinning_Scythe":1.3, 
+	"Spinning_Scythe":0.4, 
 	"Assassinate":0.4, 
 	"Shadow_Hop":1.5,
 }
@@ -124,15 +129,17 @@ func set_ability(keybind, attack_name):
 ########################## On death Effects ##########################
 
 
-func _on_enemy_died(source:String, enemy:Node2D):
+func _on_enemy_died(source:String, enemy:Enemy):
 	if _is_enemy_bleeding(enemy):
 		_bloodplay(enemy)
 		_gratuitous_violence(enemy)
 		_path_of_blood(enemy)
 	_cloaked_in_blood(enemy, source)
+	
+	emit_signal("enemy_died", enemy)
 
 
-func _path_of_blood(_enemy: Node2D):
+func _path_of_blood(_enemy: Enemy):
 	if skilltree.passives["Path_Of_Blood"].points > 0:
 		for key in keybinds:
 			if keybinds[key] == "Shadow_Hop":
@@ -140,25 +147,26 @@ func _path_of_blood(_enemy: Node2D):
 				t.stop()
 
 
-func _cloaked_in_blood(_enemy: Node2D, source: String):
+func _cloaked_in_blood(_enemy: Enemy, source: String):
 	if skilltree.passives["Cloaked_In_Blood"].points > 0 and \
 		source == "Assassinate":
 		player._add_cloaked_in_blood_stack()
 
 
-func _gratuitous_violence(enemy:Node2D):
+func _gratuitous_violence(enemy: Enemy):
 	if skilltree.passives["Gratuitous_Violence"].points > 0:
 		var boom = blood_explosion_tscn.instance()
 		boom.global_position = enemy.global_position
+		boom.scale *= 1 + gratuitous_violence_size_multiplier * skilltree.passives["Gratuitous_Violence"].points
 		enemy.get_parent().add_child(boom)
 
 
-func _bloodplay(_enemy:Node2D):
+func _bloodplay(_enemy: Enemy):
 	if skilltree.passives["Bloodplay"].points > 0:
 		player._add_bloodplay_stack()
 
 
-func _is_enemy_bleeding(enemy):
+func _is_enemy_bleeding(enemy: Enemy):
 	var bleeding_debuffs = enemy.get_node_or_null("bleeding_debuffs")
 	if not bleeding_debuffs: return false 
 	return bleeding_debuffs.get_child_count() > 0

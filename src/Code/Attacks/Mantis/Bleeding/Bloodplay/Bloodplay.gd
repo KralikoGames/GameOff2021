@@ -2,6 +2,7 @@ extends Timer
 
 
 var target: Node2D
+var amount: float
 
 
 func _ready():
@@ -10,10 +11,11 @@ func _ready():
 		queue_free()
 		return
 	
-	target.max_speed += GameInit.bloodplay_ms_increase
+	amount = GameInit.base_bloodplay_ms_increase + GameInit.bloodplay_ms_increase * GameInit.skilltree.passives["Bloodplay"].points
 	
+	target.max_speed += amount
 
 
 func _on_Bloodplay_timeout():
-	target.max_speed -= GameInit.bloodplay_ms_increase
+	target.max_speed -= amount
 	queue_free()

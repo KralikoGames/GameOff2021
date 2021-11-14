@@ -2,9 +2,8 @@ extends Area2D
 
 
 var damage: float setget , get_damage
-
 var enemies_damaged = []
-
+var knockback = 190
 
 func get_damage() -> float:
 	return get_parent().damage

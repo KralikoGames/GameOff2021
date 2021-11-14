@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Code/Quests/GoToQuest.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+title = "Find the family wagon"
+description = "In one of the Courtyards there lies the family wagon. Find it. It will assist you in your future travels."
+skillpoints = 1
+node_name = "ruinedmansion_tutorial_wagon"
