@@ -3,7 +3,7 @@ extends CanvasLayer
 
 func _ready():
 	$Control/HUD.show()
-	DialogueManager.connect("dialogue_started", self, "_on_dialogue_started")
+	# DialogueManager.connect("dialogue_started", self, "_on_dialogue_started")
 
 
 func _input(event):
