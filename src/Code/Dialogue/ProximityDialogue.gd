@@ -22,6 +22,6 @@ func _on_ProximityDialogue_body_entered(body: Player):
 	
 	if body.has_method("entered_area"): body.entered_area(self)
 	
-	DialogueManager.start_dialogue(name)
+#	DialogueManager.start_dialogue(name)
 	
 	if one_shot: queue_free()
