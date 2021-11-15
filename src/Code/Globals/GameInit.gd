@@ -7,10 +7,10 @@ signal enemy_died(enemy)
 
 ### Scenes ###
 
-var scenes = {
-	"world" : preload("res://Code/World/World.tscn"),
-	"menu" : preload("res://Code/Menu/Main_Menu.tscn"),
-}
+#var scenes = {
+#	"world" : preload("res://Code/World/World.tscn"),
+#	"menu" : preload("res://Code/Menu/Main_Menu.tscn"),
+#}
 
 var current_scene = null
 
@@ -78,15 +78,15 @@ func _unhandled_input(event):
 ########################## Scene Handling ##########################
 
 
-func change_scene(scene_name):
-	if not scene_name in scenes:
-		push_error("can't change to scene %s. Scene does not exist.")
-		return
-	
-	var new_scene = scenes[scene_name].instance()
-	current_scene.queue_free()
-	get_tree().root.add_child(new_scene)
-	current_scene = new_scene
+#func change_scene(scene_name):
+#	if not scene_name in scenes:
+#		push_error("can't change to scene %s. Scene does not exist.")
+#		return
+#
+#	var new_scene = scenes[scene_name].instance()
+#	current_scene.queue_free()
+#	get_tree().root.add_child(new_scene)
+#	current_scene = new_scene
 
 
 ########################## Scene Handling ##########################

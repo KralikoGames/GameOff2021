@@ -1,19 +1,19 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Art/white_square.png" type="Texture" id=1]
-[ext_resource path="res://Code/World/Camera.gd" type="Script" id=2]
+[ext_resource path="res://Code/Enemies/Termite/VolatileTermite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Code/Enemies/Termite/MeleeTermite.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Code/Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Code/Enemies/Termite/MeleeTermite.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Code/Interactables/Sign/Sign.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Code/GUI/GUI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Code/Enemies/Termite/VolatileTermite.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Code/Interactables/Sign/Sign.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Art/white_square.png" type="Texture" id=5]
+[ext_resource path="res://Worlds/World/Camera.gd" type="Script" id=6]
+[ext_resource path="res://Code/GUI/GUI.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
 
 [sub_resource type="TileSet" id=2]
 0/name = "white_square.png 0"
-0/texture = ExtResource( 1 )
+0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 24, 24 )
@@ -66,7 +66,7 @@ tracks/0/keys = {
 
 [node name="TermiteWorld" type="Node2D"]
 
-[node name="GUI" parent="." instance=ExtResource( 6 )]
+[node name="GUI" parent="." instance=ExtResource( 7 )]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
@@ -80,7 +80,7 @@ current = true
 process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 10.0
-script = ExtResource( 2 )
+script = ExtResource( 6 )
 target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
@@ -93,7 +93,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Sign" parent="Signs" instance=ExtResource( 5 )]
+[node name="Sign" parent="Signs" instance=ExtResource( 4 )]
 position = Vector2( 0, 162 )
 
 [node name="Label" parent="Signs/Sign" index="3"]
@@ -103,7 +103,7 @@ margin_right = 60.3611
 margin_bottom = -10.0
 text = "WASD to move"
 
-[node name="Sign2" parent="Signs" instance=ExtResource( 5 )]
+[node name="Sign2" parent="Signs" instance=ExtResource( 4 )]
 position = Vector2( 0, -18 )
 
 [node name="anim" parent="Signs/Sign2" index="2"]
@@ -119,22 +119,22 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ExplodingTermite" parent="Enemies" instance=ExtResource( 7 )]
+[node name="ExplodingTermite" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( -218.753, 23.9729 )
 
-[node name="MeleeTermite" parent="Enemies" instance=ExtResource( 4 )]
+[node name="MeleeTermite" parent="Enemies" instance=ExtResource( 2 )]
 position = Vector2( -335.621, 22.4746 )
 
-[node name="ExplodingTermite2" parent="Enemies" instance=ExtResource( 7 )]
+[node name="ExplodingTermite2" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( -179.861, -6.18771 )
 
-[node name="MeleeTermite2" parent="Enemies" instance=ExtResource( 4 )]
+[node name="MeleeTermite2" parent="Enemies" instance=ExtResource( 2 )]
 position = Vector2( -296.729, -7.686 )
 
-[node name="ExplodingTermite3" parent="Enemies" instance=ExtResource( 7 )]
+[node name="ExplodingTermite3" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( -251.294, -6.18771 )
 
-[node name="MeleeTermite3" parent="Enemies" instance=ExtResource( 4 )]
+[node name="MeleeTermite3" parent="Enemies" instance=ExtResource( 2 )]
 position = Vector2( -368.162, -7.686 )
 
 [editable path="Signs/Sign"]
