@@ -19,7 +19,7 @@ func _input(event):
 	if Engine.editor_hint: return
 	
 	if event.is_action_pressed("interact"):
-#		DialogueManager.start_dialogue(name)
+		DialogueManager.start_dialogue(name)
 		
 		if one_shot: queue_free()
 
