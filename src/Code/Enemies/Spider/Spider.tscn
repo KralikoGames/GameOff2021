@@ -32,19 +32,17 @@ tracks/0/keys = {
 
 [node name="Spider" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-attack_range_close = 50.0
-dash_speed = 300
+health = 100.0
+attack_range_med = 75.0
+attack_range_close = 40.0
+dash_speed = 200
 warning_time = 0.6
 
 [node name="Shape" parent="." index="0"]
 visible = false
 shape = SubResource( 1 )
 
-[node name="Hitbox" parent="." index="1"]
-visible = false
-
 [node name="Shape" parent="Hitbox" index="0"]
-visible = false
 shape = SubResource( 3 )
 
 [node name="hp" parent="." index="2"]
@@ -52,7 +50,9 @@ visible = false
 
 [node name="Display" type="AnimatedSprite" parent="." index="4"]
 material = SubResource( 2 )
+position = Vector2( 4.66299, 0.396851 )
 rotation = 1.5708
+scale = Vector2( 1.97228, 1.4663 )
 frames = ExtResource( 4 )
 animation = "Run"
 
@@ -65,7 +65,10 @@ wait_time = 0.5
 wait_time = 0.6
 
 [node name="PostAttackTimer" type="Timer" parent="." index="8"]
-wait_time = 0.6
+wait_time = 0.8
 
-[node name="OnHitFeedback" type="AnimationPlayer" parent="." index="9"]
+[node name="LungeCooldown" type="Timer" parent="." index="9"]
+wait_time = 4.0
+
+[node name="OnHitFeedback" type="AnimationPlayer" parent="." index="10"]
 anims/OnHit = SubResource( 4 )

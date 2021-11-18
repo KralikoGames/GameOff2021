@@ -11,6 +11,7 @@ shader_param/solid = false
 shader_param/circle = true
 shader_param/cone = false
 shader_param/rect = false
+shader_param/arc = false
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 5.0
