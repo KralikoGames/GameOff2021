@@ -21,16 +21,23 @@ var attack_tscn = preload("res://Code/Attacks/Telegraphed_Ground_Effect/Ground_E
 var corpse_tscn = preload("res://Code/Enemies/Corpse.tscn")
 var target_position = Vector2()
 var move_position = Vector2()
-var attacking: bool = false
+var acting: bool = false
 var dead: bool = false
 var dashDir = Vector2()
 var dashTime = 0
+var dashWeight = 0
 
 
 func _ready():
 	freeze(1)
+	connect('onSetTarget', self, "SetTarget")
 	
 
+func SetTarget(t):
+	if((t is Player) and (t != target)):
+		if t.has_signal("attacked"):
+			t.connect("attacked", self, "_considerDodge")
+		
 
 func _physics_process(delta): # target is guarranteed to be assigned
 		
@@ -39,9 +46,15 @@ func _physics_process(delta): # target is guarranteed to be assigned
 		return
 
 	flip_to_target()
-	
-	if not attacking and !dead:
-		if _in_close_range():
+	print("DASH CD" + str($LungeCooldown.time_left))
+	if not acting and !dead:
+		dashWeight=dashWeight+0.001
+		var dashRoll = randi() % 300
+		if(dashWeight > dashRoll):
+			#print(str(dashWeight) +">"+ str(dashRoll))
+			dashWeight=0
+			_dodge()
+		elif _in_close_range():
 			_swipe()
 		elif _in_med_range() and ($LungeCooldown.time_left <= 0):
 			$LungeCooldown.start()
@@ -90,7 +103,7 @@ func corpse():
 func _swipe() -> void:
 	#Stop and warn the player.
 	emit_signal("begin_attack")
-	attacking = true
+	acting = true
 	frozen = true
 	stop()
 	move_position  = global_position.linear_interpolate(target.global_position, 0.2)
@@ -138,7 +151,7 @@ func _swipe() -> void:
 	
 	move_dir = Vector2.ZERO
 	max_speed = old_speed
-	attacking = false
+	acting = false
 	
 	postAttackTimer.start()
 	yield(postAttackTimer, "timeout")
@@ -149,7 +162,7 @@ func _swipe() -> void:
 func _lunge() -> void:
 	#Stop and warn the player.
 	emit_signal("begin_attack")
-	attacking = true
+	acting = true
 	frozen = true
 	stop()
 
@@ -196,7 +209,54 @@ func _lunge() -> void:
 	
 	move_dir = Vector2.ZERO
 	max_speed = old_speed
-	attacking = false
+	acting = false
+	
+	postAttackTimer.start()
+	yield(postAttackTimer, "timeout")
+	
+	display.speed_scale = 1
+	frozen = false
+
+func _considerDodge()-> void:
+	if acting or dead or randi() % 100 > 20:
+		return
+	_dodge()
+
+func _dodge()->void:
+	acting = true
+	frozen = true
+	stop()
+	
+	var dashDirmult = 1
+	if(randi() % 100 > 50):
+		dashDirmult = -1
+		
+	dashDir = (global_position - target.global_position)
+	dashDir = dashDir.rotated(90*dashDirmult * PI / 180).normalized() * 50
+	dashTime = dashDir.length()/dash_speed
+	
+	#stop us and our animation
+	display.play("Charge")
+	display.frame = 0
+	display.speed_scale = 0
+	
+	old_speed = max_speed
+	max_speed = dash_speed
+	move_dir += dashDir * dash_speed
+	if !dead:
+		display.speed_scale = 1
+		display.play("Attack")
+	
+	dashTimer.start(dashTime)
+	yield(dashTimer, "timeout")
+	
+	if !dead:
+		display.speed_scale = 0
+		display.play("Run")
+	
+	move_dir = Vector2.ZERO
+	max_speed = old_speed
+	acting = false
 	
 	postAttackTimer.start()
 	yield(postAttackTimer, "timeout")
