@@ -8,7 +8,7 @@ export var debug: bool = false
 export var dash_speed = 300
 export var swipe_slide_speed = 100
 export var warning_time = 0.5
-
+export var dodge_recovery_rate = 0.001
 onready var display = $Display
 onready var attackTimer = $AttackTimer
 onready var dashTimer = $DashTimer
@@ -46,14 +46,14 @@ func _physics_process(delta): # target is guarranteed to be assigned
 		return
 
 	flip_to_target()
-	print("DASH CD" + str($LungeCooldown.time_left))
+	
 	if not acting and !dead:
-		dashWeight=dashWeight+0.001
+		dashWeight+=dodge_recovery_rate
 		var dashRoll = randi() % 300
 		if(dashWeight > dashRoll):
 			#print(str(dashWeight) +">"+ str(dashRoll))
 			dashWeight=0
-			_dodge()
+			_dash()
 		elif _in_close_range():
 			_swipe()
 		elif _in_med_range() and ($LungeCooldown.time_left <= 0):
@@ -61,7 +61,7 @@ func _physics_process(delta): # target is guarranteed to be assigned
 			_lunge()
 		else:
 			move_to_target()
-			display.play("Run")
+			display.play("Walk")
 
 
 func flip_to_target():
@@ -101,128 +101,88 @@ func corpse():
 	tween.start()
 
 func _swipe() -> void:
-	#Stop and warn the player.
+	#Stop
 	emit_signal("begin_attack")
 	acting = true
 	frozen = true
 	stop()
 	move_position  = global_position.linear_interpolate(target.global_position, 0.2)
-	target_position = target.global_position
+	target_position = global_position
 	dashDir = (move_position - global_position)
 	dashTime = dashDir.length()/swipe_slide_speed
 	
-	#create a warning.
-	var effect = attack_tscn.instance()
-	effect.rotation = _get_dir_to_target().angle()
-	effect.shape = "cone"
-	effect.scale = Vector2(1.5, 6)
-	effect.use_ground_effect_knockback
-	effect.knockback_dir = dashDir
-	effect.wait_time = warning_time + dashTime
-	effect.knockback_amt = 1000.0
-	effect.damage_amt = 5.0
-	effect.global_position = target_position
-	get_tree().get_root().add_child(effect)
-	emit_signal("create_warning")
-	
-	#stop us and our animation
-	display.play("Charge")
-	display.frame = 0
-	display.speed_scale = 0
-	
+	#Warn the player that they are being attacked.
+	_create_warning("circle", Vector2.ONE*15, 
+					warning_time + dashTime, target_position,
+					5, dashDir, 1000)
 	#Start waiting for the warning to finish.
 	attackTimer.start(warning_time)
 	yield(attackTimer, "timeout")
-	
-	
-	old_speed = max_speed
-	max_speed = dash_speed
-	move_dir += dashDir * dash_speed
+	#Spin
 	if !dead:
 		display.speed_scale = 1
-		display.play("Attack")
+		display.play("Spin")
 	
-	dashTimer.start(dashTime)
-	yield(dashTimer, "timeout")
-	
-	if !dead:
-		display.speed_scale = 0
-		display.play("Run")
-	
-	move_dir = Vector2.ZERO
-	max_speed = old_speed
-	acting = false
+	attackTimer.start(warning_time)
+	yield(attackTimer, "timeout")
 	
 	postAttackTimer.start()
 	yield(postAttackTimer, "timeout")
 	
-	display.speed_scale = 1
+	#Reset
+	acting = false
 	frozen = false
-
+	if !dead:
+		display.speed_scale = 1
+		display.play("Idle")
+	
 func _lunge() -> void:
 	#Stop and warn the player.
 	emit_signal("begin_attack")
 	acting = true
 	frozen = true
 	stop()
-
 	target_position = target.global_position
 	dashDir = (target_position - global_position)
 	dashTime = dashDir.length()/dash_speed
 	
 	#create a warning.
-	var effect = attack_tscn.instance()
-	effect.shape = "circle"
-	effect.scale = Vector2(2, 2)
-	effect.use_ground_effect_knockback
-	effect.knockback_dir = dashDir
-	effect.wait_time = warning_time + dashTime
-	effect.knockback_amt = 1000.0
-	effect.damage_amt = 5.0
-	effect.global_position = target_position
-	get_tree().get_root().add_child(effect)
-	emit_signal("create_warning")
-	
-	#stop us and our animation
-	display.play("Charge")
-	display.frame = 0
-	display.speed_scale = 0
+	_create_warning("circle", Vector2.ONE*3, 
+					warning_time + dashTime, target_position,
+					5, dashDir, 1000)
 	
 	#Start waiting for the warning to finish.
 	attackTimer.start(warning_time)
 	yield(attackTimer, "timeout")
-	
-	
+	#Dash
 	old_speed = max_speed
 	max_speed = dash_speed
 	move_dir += dashDir * dash_speed
+	#Reset
 	if !dead:
 		display.speed_scale = 1
-		display.play("Attack")
-	
+		display.play("Dash")
 	dashTimer.start(dashTime)
 	yield(dashTimer, "timeout")
-	
+	#Reset
 	if !dead:
 		display.speed_scale = 0
-		display.play("Run")
-	
+		display.play("Walk")
 	move_dir = Vector2.ZERO
 	max_speed = old_speed
 	acting = false
-	
+	#Post attack pause.
 	postAttackTimer.start()
 	yield(postAttackTimer, "timeout")
-	
 	display.speed_scale = 1
 	frozen = false
 
 func _considerDodge()-> void:
 	if acting or dead or randi() % 100 > 20:
 		return
-	_dodge()
+	_dash()
 
-func _dodge()->void:
+func _dash()->void:
 	acting = true
 	frozen = true
 	stop()
@@ -230,30 +190,22 @@ func _dodge()->void:
 	var dashDirmult = 1
 	if(randi() % 100 > 50):
 		dashDirmult = -1
-		
+	#Dash
 	dashDir = (global_position - target.global_position)
 	dashDir = dashDir.rotated(90*dashDirmult * PI / 180).normalized() * 50
 	dashTime = dashDir.length()/dash_speed
-	
-	#stop us and our animation
-	display.play("Charge")
-	display.frame = 0
-	display.speed_scale = 0
-	
 	old_speed = max_speed
 	max_speed = dash_speed
 	move_dir += dashDir * dash_speed
 	if !dead:
 		display.speed_scale = 1
-		display.play("Attack")
-	
+		display.play("Dash")
 	dashTimer.start(dashTime)
 	yield(dashTimer, "timeout")
-	
+	#Reset
 	if !dead:
 		display.speed_scale = 0
 		display.play("Run")
-	
 	move_dir = Vector2.ZERO
 	max_speed = old_speed
 	acting = false
@@ -263,3 +215,16 @@ func _dodge()->void:
 	
 	display.speed_scale = 1
 	frozen = false
+
+func _create_warning(shape, scale, time, position, damage ,knockback_dir = Vector2.ZERO, knockback_str = 0)->void:
+	var effect = attack_tscn.instance()
+	effect.shape = shape
+	effect.scale = scale
+	effect.use_ground_effect_knockback
+	effect.knockback_dir = knockback_dir
+	effect.wait_time = time
+	effect.knockback_amt = knockback_str
+	effect.damage_amt = damage
+	effect.global_position = position
+	get_tree().get_root().add_child(effect)
+	emit_signal("create_warning")
