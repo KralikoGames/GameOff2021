@@ -12,7 +12,7 @@ export(float, 1, 100, 1) var health = 3
 export(float, 0, 1000, 10) var acceleration: float = 300.0
 export(float, 0, 1, 0.025) var damping: float = 0.80
 export(float, 0, 1000, 10) var max_speed: float = 400.0
-export(float, 0, 500, 10) var friction: float = 200
+export(float, 0.0, 2.0, 0.05) var knockback_efficiency: float = 1.0
 
 
 var target: Node2D
@@ -82,9 +82,10 @@ func die(ability_source):
 	emit_signal("died", ability_source)
 
 
-func _move(_delta):
-	knockback_dir = knockback_dir.move_toward(Vector2.ZERO, friction * _delta)
+func _move(delta):
+#	knockback_dir = knockback_dir.move_toward(Vector2.ZERO, damping * _delta)
 	knockback_dir = move_and_slide(knockback_dir)
+	knockback_dir *= damping
 	
 	vel += move_dir * acceleration
 	vel = vel.clamped(max_speed)
@@ -116,7 +117,7 @@ func _on_Hitbox_area_entered(area):
 		damage(area.damage, area.get_class())
 		_on_hit_effects(area)
 	if "knockback" in area:
-		knockback_dir = (global_position - area.global_position).normalized() * area.knockback
+		knockback_dir = (global_position - area.global_position).normalized() * area.knockback * knockback_efficiency
 
 
 func _on_hit_effects(area: Area2D):
