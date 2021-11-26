@@ -13,7 +13,6 @@ script = ExtResource( 2 )
 id = "Spiker"
 max_speed = 50.0
 attack_range_close = 0.0
-debug = true
 
 [node name="Shape" parent="." index="0"]
 visible = false

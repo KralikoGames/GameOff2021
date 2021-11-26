@@ -16,12 +16,13 @@ export(float, 0, 500, 10) var friction: float = 200
 
 
 var target: Node2D
+onready var hit_feedback = $OnHitFeedback
 #var knockback_dir: Vector2 = Vector2()
 var move_dir: Vector2 = Vector2() setget set_move_dir
 var look_dir: Vector2 = Vector2()
 var vel: Vector2 = Vector2()
 var frozen: bool = false
-
+var knockback_dir = Vector2.ZERO
 
 func _get_configuration_warning():
 	if not id:
@@ -43,7 +44,7 @@ func _physics_process(_delta):
 		set_physics_process(false)
 		return
 	
-	_move()
+	_move(_delta)
 
 
 func set_target(t: Node2D):
@@ -65,6 +66,9 @@ func stop():
 
 
 func damage(amt: float, ability_source:String=""):
+	if(hit_feedback):
+		hit_feedback.play("OnHit")
+		
 	health -= amt
 	_update_hp()
 	if health <= 0:
@@ -78,12 +82,13 @@ func die(ability_source):
 	emit_signal("died", ability_source)
 
 
-func _move():
+func _move(_delta):
+	knockback_dir = knockback_dir.move_toward(Vector2.ZERO, friction * _delta)
+	knockback_dir = move_and_slide(knockback_dir)
+	
 	vel += move_dir * acceleration
 	vel = vel.clamped(max_speed)
-
 	vel *= damping
-
 	vel = move_and_slide(vel)
 
 
@@ -111,8 +116,7 @@ func _on_Hitbox_area_entered(area):
 		damage(area.damage, area.get_class())
 		_on_hit_effects(area)
 	if "knockback" in area:
-		vel += (global_position - area.global_position).normalized() * area.knockback
-#		knockback_dir = (global_position - area.global_position).normalized() * area.knockback
+		knockback_dir = (global_position - area.global_position).normalized() * area.knockback
 
 
 func _on_hit_effects(area: Area2D):
