@@ -37,6 +37,7 @@ tracks/0/keys = {
 [node name="Spider" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 health = 100.0
+knockback_efficiency = 2.0
 attack_range_med = 150.0
 attack_range_close = 40.0
 dash_speed = 400
