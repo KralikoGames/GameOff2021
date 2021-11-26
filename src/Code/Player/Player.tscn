@@ -76,6 +76,9 @@ frames = ExtResource( 3 )
 animation = "Idle"
 script = ExtResource( 4 )
 
+[node name="FlashTimer" type="Timer" parent="Sprite"]
+wait_time = 0.1
+
 [node name="IFramesTimer" type="Timer" parent="."]
 wait_time = 0.35
 one_shot = true
