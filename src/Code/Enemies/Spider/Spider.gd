@@ -202,6 +202,7 @@ func _dash()->void:
 
 func _create_warning(shape, visible ,scale, time, position, damage ,knockback_dir = Vector2.ZERO, knockback_str = 0)->void:
 	var effect = attack_tscn.instance()
+	effect.useCircleWarning = true
 	effect.visible = visible
 	effect.shape = shape
 	effect.scale = scale
@@ -212,4 +213,5 @@ func _create_warning(shape, visible ,scale, time, position, damage ,knockback_di
 	effect.damage_amt = damage
 	effect.global_position = position
 	get_tree().get_root().add_child(effect)
+	
 	emit_signal("create_warning")

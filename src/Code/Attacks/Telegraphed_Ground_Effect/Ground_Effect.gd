@@ -9,6 +9,7 @@ export(float) var knockback_amt: float = 1.0
 export var use_ground_effect_knockback = true
 
 var knockback_dir = Vector2()
+var useCircleWarning = false;
 
 func _ready():
 	if Engine.editor_hint: return
@@ -50,6 +51,9 @@ func _set_shape(v):
 	_helper("circle")
 	_helper("cone")
 	_helper("rect")
+	
+	if(shape=="circle" and useCircleWarning):
+		$CircleWarning.visible = true
 			
 
 func _helper(s:String="circle"):

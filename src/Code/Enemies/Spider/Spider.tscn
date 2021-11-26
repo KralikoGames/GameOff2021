@@ -39,7 +39,7 @@ script = ExtResource( 2 )
 health = 100.0
 knockback_efficiency = 2.0
 attack_range_med = 150.0
-attack_range_close = 40.0
+attack_range_close = 50.0
 dash_speed = 400
 slash_warning_time = 1.0
 
