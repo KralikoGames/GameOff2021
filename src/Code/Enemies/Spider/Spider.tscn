@@ -41,7 +41,8 @@ knockback_efficiency = 2.0
 attack_range_med = 150.0
 attack_range_close = 50.0
 dash_speed = 400
-slash_warning_time = 1.0
+slash_warning_time = 0.6
+lunge_warning_time = 0.6
 
 [node name="Shape" parent="." index="0"]
 position = Vector2( 5, 0 )
@@ -67,13 +68,14 @@ margin_right = 300.0
 [node name="Display" type="AnimatedSprite" parent="." index="5"]
 material = SubResource( 4 )
 frames = ExtResource( 4 )
-animation = "Idle"
+animation = "Walk"
 
 [node name="AttackTimer" type="Timer" parent="." index="6"]
 wait_time = 2.0
 one_shot = true
 
 [node name="DashTimer" type="Timer" parent="." index="7"]
+wait_time = 0.5
 one_shot = true
 
 [node name="DeathTimer" type="Timer" parent="." index="8"]

@@ -2,6 +2,7 @@ extends Enemy
 
 signal create_warning
 
+export var spin_animation_time = 0.4
 export var attack_range_med: float = 100
 export var attack_range_close: float = 75
 export var debug: bool = false
@@ -15,6 +16,7 @@ onready var attackTimer = $AttackTimer
 onready var dashTimer = $DashTimer
 onready var deathTimer = $DeathTimer
 onready var postAttackTimer = $PostAttackTimer
+
 
 var old_speed = 0
 var explosion_tscn = preload("res://Code/Attacks/Explosion_Effect/Explosion.tscn")
@@ -133,7 +135,7 @@ func _swipe() -> void:
 	if !dead:
 		display.speed_scale = 1
 		display.play("Spin")
-		attackTimer.start(0.25)
+		attackTimer.start(spin_animation_time)
 		yield(attackTimer, "timeout")
 		
 		_end_Attack()
@@ -145,6 +147,7 @@ func _lunge() -> void:
 	target_position = target.global_position
 	dashDir = (target_position - global_position)
 	
+	display.play("Dash windup")
 	attackTimer.start(lunge_warning_time)
 	yield(attackTimer, "timeout")
 	
