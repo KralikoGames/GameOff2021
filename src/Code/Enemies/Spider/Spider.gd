@@ -7,7 +7,8 @@ export var attack_range_close: float = 75
 export var debug: bool = false
 export var dash_speed = 300
 export var swipe_slide_speed = 100
-export var warning_time = 0.5
+export var slash_warning_time = 0.5
+export var lunge_warning_time = 0.3
 export var dodge_recovery_rate = 0.001
 onready var display = $Display
 onready var attackTimer = $AttackTimer
@@ -26,7 +27,6 @@ var dead: bool = false
 var dashDir = Vector2()
 var dashTime = 0
 var dashWeight = 0
-
 
 
 func _ready():
@@ -122,17 +122,20 @@ func _swipe() -> void:
 	_startAttack()
 	
 	#Warn the player that they are being attacked.
-	_create_warning("circle", true, Vector2.ONE*15, warning_time, global_position, 5, Vector2.ZERO, 0)
+	_create_warning("circle", true, Vector2.ONE*15, slash_warning_time, global_position, 5, Vector2.ZERO, 0)
+	display.speed_scale = 1
 	display.play("Windup 2")
-	attackTimer.start(warning_time)
+	
+	attackTimer.start(slash_warning_time)
 	yield(attackTimer, "timeout")
 	
 	#Spin
 	if !dead:
 		display.speed_scale = 1
 		display.play("Spin")
-		attackTimer.start(warning_time)
+		attackTimer.start(0.25)
 		yield(attackTimer, "timeout")
+		
 		_end_Attack()
 
 func _lunge() -> void:
@@ -141,7 +144,8 @@ func _lunge() -> void:
 	
 	target_position = target.global_position
 	dashDir = (target_position - global_position)
-	attackTimer.start(warning_time)
+	
+	attackTimer.start(lunge_warning_time)
 	yield(attackTimer, "timeout")
 	
 	#Dash

@@ -40,7 +40,7 @@ health = 100.0
 attack_range_med = 150.0
 attack_range_close = 40.0
 dash_speed = 400
-warning_time = 0.6
+slash_warning_time = 1.0
 
 [node name="Shape" parent="." index="0"]
 position = Vector2( 5, 0 )
