@@ -8,19 +8,18 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 
-[sub_resource type="CircleShape2D" id=5]
-radius = 47.4681
-
 [sub_resource type="CapsuleShape2D" id=2]
+radius = 13.8179
+
+[sub_resource type="CapsuleShape2D" id=3]
 radius = 17.2693
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/active = false
 
-[sub_resource type="Animation" id=4]
-resource_name = "OnHit"
+[sub_resource type="Animation" id=5]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Display:material:shader_param/active")
@@ -53,11 +52,11 @@ collision_mask = 2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagePlayerArea" index="0"]
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="Shape" parent="Hitbox" index="0"]
 position = Vector2( 5, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="hp" parent="." index="3"]
 margin_left = -10.0
@@ -65,7 +64,7 @@ margin_top = -35.0
 margin_right = 300.0
 
 [node name="Display" type="AnimatedSprite" parent="." index="5"]
-material = SubResource( 3 )
+material = SubResource( 4 )
 frames = ExtResource( 4 )
 animation = "Idle"
 
@@ -89,6 +88,6 @@ wait_time = 4.0
 one_shot = true
 
 [node name="OnHitFeedback" type="AnimationPlayer" parent="." index="11"]
-anims/OnHit = SubResource( 4 )
+anims/OnHit = SubResource( 5 )
 
 [connection signal="area_entered" from="DamagePlayerArea" to="DamagePlayerArea" method="_on_DamagePlayerArea_area_entered"]
