@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 signal moved
 signal stopped
-signal begin_death
+signal begin_death(delay)
 signal died
 signal health_changed
 signal mana_changed
@@ -77,13 +77,13 @@ func i_frames():
 	
 
 
-func die(delay: float=0.0):
+func die(delay: float=1.0):
 	if is_dead: return 
 	is_dead = true
 #	set_physics_process(false)
+	emit_signal("begin_death", delay)
 	set_process_input(false)
 	set_block_signals(true)
-	emit_signal("begin_death")
 	
 	# delay for animations?
 	if delay > 0:
@@ -94,7 +94,9 @@ func die(delay: float=0.0):
 	
 	# apply post death effects (corpse etc...)
 	
-	queue_free()
+	GameInit.change_scene("menu")
+#	queue_free()
+	
 
 
 func freeze_player(time: float):

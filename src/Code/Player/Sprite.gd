@@ -54,6 +54,10 @@ func flash_player_sprite(): # doing this with shaders might be better.
 	self_modulate = Color(100,100,100) if self_modulate == Color(1,1,1,1) else Color(1,1,1,1)
 
 
-func _on_player_begin_death():
-	pass
+func _on_player_begin_death(death_time):
+	_on_player_iframes_ended()
+	var tween: Tween = Tween.new()
+	add_child(tween)
+	tween.interpolate_property(self, "self_modulate", self_modulate, Color(1,1,1,0), death_time)
+	tween.start()
 
