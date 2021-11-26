@@ -122,6 +122,8 @@ func _startAttack()->void:
 func _swipe() -> void:
 	#Stop
 	_startAttack()
+	var saved_knockback_efficiency = knockback_efficiency
+	knockback_efficiency = 0;
 	
 	#Warn the player that they are being attacked.
 	_create_warning("circle", true, Vector2.ONE*15, slash_warning_time, global_position, 5, Vector2.ZERO, 0)
@@ -138,6 +140,7 @@ func _swipe() -> void:
 		attackTimer.start(spin_animation_time)
 		yield(attackTimer, "timeout")
 		
+		knockback_efficiency = saved_knockback_efficiency
 		_end_Attack()
 
 func _lunge() -> void:
@@ -215,6 +218,8 @@ func _create_warning(shape, visible ,scale, time, position, damage ,knockback_di
 	effect.knockback_amt = knockback_str
 	effect.damage_amt = damage
 	effect.global_position = position
-	get_tree().get_root().add_child(effect)
+	
+	var EffectsNode = get_tree().get_nodes_in_group("Effects").front()
+	EffectsNode.add_child(effect)
 	
 	emit_signal("create_warning")

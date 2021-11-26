@@ -39,7 +39,7 @@ func _process(_delta):
 
 func _draw():
 	# note the other draw functions may not work with shaders
-	draw_rect(Rect2(Vector2(-5 if shape=="circle" else 0, -5), Vector2(10,10)), Color.red) 
+	draw_rect(Rect2(Vector2(-5 if shape=="circle" else 0, -5), Vector2(10,10)), Color.aquamarine) 
 
 
 func _set_shape(v):

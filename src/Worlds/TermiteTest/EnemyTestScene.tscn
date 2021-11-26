@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Art/Tileart/Level1.tres" type="TileSet" id=1]
 [ext_resource path="res://Worlds/World/Camera.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Code/Enemies/Termite/VolatileTermite.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Code/Enemies/Spiker/Spiker.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Code/Enemies/Spider/Spider.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Code/Effects.tscn" type="PackedScene" id=13]
 
 [node name="EnemyTestScene" type="Node2D"]
 __meta__ = {
@@ -57,6 +58,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Effects" parent="." groups=[
+"Effects",
+] instance=ExtResource( 13 )]
+
 [node name="Camera" type="Camera2D" parent="."]
 current = true
 process_mode = 0
@@ -98,6 +103,12 @@ __meta__ = {
 
 [node name="Spiker" parent="Enemies/Spikers" instance=ExtResource( 11 )]
 position = Vector2( -1335.04, -326.592 )
+
+[node name="Spider" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( -170.431, -413.182 )
+acceleration = 40.0
+max_speed = 160.0
+knockback_efficiency = 0.7
 
 [node name="Spawners" type="Node2D" parent="."]
 __meta__ = {
@@ -249,11 +260,5 @@ text = "Spiker (Art not implemented)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Spider" parent="." instance=ExtResource( 12 )]
-position = Vector2( -170.431, -413.182 )
-acceleration = 40.0
-max_speed = 160.0
-knockback_efficiency = 0.7
 
 [editable path="Signs/Sign"]
