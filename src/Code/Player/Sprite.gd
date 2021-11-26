@@ -12,6 +12,10 @@ func _ready():
 	player.connect("stopped", self, "_on_player_stopped")
 	player.connect("attacked", self, "_on_player_attacked")
 	player.connect("begin_death", self, "_on_player_begin_death")
+	player.connect("iframes_started", self, "_on_player_iframes_started")
+	player.connect("iframes_ended", self, "_on_player_iframes_ended")
+	
+	$FlashTimer.connect("timeout", self, "flash_player_sprite")
 
 
 func _process(_delta):
@@ -37,6 +41,17 @@ func _on_player_attacked():
 	play("Attack slash")
 	yield(self, "animation_finished")
 	lock_anim = false
+
+
+func _on_player_iframes_started():
+	$FlashTimer.start()
+
+func _on_player_iframes_ended():
+	$FlashTimer.stop()
+	self_modulate = Color(1,1,1,1)
+
+func flash_player_sprite(): # doing this with shaders might be better.
+	self_modulate = Color(100,100,100) if self_modulate == Color(1,1,1,1) else Color(1,1,1,1)
 
 
 func _on_player_begin_death():

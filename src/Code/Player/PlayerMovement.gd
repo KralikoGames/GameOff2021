@@ -10,6 +10,8 @@ signal mana_changed
 signal direction_changed
 signal attacked
 signal area_entered
+signal iframes_started
+signal iframes_ended
 
 
 export var wasd_movement: bool = true
@@ -66,9 +68,11 @@ func damage(amt:float, dir:Vector2, knockback_amt:float=0):
 
 func i_frames():
 	immortal = true
+	emit_signal("iframes_started")
 #	if duration > 0.0: $IFramesTimer.wait_time = duration
 	$IFramesTimer.start()
 	yield($IFramesTimer, "timeout")
+	emit_signal("iframes_ended")
 	immortal = false
 	
 
