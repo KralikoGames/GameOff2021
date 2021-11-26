@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Art/Tileart/Level1.tres" type="TileSet" id=1]
 [ext_resource path="res://Worlds/World/Camera.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Code/Enemies/Termite/MeleeTermite.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Code/Enemies/Termite/VolatileTermite.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Code/Enemies/Spiker/Spiker.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Art/Sprite Frames/Mantis_spriteframes.tres" type="SpriteFrames" id=12]
 
 [node name="Level 1" type="Node2D"]
 __meta__ = {
@@ -138,6 +139,24 @@ __meta__ = {
 [node name="DialogueInteractable" parent="DialogueTriggers/DialogueInteractables" instance=ExtResource( 5 )]
 position = Vector2( -1339.47, -648.9 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="DialogueTriggers/DialogueInteractables/DialogueInteractable"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="DialogueTriggers/DialogueInteractables"]
+position = Vector2( -144.788, -76.9212 )
+frames = ExtResource( 12 )
+animation = "Idle"
+frame = 3
+playing = true
+
+[node name="DialogueInteractable2" parent="DialogueTriggers/DialogueInteractables/AnimatedSprite" instance=ExtResource( 5 )]
+one_shot = false
+
+[node name="CollisionShape2D" parent="DialogueTriggers/DialogueInteractables/AnimatedSprite/DialogueInteractable2/Area2D" index="0"]
+position = Vector2( -0.166855, 5.67307 )
+
+[node name="Sprite" parent="DialogueTriggers/DialogueInteractables/AnimatedSprite/DialogueInteractable2" index="1"]
+position = Vector2( 0.166748, -22.8859 )
+
 [node name="ProximityDialogues" type="Node2D" parent="DialogueTriggers"]
 __meta__ = {
 "_edit_lock_": true
@@ -253,4 +272,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[editable path="DialogueTriggers/DialogueInteractables/AnimatedSprite/DialogueInteractable2"]
 [editable path="Signs/Sign"]
