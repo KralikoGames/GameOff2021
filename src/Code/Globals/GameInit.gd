@@ -45,6 +45,9 @@ const exsanguinate_bleed_dps_percentage = 0.5
 const cloaked_in_blood_tscn = preload("res://Code/Attacks/Mantis/Assassinate/Cloaked_In_Blood/Cloaked_In_Blood.tscn")
 const cloaked_in_blood_duration = 0.5
 
+const shadow_hop_dash_speed: float = 800.0
+const shadow_hop_dash_distance: float = 32.0
+
 #Other
 const dash_buff_tscn = preload("res://Code/Attacks/Movement/Dash.tscn")
 
@@ -115,7 +118,7 @@ func _cast_abilities(event):
 			"Spinning_Scythe", "Assassinate":
 				player.spawn_selected_attack(attacks[keybinds[keybind]])
 			"Shadow_Hop":
-				player.dash()
+				player.dash(shadow_hop_dash_speed, shadow_hop_dash_distance)
 
 
 func set_ability(keybind, attack_name):
