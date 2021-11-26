@@ -10,6 +10,8 @@ signal mana_changed
 signal direction_changed
 signal attacked
 signal area_entered
+signal iframes_started
+signal iframes_ended
 
 
 export var wasd_movement: bool = true
@@ -66,9 +68,11 @@ func damage(amt:float, dir:Vector2, knockback_amt:float=0):
 
 func i_frames():
 	immortal = true
+	emit_signal("iframes_started")
 #	if duration > 0.0: $IFramesTimer.wait_time = duration
 	$IFramesTimer.start()
 	yield($IFramesTimer, "timeout")
+	emit_signal("iframes_ended")
 	immortal = false
 	
 
@@ -104,14 +108,13 @@ func unfreeze_player():
 
 
 
-func dash(speed: float=0.0):
-	var dash_range = 100
+func dash(speed: float=0.0, dash_range:float=48.0):
 	var distance = min(get_global_mouse_position().distance_to(global_position), dash_range)
 	if speed == 0.0:
 		teleport(look_dir * distance)
 	else:
 		var d = GameInit.dash_buff_tscn.instance()
-		d.init(look_dir, speed, distance)
+		d.init(look_dir, speed, distance, $Sprite)
 		add_child(d)
 
 

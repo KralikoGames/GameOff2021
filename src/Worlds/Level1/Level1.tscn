@@ -21,6 +21,7 @@ __meta__ = {
 
 [node name="Base" type="TileMap" parent="."]
 position = Vector2( -32, -320 )
+z_index = -100
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -30,6 +31,7 @@ __meta__ = {
 }
 
 [node name="Wall 2" type="TileMap" parent="."]
+z_index = -100
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -39,6 +41,7 @@ __meta__ = {
 }
 
 [node name="Wall" type="TileMap" parent="."]
+z_index = -100
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -48,6 +51,7 @@ __meta__ = {
 }
 
 [node name="Decor" type="TileMap" parent="."]
+z_index = -100
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
