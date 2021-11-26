@@ -1,0 +1,47 @@
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "What happened here?"
+		},
+		{
+			"character": "character-1636572864.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "The Termites came out of the ground in droves."
+		},
+		{
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Why?"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I don't know. It this is very strange."
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4 - DEV",
+		"file": "timeline-1637965943.json",
+		"name": "level1_butler"
+	}
+}

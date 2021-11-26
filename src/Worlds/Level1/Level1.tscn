@@ -141,20 +141,20 @@ position = Vector2( -1339.47, -648.9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="DialogueTriggers/DialogueInteractables/DialogueInteractable"]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="DialogueTriggers/DialogueInteractables"]
+[node name="ButlerNPC" type="AnimatedSprite" parent="DialogueTriggers/DialogueInteractables"]
 position = Vector2( -144.788, -76.9212 )
 frames = ExtResource( 12 )
 animation = "Idle"
 frame = 3
 playing = true
 
-[node name="DialogueInteractable2" parent="DialogueTriggers/DialogueInteractables/AnimatedSprite" instance=ExtResource( 5 )]
+[node name="level1_butler" parent="DialogueTriggers/DialogueInteractables/ButlerNPC" instance=ExtResource( 5 )]
 one_shot = false
 
-[node name="CollisionShape2D" parent="DialogueTriggers/DialogueInteractables/AnimatedSprite/DialogueInteractable2/Area2D" index="0"]
+[node name="CollisionShape2D" parent="DialogueTriggers/DialogueInteractables/ButlerNPC/level1_butler/Area2D" index="0"]
 position = Vector2( -0.166855, 5.67307 )
 
-[node name="Sprite" parent="DialogueTriggers/DialogueInteractables/AnimatedSprite/DialogueInteractable2" index="1"]
+[node name="Sprite" parent="DialogueTriggers/DialogueInteractables/ButlerNPC/level1_butler" index="1"]
 position = Vector2( 0.166748, -22.8859 )
 
 [node name="ProximityDialogues" type="Node2D" parent="DialogueTriggers"]
@@ -272,5 +272,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[editable path="DialogueTriggers/DialogueInteractables/AnimatedSprite/DialogueInteractable2"]
+[editable path="DialogueTriggers/DialogueInteractables/ButlerNPC/level1_butler"]
 [editable path="Signs/Sign"]
