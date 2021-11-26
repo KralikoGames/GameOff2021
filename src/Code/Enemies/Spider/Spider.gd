@@ -28,16 +28,15 @@ var dashTime = 0
 var dashWeight = 0
 
 
+
 func _ready():
 	freeze(1)
 	connect('onSetTarget', self, "SetTarget")
-	
 
 func SetTarget(t):
 	if((t is Player) and (t != target)):
 		if t.has_signal("attacked"):
 			t.connect("attacked", self, "_considerDodge")
-		
 
 func _physics_process(delta): # target is guarranteed to be assigned
 		
@@ -63,13 +62,12 @@ func _physics_process(delta): # target is guarranteed to be assigned
 			move_to_target()
 			display.play("Walk")
 
-
 func flip_to_target():
 	display.flip_h = target.global_position.x > global_position.x
 
 func _in_close_range()-> bool:
 	return target.global_position.distance_to(global_position) <= attack_range_close
-	
+
 func _in_med_range() -> bool:
 	return target.global_position.distance_to(global_position) <= attack_range_med
 
@@ -100,82 +98,64 @@ func corpse():
 	  Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
 
-func _swipe() -> void:
-	#Stop
+func _end_Attack() -> void:
+	if !dead:
+		display.speed_scale = 1
+		display.play("Idle")
+	move_dir = Vector2.ZERO
+	max_speed = old_speed
+	
+	postAttackTimer.start()
+	yield(postAttackTimer, "timeout")
+	
+	acting = false
+	frozen = false
+
+func _startAttack()->void:
 	emit_signal("begin_attack")
 	acting = true
 	frozen = true
 	stop()
-	move_position  = global_position.linear_interpolate(target.global_position, 0.2)
-	target_position = global_position
-	dashDir = (move_position - global_position)
-	dashTime = dashDir.length()/swipe_slide_speed
+
+func _swipe() -> void:
+	#Stop
+	_startAttack()
 	
 	#Warn the player that they are being attacked.
-	_create_warning("circle", Vector2.ONE*15, 
-					warning_time + dashTime, target_position,
-					5, dashDir, 1000)
-	#Start waiting for the warning to finish.
+	_create_warning("circle", true, Vector2.ONE*15, warning_time, global_position, 5, Vector2.ZERO, 0)
+	display.play("Windup 2")
 	attackTimer.start(warning_time)
 	yield(attackTimer, "timeout")
+	
 	#Spin
 	if !dead:
 		display.speed_scale = 1
 		display.play("Spin")
-	
-	attackTimer.start(warning_time)
-	yield(attackTimer, "timeout")
-	
-	postAttackTimer.start()
-	yield(postAttackTimer, "timeout")
-	
-	#Reset
-	acting = false
-	frozen = false
-	if !dead:
-		display.speed_scale = 1
-		display.play("Idle")
-	
+		attackTimer.start(warning_time)
+		yield(attackTimer, "timeout")
+		_end_Attack()
+
 func _lunge() -> void:
 	#Stop and warn the player.
-	emit_signal("begin_attack")
-	acting = true
-	frozen = true
-	stop()
+	_startAttack()
+	
 	target_position = target.global_position
 	dashDir = (target_position - global_position)
-	dashTime = dashDir.length()/dash_speed
-	
-	#create a warning.
-	_create_warning("circle", Vector2.ONE*3, 
-					warning_time + dashTime, target_position,
-					5, dashDir, 1000)
-	
-	#Start waiting for the warning to finish.
 	attackTimer.start(warning_time)
 	yield(attackTimer, "timeout")
+	
 	#Dash
 	old_speed = max_speed
 	max_speed = dash_speed
 	move_dir += dashDir * dash_speed
-	#Reset
 	if !dead:
 		display.speed_scale = 1
 		display.play("Dash")
-	dashTimer.start(dashTime)
+	dashTimer.start(dashDir.length()/dash_speed)
 	yield(dashTimer, "timeout")
-	#Reset
-	if !dead:
-		display.speed_scale = 0
-		display.play("Walk")
-	move_dir = Vector2.ZERO
-	max_speed = old_speed
-	acting = false
+	
 	#Post attack pause.
-	postAttackTimer.start()
-	yield(postAttackTimer, "timeout")
-	display.speed_scale = 1
-	frozen = false
+	_end_Attack()
 
 func _considerDodge()-> void:
 	if acting or dead or randi() % 100 > 20:
@@ -216,8 +196,9 @@ func _dash()->void:
 	display.speed_scale = 1
 	frozen = false
 
-func _create_warning(shape, scale, time, position, damage ,knockback_dir = Vector2.ZERO, knockback_str = 0)->void:
+func _create_warning(shape, visible ,scale, time, position, damage ,knockback_dir = Vector2.ZERO, knockback_str = 0)->void:
 	var effect = attack_tscn.instance()
+	effect.visible = visible
 	effect.shape = shape
 	effect.scale = scale
 	effect.use_ground_effect_knockback

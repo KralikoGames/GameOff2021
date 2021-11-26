@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Code/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/Enemies/Spider/Spider.gd" type="Script" id=2]
 [ext_resource path="res://Art/Shaders/WhiteFlash.shader" type="Shader" id=3]
 [ext_resource path="res://Art/Sprite Frames/Grey_spriteframes.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://Code/Enemies/Spider/DamagePlayerArea.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 47.4681
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 17.2693
@@ -34,47 +38,57 @@ tracks/0/keys = {
 [node name="Spider" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 health = 100.0
-attack_range_med = 75.0
+attack_range_med = 150.0
 attack_range_close = 40.0
-dash_speed = 200
+dash_speed = 400
 warning_time = 0.6
 
 [node name="Shape" parent="." index="0"]
 position = Vector2( 5, 0 )
 shape = SubResource( 1 )
 
+[node name="DamagePlayerArea" type="Area2D" parent="." index="1"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagePlayerArea" index="0"]
+shape = SubResource( 5 )
+
 [node name="Shape" parent="Hitbox" index="0"]
 position = Vector2( 5, 0 )
 shape = SubResource( 2 )
 
-[node name="hp" parent="." index="2"]
+[node name="hp" parent="." index="3"]
 margin_left = -10.0
 margin_top = -35.0
 margin_right = 300.0
 
-[node name="Display" type="AnimatedSprite" parent="." index="4"]
+[node name="Display" type="AnimatedSprite" parent="." index="5"]
 material = SubResource( 3 )
 frames = ExtResource( 4 )
 animation = "Idle"
 
-[node name="AttackTimer" type="Timer" parent="." index="5"]
+[node name="AttackTimer" type="Timer" parent="." index="6"]
 wait_time = 0.5
 one_shot = true
 
-[node name="DashTimer" type="Timer" parent="." index="6"]
+[node name="DashTimer" type="Timer" parent="." index="7"]
 one_shot = true
 
-[node name="DeathTimer" type="Timer" parent="." index="7"]
+[node name="DeathTimer" type="Timer" parent="." index="8"]
 wait_time = 0.6
 one_shot = true
 
-[node name="PostAttackTimer" type="Timer" parent="." index="8"]
+[node name="PostAttackTimer" type="Timer" parent="." index="9"]
 wait_time = 0.5
 one_shot = true
 
-[node name="LungeCooldown" type="Timer" parent="." index="9"]
+[node name="LungeCooldown" type="Timer" parent="." index="10"]
 wait_time = 4.0
 one_shot = true
 
-[node name="OnHitFeedback" type="AnimationPlayer" parent="." index="10"]
+[node name="OnHitFeedback" type="AnimationPlayer" parent="." index="11"]
 anims/OnHit = SubResource( 4 )
+
+[connection signal="area_entered" from="DamagePlayerArea" to="DamagePlayerArea" method="_on_DamagePlayerArea_area_entered"]
