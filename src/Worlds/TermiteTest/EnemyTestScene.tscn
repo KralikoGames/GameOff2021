@@ -66,7 +66,7 @@ script = ExtResource( 2 )
 target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -403.831, -72.8272 )
+position = Vector2( -557.211, -411.678 )
 max_health = 20.0
 passive_points = 30
 
@@ -251,7 +251,9 @@ __meta__ = {
 }
 
 [node name="Spider" parent="." instance=ExtResource( 12 )]
-position = Vector2( -129.844, -84.2416 )
+position = Vector2( -170.431, -413.182 )
+acceleration = 40.0
+max_speed = 160.0
 knockback_efficiency = 0.7
 
 [editable path="Signs/Sign"]
