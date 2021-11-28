@@ -199,7 +199,6 @@ position = Vector2( -1340.01, -648.9 )
 position = Vector2( 503.695, -605.053 )
 frames = ExtResource( 12 )
 animation = "Idle"
-frame = 1
 playing = true
 
 [node name="level1_butler" parent="DialogueTriggers/DialogueInteractables/ButlerNPC" instance=ExtResource( 5 )]
