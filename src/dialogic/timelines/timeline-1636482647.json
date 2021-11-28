@@ -15,10 +15,28 @@
 			}
 		},
 		{
+			"character": "character-1636572864.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Don't go out there. There are still termites that might attack you."
+		},
+		{
 			"character": "character-1636479358.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Aha! A skillpoint!"
+			"text": "Is there any way for me to fight back against them?"
+		},
+		{
+			"character": "character-1636572864.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I can teach you the mantis blade attack."
+		},
+		{
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Thank you!"
 		},
 		{
 			"call_node": {

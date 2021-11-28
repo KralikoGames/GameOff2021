@@ -219,6 +219,18 @@ __meta__ = {
 [node name="ProximityDialogue" parent="DialogueTriggers/ProximityDialogues" instance=ExtResource( 8 )]
 position = Vector2( -1338.08, -608.848 )
 
+[node name="ruinedmansion_tutorial_randomskillpoint" parent="DialogueTriggers/ProximityDialogues" instance=ExtResource( 8 )]
+position = Vector2( 293.432, -539.04 )
+
+[node name="ruinedmansion_tutorial_dininghall" parent="DialogueTriggers/ProximityDialogues" instance=ExtResource( 8 )]
+position = Vector2( 454.193, -372.184 )
+
+[node name="ruinedmansion_tutorial_firstlook" parent="DialogueTriggers/ProximityDialogues" instance=ExtResource( 8 )]
+position = Vector2( -86.8966, -75.9728 )
+
+[node name="ruinedmansion_tutorial_secondlook" parent="DialogueTriggers/ProximityDialogues" instance=ExtResource( 8 )]
+position = Vector2( 351.876, -63.8342 )
+
 [node name="Signs" type="Node2D" parent="."]
 __meta__ = {
 "_edit_lock_": true
@@ -348,5 +360,6 @@ __meta__ = {
 position = Vector2( -417.325, -501.244 )
 
 [editable path="DialogueTriggers/DialogueInteractables/ButlerNPC/level1_butler"]
+[editable path="DialogueTriggers/ProximityDialogues/ruinedmansion_tutorial_secondlook"]
 [editable path="Signs/Sign"]
 [editable path="Signs/Sign2"]

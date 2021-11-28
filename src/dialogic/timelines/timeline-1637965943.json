@@ -24,19 +24,25 @@
 			"character": "character-1636572864.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "The Termites came out of the ground in droves."
+			"text": "Thousands of termites swarmed the mansion."
 		},
 		{
 			"character": "character-1636479358.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Why?"
+			"text": "Why would they attack like that?"
 		},
 		{
-			"character": "",
+			"character": "character-1636572864.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "I don't know. It this is very strange."
+			"text": "I don't know..."
+		},
+		{
+			"character": "character-1636572864.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "The whole thing is very strange."
 		}
 	],
 	"metadata": {
