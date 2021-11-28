@@ -179,12 +179,10 @@ func _is_enemy_bleeding(enemy: Enemy):
 
 
 func _set_player(v): 
-	if not player:
-		player = v
-		emit_signal("player_ready")
+	player = v
+	emit_signal("player_ready")
 
 
 func _set_skilltree(v):
-	if not skilltree:
-		skilltree = v
-		emit_signal("skilltree_ready")
+	skilltree = v
+	emit_signal("skilltree_ready")
