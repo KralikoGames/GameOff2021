@@ -1,6 +1,5 @@
 extends Node2D
 
-
 export(PackedScene) var enemy_tscn
 export(int) var number_of_waves = 3
 export(int, 1, 1) var spawns_per_wave = 1
@@ -9,6 +8,10 @@ export var tigger_when_near_player: bool = true
 export var one_shot: bool = true
 
 var waves_spawned: int = 0
+
+signal on_spawn
+
+
 
 func _ready():
 	$Timer.wait_time = time_between_spawns
@@ -33,6 +36,7 @@ func _on_Timer_timeout():
 
 
 func _spawn_wave():
+	emit_signal("on_spawn")
 	for _i in range(spawns_per_wave):
 		var e = enemy_tscn.instance()
 #		call_deferred("add_child", e)

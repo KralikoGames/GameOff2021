@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Art/Tileart/Level1.tres" type="TileSet" id=1]
 [ext_resource path="res://Worlds/World/Camera.gd" type="Script" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://Code/Enemies/Termite/MeleeTermite.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Code/Enemies/Termite/VolatileTermite.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Code/Enemies/Spiker/Spiker.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Art/Sprite Frames/Mantis_spriteframes.tres" type="SpriteFrames" id=12]
+[ext_resource path="res://Code/Enemies/Spider/Spider.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Code/Effects.tscn" type="PackedScene" id=14]
 
 [node name="Level 1" type="Node2D"]
 __meta__ = {
@@ -60,6 +63,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Effects" parent="." groups=[
+"Effects",
+] instance=ExtResource( 14 )]
+
 [node name="Camera" type="Camera2D" parent="."]
 current = true
 process_mode = 0
@@ -69,7 +76,7 @@ script = ExtResource( 2 )
 target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -314.741, -110.245 )
+position = Vector2( -406.251, -55.3824 )
 max_health = 20.0
 passive_points = 30
 
@@ -116,6 +123,12 @@ __meta__ = {
 position = Vector2( -1337.99, -735.163 )
 enemy_tscn = ExtResource( 9 )
 
+[node name="Spawner2" parent="Spawners/MeleeTermiteSpawners" instance=ExtResource( 4 )]
+position = Vector2( -142.274, -18.9489 )
+enemy_tscn = ExtResource( 9 )
+number_of_waves = 10
+time_between_spawns = 3.0
+
 [node name="ExplodingTermiteSpawners" type="Node2D" parent="Spawners"]
 __meta__ = {
 "_edit_lock_": true
@@ -136,7 +149,25 @@ __meta__ = {
 }
 
 [node name="DialogueInteractable" parent="DialogueTriggers/DialogueInteractables" instance=ExtResource( 5 )]
-position = Vector2( -1339.47, -648.9 )
+position = Vector2( -1340.01, -648.9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="DialogueTriggers/DialogueInteractables/DialogueInteractable"]
+
+[node name="ButlerNPC" type="AnimatedSprite" parent="DialogueTriggers/DialogueInteractables"]
+position = Vector2( -144.788, -76.9212 )
+frames = ExtResource( 12 )
+animation = "Idle"
+frame = 1
+playing = true
+
+[node name="level1_butler" parent="DialogueTriggers/DialogueInteractables/ButlerNPC" instance=ExtResource( 5 )]
+one_shot = false
+
+[node name="CollisionShape2D" parent="DialogueTriggers/DialogueInteractables/ButlerNPC/level1_butler/Area2D" index="0"]
+position = Vector2( -0.166855, 5.67307 )
+
+[node name="Sprite" parent="DialogueTriggers/DialogueInteractables/ButlerNPC/level1_butler" index="1"]
+position = Vector2( 0.166748, -22.8859 )
 
 [node name="ProximityDialogues" type="Node2D" parent="DialogueTriggers"]
 __meta__ = {
@@ -253,4 +284,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Spider" parent="." instance=ExtResource( 13 )]
+position = Vector2( -417.325, -501.244 )
+
+[editable path="DialogueTriggers/DialogueInteractables/ButlerNPC/level1_butler"]
 [editable path="Signs/Sign"]

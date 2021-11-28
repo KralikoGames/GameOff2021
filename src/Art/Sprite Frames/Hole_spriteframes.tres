@@ -25,12 +25,12 @@ region = Rect2( 0, 0, 20, 20 )
 [resource]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
+"loop": false,
 "name": "Spawn",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 5 ) ],
-"loop": true,
+"loop": false,
 "name": "Idle",
 "speed": 5.0
 } ]
