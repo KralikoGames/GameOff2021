@@ -5,7 +5,7 @@ tool
 
 signal damaged
 signal died
-
+signal onSetTarget
 
 export(String) var id: String = ""
 export(float, 1, 100, 1) var health = 3
@@ -17,7 +17,6 @@ export(float, 0.0, 2.0, 0.05) var knockback_efficiency: float = 1.0
 
 var target: Node2D
 onready var hit_feedback = $OnHitFeedback
-#var knockback_dir: Vector2 = Vector2()
 var move_dir: Vector2 = Vector2() setget set_move_dir
 var look_dir: Vector2 = Vector2()
 var vel: Vector2 = Vector2()
@@ -48,6 +47,7 @@ func _physics_process(_delta):
 
 
 func set_target(t: Node2D):
+	emit_signal("onSetTarget", t)
 	target = t
 	set_physics_process(target!=null)
 
