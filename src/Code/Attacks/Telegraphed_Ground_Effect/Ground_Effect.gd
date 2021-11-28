@@ -9,6 +9,7 @@ export(float) var knockback_amt: float = 1.0
 export var use_ground_effect_knockback = true
 
 var knockback_dir = Vector2()
+var useCircleWarning = false;
 
 func _ready():
 	if Engine.editor_hint: return
@@ -38,7 +39,7 @@ func _process(_delta):
 
 func _draw():
 	# note the other draw functions may not work with shaders
-	draw_rect(Rect2(Vector2(-5 if shape=="circle" else 0, -5), Vector2(10,10)), Color.red) 
+	draw_rect(Rect2(Vector2(-5 if shape=="circle" else 0, -5), Vector2(10,10)), Color.aquamarine) 
 
 
 func _set_shape(v):
@@ -50,10 +51,15 @@ func _set_shape(v):
 	_helper("circle")
 	_helper("cone")
 	_helper("rect")
+	
+	if(shape=="circle" and useCircleWarning):
+		$CircleWarning.visible = true
 			
 
 func _helper(s:String="circle"):
 	var colshape = get_node_or_null("%s_shape" % s)
 	if colshape:
 		colshape.set_deferred("disabled", shape!=s)
+	#else:
+		#print("Can't find ground effect: " + s)
 #		var __ = colshape.hide() if shape!=s else colshape.show()

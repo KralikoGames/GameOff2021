@@ -7,7 +7,7 @@ uniform bool solid = false;
 uniform bool circle = false;
 uniform bool cone = false;
 uniform bool rect = false;
-
+uniform bool arc = false;
 
 const float high = 0.8;
 const float med = 0.5;
