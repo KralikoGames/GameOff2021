@@ -27,7 +27,7 @@ frames = ExtResource( 2 )
 
 [node name="Assassinate" type="AudioStreamPlayer2D" parent="Sprite"]
 stream = ExtResource( 3 )
-volume_db = -15.01
+volume_db = -18.226
 pitch_scale = 1.12
 script = ExtResource( 4 )
 animation_name = "default"

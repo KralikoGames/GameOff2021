@@ -315,10 +315,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TalentSound" type="AudioStreamPlayer2D" parent="."]
+[node name="TalentSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
-volume_db = -17.252
-attenuation = 2.92817
+volume_db = -25.617
 
 [connection signal="pressed" from="ResetPoints" to="ResetPoints" method="_on_ResetPoints_pressed"]
 [connection signal="pressed" from="CloseSkilltree" to="CloseSkilltree" method="_on_CloseSkilltree_pressed"]

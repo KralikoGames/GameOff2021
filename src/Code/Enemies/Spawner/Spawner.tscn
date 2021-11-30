@@ -28,7 +28,8 @@ script = ExtResource( 3 )
 
 [node name="Spawn" type="AudioStreamPlayer2D" parent="AnimatedSprite"]
 stream = ExtResource( 4 )
-volume_db = -19.299
+volume_db = -25.732
+pitch_scale = 1.21
 script = ExtResource( 5 )
 animation_name = "Spawn"
 frame = 1

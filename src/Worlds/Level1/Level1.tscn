@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Art/Tileart/Level1.tres" type="TileSet" id=1]
 [ext_resource path="res://Worlds/World/Camera.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Art/Sprite Frames/Mantis_spriteframes.tres" type="SpriteFrames" id=12]
 [ext_resource path="res://Code/Enemies/Spider/Spider.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Code/Effects.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Audio/TOWN_THEME_v1_BGJ_TRACK.wav" type="AudioStream" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "hide"
@@ -362,6 +363,11 @@ __meta__ = {
 
 [node name="Spider" parent="." instance=ExtResource( 13 )]
 position = Vector2( -417.325, -501.244 )
+
+[node name="Soundtrack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -27.949
+autoplay = true
 
 [editable path="DialogueTriggers/DialogueInteractables/ButlerNPC/level1_butler"]
 [editable path="DialogueTriggers/ProximityDialogues/ruinedmansion_tutorial_secondlook"]

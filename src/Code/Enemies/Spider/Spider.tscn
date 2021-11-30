@@ -88,7 +88,7 @@ stream = ExtResource( 7 )
 volume_db = -13.938
 script = ExtResource( 11 )
 animation_name = "Lunge"
-frame = 1
+frame = 4
 
 [node name="BossSpin" type="AudioStreamPlayer2D" parent="Display" index="2"]
 stream = ExtResource( 7 )
@@ -100,14 +100,14 @@ frame = 2
 
 [node name="Bossfs1" type="AudioStreamPlayer2D" parent="Display" index="3"]
 stream = ExtResource( 9 )
-volume_db = -22.515
+volume_db = -23.587
 pitch_scale = 1.17
 script = ExtResource( 11 )
 animation_name = "Walk"
 
 [node name="Bossfs2" type="AudioStreamPlayer2D" parent="Display" index="4"]
 stream = ExtResource( 8 )
-volume_db = -25.731
+volume_db = -27.875
 pitch_scale = 1.5
 script = ExtResource( 11 )
 animation_name = "Walk"
