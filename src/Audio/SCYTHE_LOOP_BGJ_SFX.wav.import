@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SCYTHE_LOOP_BGJ_SFX.wav-1d05d03c4eb0b730b5e07eab52acef4f.sample"
+
+[deps]
+
+source_file="res://Audio/SCYTHE_LOOP_BGJ_SFX.wav"
+dest_files=[ "res://.import/SCYTHE_LOOP_BGJ_SFX.wav-1d05d03c4eb0b730b5e07eab52acef4f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

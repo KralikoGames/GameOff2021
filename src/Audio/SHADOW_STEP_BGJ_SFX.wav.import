@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SHADOW_STEP_BGJ_SFX.wav-996881d2921aa880de5f6e2d080db4d5.sample"
+
+[deps]
+
+source_file="res://Audio/SHADOW_STEP_BGJ_SFX.wav"
+dest_files=[ "res://.import/SHADOW_STEP_BGJ_SFX.wav-996881d2921aa880de5f6e2d080db4d5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

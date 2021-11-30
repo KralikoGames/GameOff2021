@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/GREY_HUNTER_ATTACK_BGJ_SFX.wav-77e1181cc7c2d5f7760c9badef661f8e.sample"
+
+[deps]
+
+source_file="res://Audio/GREY_HUNTER_ATTACK_BGJ_SFX.wav"
+dest_files=[ "res://.import/GREY_HUNTER_ATTACK_BGJ_SFX.wav-77e1181cc7c2d5f7760c9badef661f8e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

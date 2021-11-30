@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PLAYER_FS2_BGJ_SFX.wav-7315556c9ae620c08e60fe6f57c60768.sample"
+
+[deps]
+
+source_file="res://Audio/PLAYER_FS2_BGJ_SFX.wav"
+dest_files=[ "res://.import/PLAYER_FS2_BGJ_SFX.wav-7315556c9ae620c08e60fe6f57c60768.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
