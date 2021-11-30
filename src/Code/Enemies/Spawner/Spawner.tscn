@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Code/Enemies/Spawner/Spawner.gd" type="Script" id=1]
 [ext_resource path="res://Art/Sprite Frames/Hole_spriteframes.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://Code/Enemies/Spawner/AnimatedSprite.gd" type="Script" id=3]
+[ext_resource path="res://Audio/GRUB_SPAWN_BGJ_SFX.wav" type="AudioStream" id=4]
+[ext_resource path="res://Code/Audio/SpriteSound.gd" type="Script" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -23,5 +25,12 @@ shape = SubResource( 1 )
 frames = ExtResource( 2 )
 animation = "Idle"
 script = ExtResource( 3 )
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="AnimatedSprite"]
+stream = ExtResource( 4 )
+volume_db = -19.299
+script = ExtResource( 5 )
+animation_name = "Spawn"
+frame = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
