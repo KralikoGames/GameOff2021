@@ -40,8 +40,11 @@ animation = "default2"
 
 [node name="Scytheloop" type="AudioStreamPlayer2D" parent="Sprite"]
 stream = ExtResource( 4 )
+volume_db = -16.082
+pitch_scale = 1.82
 script = ExtResource( 5 )
-animation_name = "default"
+animation_name = "default2"
+frame = 1
 
 [node name="WallHitTimer" type="Timer" parent="."]
 wait_time = 0.2

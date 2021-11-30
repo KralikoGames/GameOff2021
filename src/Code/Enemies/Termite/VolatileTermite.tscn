@@ -63,9 +63,11 @@ animation = "Run"
 
 [node name="Grubexplode" type="AudioStreamPlayer2D" parent="Display" index="0"]
 stream = ExtResource( 6 )
+volume_db = -16.082
+pitch_scale = 0.75
 script = ExtResource( 5 )
 animation_name = "Explode"
-frame = 5
+frame = 6
 
 [node name="OnHitFeedback" type="AnimationPlayer" parent="." index="7"]
 anims/OnHit = SubResource( 4 )
