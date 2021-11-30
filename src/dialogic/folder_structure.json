@@ -43,7 +43,6 @@
 		},
 		"Timelines": {
 			"files": [
-				"timeline-1637965943.json",
 				"timeline-1638135343.json"
 			],
 			"folders": {
@@ -61,7 +60,8 @@
 						"timeline-1636481821.json",
 						"timeline-1636481945.json",
 						"timeline-1636482647.json",
-						"timeline-1636562318.json"
+						"timeline-1636562318.json",
+						"timeline-1637965943.json"
 					],
 					"folders": {
 

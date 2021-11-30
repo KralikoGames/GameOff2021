@@ -13,7 +13,7 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://icon.png"
+			"path": "res://Art/UI/Portraits/Player portrait.png"
 		}
 	],
 	"scale": 100

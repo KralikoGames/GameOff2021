@@ -15,6 +15,20 @@
 			}
 		},
 		{
+			"action": "join",
+			"character": "character-1636572864.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": true,
+				"3": false,
+				"4": false
+			}
+		},
+		{
 			"character": "character-1636572864.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
