@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Art/Tileart/Level1.tres" type="TileSet" id=1]
 [ext_resource path="res://Worlds/World/Camera.gd" type="Script" id=2]
@@ -14,6 +14,36 @@
 [ext_resource path="res://Art/Sprite Frames/Mantis_spriteframes.tres" type="SpriteFrames" id=12]
 [ext_resource path="res://Code/Enemies/Spider/Spider.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Code/Effects.tscn" type="PackedScene" id=14]
+
+[sub_resource type="Animation" id=1]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Level 1" type="Node2D"]
 __meta__ = {
@@ -124,10 +154,22 @@ position = Vector2( -1337.99, -735.163 )
 enemy_tscn = ExtResource( 9 )
 
 [node name="Spawner2" parent="Spawners/MeleeTermiteSpawners" instance=ExtResource( 4 )]
-position = Vector2( -142.274, -18.9489 )
+position = Vector2( 148.135, -356.986 )
 enemy_tscn = ExtResource( 9 )
 number_of_waves = 10
-time_between_spawns = 3.0
+time_between_spawns = 5.0
+
+[node name="Spawner4" parent="Spawners/MeleeTermiteSpawners" instance=ExtResource( 4 )]
+position = Vector2( -6.48926, -474.87 )
+enemy_tscn = ExtResource( 9 )
+number_of_waves = 10
+time_between_spawns = 8.0
+
+[node name="Spawner5" parent="Spawners/MeleeTermiteSpawners" instance=ExtResource( 4 )]
+position = Vector2( -92.8865, -473.788 )
+enemy_tscn = ExtResource( 9 )
+number_of_waves = 5
+time_between_spawns = 7.0
 
 [node name="ExplodingTermiteSpawners" type="Node2D" parent="Spawners"]
 __meta__ = {
@@ -136,6 +178,10 @@ __meta__ = {
 
 [node name="Spawner" parent="Spawners/ExplodingTermiteSpawners" instance=ExtResource( 4 )]
 position = Vector2( -1337.99, -693.539 )
+enemy_tscn = ExtResource( 10 )
+
+[node name="Spawner2" parent="Spawners/ExplodingTermiteSpawners" instance=ExtResource( 4 )]
+position = Vector2( -107.109, -261.571 )
 enemy_tscn = ExtResource( 10 )
 
 [node name="DialogueTriggers" type="Node2D" parent="."]
@@ -154,7 +200,7 @@ position = Vector2( -1340.01, -648.9 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="DialogueTriggers/DialogueInteractables/DialogueInteractable"]
 
 [node name="ButlerNPC" type="AnimatedSprite" parent="DialogueTriggers/DialogueInteractables"]
-position = Vector2( -144.788, -76.9212 )
+position = Vector2( 503.695, -605.053 )
 frames = ExtResource( 12 )
 animation = "Idle"
 frame = 1
@@ -203,6 +249,24 @@ margin_top = -25.8909
 margin_right = 43.4358
 margin_bottom = -11.8909
 text = "This is a sign"
+
+[node name="Sign2" parent="Signs" instance=ExtResource( 7 )]
+position = Vector2( -379.944, -59.9652 )
+collision_layer = 0
+
+[node name="CollisionShape2D" parent="Signs/Sign2" index="0"]
+visible = false
+
+[node name="anim" parent="Signs/Sign2" index="2"]
+anims/hide = SubResource( 1 )
+anims/show = SubResource( 2 )
+
+[node name="Label" parent="Signs/Sign2" index="3"]
+margin_left = -44.5642
+margin_top = -25.0037
+margin_right = 43.4358
+margin_bottom = -11.0037
+text = "WASD or Arrow Keys"
 
 [node name="level_design_helpers" type="Node2D" parent="."]
 __meta__ = {
@@ -302,3 +366,4 @@ position = Vector2( -417.325, -501.244 )
 [editable path="DialogueTriggers/DialogueInteractables/ButlerNPC/level1_butler"]
 [editable path="DialogueTriggers/ProximityDialogues/ruinedmansion_tutorial_secondlook"]
 [editable path="Signs/Sign"]
+[editable path="Signs/Sign2"]
