@@ -26,4 +26,4 @@ func on_conversation_complete():
 
 
 func get_skillpoint():
-	GameInit.player.passive_points += 1
+	GameInit.player.passive_points += 5

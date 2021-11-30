@@ -108,7 +108,6 @@ target = NodePath("../Player")
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -406.251, -55.3824 )
 max_health = 20.0
-passive_points = 30
 
 [node name="Enemies" type="Node2D" parent="."]
 __meta__ = {
@@ -198,6 +197,7 @@ __meta__ = {
 position = Vector2( 503.695, -605.053 )
 frames = ExtResource( 12 )
 animation = "Idle"
+frame = 3
 playing = true
 
 [node name="level1_butler" parent="DialogueTriggers/DialogueInteractables/ButlerNPC" instance=ExtResource( 5 )]
@@ -220,6 +220,10 @@ position = Vector2( -1338.08, -608.848 )
 [node name="ruinedmansion_tutorial_randomskillpoint" parent="DialogueTriggers/ProximityDialogues" instance=ExtResource( 8 )]
 position = Vector2( 293.432, -500 )
 scale = Vector2( 2, 2 )
+
+[node name="ruinedmansion_tutorial_bosswarning" parent="DialogueTriggers/ProximityDialogues" instance=ExtResource( 8 )]
+position = Vector2( -151.612, -383.017 )
+scale = Vector2( 2, 4 )
 
 [node name="ruinedmansion_tutorial_dininghall" parent="DialogueTriggers/ProximityDialogues" instance=ExtResource( 8 )]
 position = Vector2( 454.193, -400 )
@@ -359,7 +363,7 @@ __meta__ = {
 }
 
 [node name="Spider" parent="." instance=ExtResource( 13 )]
-position = Vector2( -417.325, -501.244 )
+position = Vector2( -363.585, -384.571 )
 
 [editable path="DialogueTriggers/DialogueInteractables/ButlerNPC/level1_butler"]
 [editable path="DialogueTriggers/ProximityDialogues/ruinedmansion_tutorial_secondlook"]

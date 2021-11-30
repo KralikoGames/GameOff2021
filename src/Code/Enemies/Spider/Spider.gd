@@ -93,6 +93,7 @@ func corpse():
 	corpse.add_child(display)
 
 	display.play("Die")
+	DialogueManager.start_dialogue("ruinedmansion_win")
 	
 	var tween = corpse.get_node("Tween")
 	tween.interpolate_property(display, "modulate", 

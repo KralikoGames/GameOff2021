@@ -44,7 +44,13 @@
 			"character": "character-1636572864.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "I can teach you the mantis blade attack."
+			"text": "I can teach you the mantis blade attack. I've given you 5 points of power! "
+		},
+		{
+			"character": "character-1636572864.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Open your powers with P and spend them wisely in order to defend yourself.\nAs you slay an enemy, so shall you gain more! Good luck."
 		},
 		{
 			"character": "character-1636479358.json",
