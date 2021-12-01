@@ -15,10 +15,36 @@
 			}
 		},
 		{
+			"action": "join",
+			"character": "character-1638328786.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": true,
+				"3": false,
+				"4": false
+			}
+		},
+		{
 			"character": "character-1636479358.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "It's the Grey Hunter... How could you destroy my home!? I won't forgive this!"
+		},
+		{
+			"character": "character-1638328786.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "HraHraHraHra... "
+		},
+		{
+			"character": "character-1638328786.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "SCREE!!!"
 		}
 	],
 	"metadata": {

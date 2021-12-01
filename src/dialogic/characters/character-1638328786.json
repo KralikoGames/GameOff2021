@@ -1,0 +1,20 @@
+{
+	"color": "#ffffffff",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1638328786.json",
+	"mirror_portraits": false,
+	"name": "GreyHunter",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": -40,
+	"offset_y": -90,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://Art/UI/Portraits/Grey portrait.png"
+		}
+	],
+	"scale": 100
+}
