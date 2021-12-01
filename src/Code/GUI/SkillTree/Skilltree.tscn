@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Code/GUI/SkillTree/Skilltree.gd" type="Script" id=1]
 [ext_resource path="res://Code/GUI/SkillTree/PassiveButton/PassiveButton.tscn" type="PackedScene" id=2]
@@ -20,6 +20,9 @@
 [ext_resource path="res://Code/GUI/SkillTree/Description.gd" type="Script" id=18]
 [ext_resource path="res://Code/GUI/SkillTree/CloseSkilltree.gd" type="Script" id=19]
 [ext_resource path="res://Audio/TALENT_BGJ_SFX.wav" type="AudioStream" id=20]
+[ext_resource path="res://Art/UI/Menu 9-slice.png" type="Texture" id=21]
+[ext_resource path="res://Art/Fonts/dpcomic.tres" type="DynamicFont" id=22]
+[ext_resource path="res://Art/UI/Button 9-slice2.png" type="Texture" id=23]
 
 [node name="Skilltree" type="Control"]
 anchor_right = 1.0
@@ -38,6 +41,7 @@ margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
 mouse_filter = 2
+tabs_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -46,10 +50,28 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 400, 200 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TabContainer/Mantis"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -9.0
+margin_top = -10.0
+margin_right = 18.0
+margin_bottom = 17.0
+texture = ExtResource( 21 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ScytheNodes" type="Control" parent="TabContainer/Mantis"]
 mouse_filter = 2
@@ -59,37 +81,37 @@ __meta__ = {
 }
 
 [node name="Spinning_Scythe" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
-margin_left = 29.2505
-margin_top = 158.309
-margin_right = 69.2505
-margin_bottom = 198.309
+margin_left = 50.0
+margin_top = 182.0
+margin_right = 90.0
+margin_bottom = 222.0
 texture_normal = ExtResource( 4 )
 draggable_skill = true
 skill_description = "A circular projectile is launched forwards and returns dealing damage on the forward and return journey."
 
 [node name="Tri_Shot" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
-margin_left = 10.6153
-margin_top = 104.666
-margin_right = 50.6153
-margin_bottom = 144.666
+margin_left = 18.0
+margin_top = 118.0
+margin_right = 58.0
+margin_bottom = 158.0
 texture_normal = ExtResource( 6 )
 max_points = 4
 skill_description = "Additional Scythes travel along with the main scythe"
 
 [node name="Massive_Scythes" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
-margin_left = 59.2503
-margin_top = 106.709
-margin_right = 99.2499
-margin_bottom = 146.71
+margin_left = 82.0
+margin_top = 118.0
+margin_right = 122.0
+margin_bottom = 158.001
 texture_normal = ExtResource( 7 )
 max_points = 10
 skill_description = "Scythes are larger"
 
 [node name="Blood_Explosion" parent="TabContainer/Mantis/ScytheNodes" instance=ExtResource( 2 )]
-margin_left = 21.9222
-margin_top = 48.5344
-margin_right = 61.9222
-margin_bottom = 88.5344
+margin_left = 50.0
+margin_top = 54.0
+margin_right = 90.0
+margin_bottom = 94.0
 texture_normal = ExtResource( 5 )
 max_points = 5
 skill_description = "At the end of its travel the scythe explodes dealing moderate damage in an area. Increased size of explosion per point."
@@ -102,36 +124,36 @@ __meta__ = {
 }
 
 [node name="Blood_Rite" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
-margin_left = 142.373
-margin_top = 158.684
-margin_right = 182.373
-margin_bottom = 198.684
+margin_left = 274.0
+margin_top = 182.0
+margin_right = 314.0
+margin_bottom = 222.0
 texture_normal = ExtResource( 14 )
 skill_description = "Damage you deal does 50% additional damage over time."
 
 [node name="Gratuitous_Violence" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
-margin_left = 120.066
-margin_top = 84.0171
-margin_right = 160.066
-margin_bottom = 124.017
+margin_left = 242.0
+margin_top = 118.0
+margin_right = 282.0
+margin_bottom = 158.0
 texture_normal = ExtResource( 15 )
 max_points = 5
 skill_description = "Enemies killed while bleeding explode dealing half the potential bleed damage to nearby enemies. Increased size of explosion per point"
 
 [node name="Haemophilia" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
-margin_left = 171.038
-margin_top = 106.083
-margin_right = 211.038
-margin_bottom = 146.082
+margin_left = 274.0
+margin_top = 54.0
+margin_right = 314.0
+margin_bottom = 93.999
 texture_normal = ExtResource( 9 )
 max_points = 4
 skill_description = "Bleeding can stack 2 additional times."
 
 [node name="Bloodplay" parent="TabContainer/Mantis/BleedingNodes" instance=ExtResource( 2 )]
-margin_left = 115.021
-margin_top = 32.2235
-margin_right = 155.021
-margin_bottom = 72.2235
+margin_left = 306.0
+margin_top = 118.0
+margin_right = 346.0
+margin_bottom = 158.0
 texture_normal = ExtResource( 16 )
 max_points = 5
 skill_description = "Slaying a bleeding enemy grants a short duration boost in movement speed. Points increase magnitude of speed boost."
@@ -144,27 +166,27 @@ __meta__ = {
 }
 
 [node name="Assassinate" parent="TabContainer/Mantis/AssassinateNodes" instance=ExtResource( 2 )]
-margin_left = 252.498
-margin_top = 158.684
-margin_right = 292.498
-margin_bottom = 198.684
+margin_left = 162.0
+margin_top = 182.0
+margin_right = 202.0
+margin_bottom = 222.0
 texture_normal = ExtResource( 8 )
 draggable_skill = true
 skill_description = "Swipe both blades in a short range arc in front of the character."
 
 [node name="Exsanguinate" parent="TabContainer/Mantis/AssassinateNodes" instance=ExtResource( 2 )]
-margin_left = 235.198
-margin_top = 97.0318
-margin_right = 275.198
-margin_bottom = 137.032
+margin_left = 162.0
+margin_top = 118.0
+margin_right = 202.0
+margin_bottom = 158.0
 texture_normal = ExtResource( 13 )
 skill_description = "Assassinate consumes all bleeding stacks causing them to deal their damage immediately. "
 
 [node name="Cloaked_In_Blood" parent="TabContainer/Mantis/AssassinateNodes" instance=ExtResource( 2 )]
-margin_left = 283.499
-margin_top = 97.4064
-margin_right = 323.499
-margin_bottom = 137.406
+margin_left = 162.0
+margin_top = 54.0
+margin_right = 202.0
+margin_bottom = 93.9996
 texture_normal = ExtResource( 12 )
 skill_description = "After a target is slain with assassinate, gain a short term buff that turns your character invisible."
 
@@ -175,19 +197,19 @@ __meta__ = {
 }
 
 [node name="Shadow_Hop" parent="TabContainer/Mantis/ShadowHopNodes" instance=ExtResource( 2 )]
-margin_left = 370.097
-margin_top = 149.33
-margin_right = 410.097
-margin_bottom = 189.33
+margin_left = 386.0
+margin_top = 182.0
+margin_right = 426.0
+margin_bottom = 222.0
 texture_normal = ExtResource( 10 )
 draggable_skill = true
 skill_description = "Short distance, short cooldown teleport. "
 
 [node name="Path_Of_Blood" parent="TabContainer/Mantis/ShadowHopNodes" instance=ExtResource( 2 )]
-margin_left = 370.097
-margin_top = 98.1028
-margin_right = 410.097
-margin_bottom = 138.103
+margin_left = 386.0
+margin_top = 118.0
+margin_right = 426.0
+margin_bottom = 158.0
 texture_normal = ExtResource( 11 )
 skill_description = "Refund the cooldown of Shadow Hop whenever a bleeding enemy dies."
 
@@ -196,7 +218,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 400, 200 )
@@ -206,7 +228,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 400, 200 )
@@ -216,10 +238,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -101.0
-margin_top = -31.0
-margin_right = -17.0
-margin_bottom = -17.0
+margin_left = -456.0
+margin_top = -238.0
+margin_right = -372.0
+margin_bottom = -224.0
 mouse_filter = 2
 alignment = 2
 __meta__ = {
@@ -228,10 +250,11 @@ __meta__ = {
 
 [node name="label" type="Label" parent="Skillpoints"]
 margin_left = 2.0
-margin_right = 72.0
-margin_bottom = 14.0
+margin_right = 73.0
+margin_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 0
+custom_fonts/font = ExtResource( 22 )
 text = "Skillpoints:"
 align = 2
 valign = 2
@@ -240,11 +263,12 @@ __meta__ = {
 }
 
 [node name="Skillpoints" type="Label" parent="Skillpoints"]
-margin_left = 76.0
+margin_left = 77.0
 margin_right = 84.0
-margin_bottom = 14.0
+margin_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 0
+custom_fonts/font = ExtResource( 22 )
 text = "3"
 align = 2
 valign = 2
@@ -252,29 +276,60 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ResetPoints" type="Button" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 368.0
+margin_top = 72.0
+margin_right = 464.0
+margin_bottom = 112.0
+texture = ExtResource( 23 )
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetPoints" type="Button" parent="NinePatchRect"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -110.899
-margin_top = 72.3128
-margin_right = -18.8989
-margin_bottom = 92.3128
+margin_left = -93.0
+margin_top = 3.79552
+margin_bottom = 35.7955
 grow_horizontal = 0
+custom_fonts/font = ExtResource( 22 )
 text = "Reset Points"
+flat = true
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CloseSkilltree" type="Button" parent="."]
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+margin_left = 368.0
+margin_top = 29.9552
+margin_right = 464.0
+margin_bottom = 69.9552
+texture = ExtResource( 23 )
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseSkilltree" type="Button" parent="NinePatchRect2"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -110.899
-margin_top = 46.6171
-margin_right = -18.8989
-margin_bottom = 66.6171
+margin_left = -93.3182
+margin_top = 5.10224
+margin_right = -1.31821
+margin_bottom = 34.1022
 grow_horizontal = 0
+custom_fonts/font = ExtResource( 22 )
 text = "X"
+flat = true
 script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -319,5 +374,5 @@ __meta__ = {
 stream = ExtResource( 20 )
 volume_db = -25.617
 
-[connection signal="pressed" from="ResetPoints" to="ResetPoints" method="_on_ResetPoints_pressed"]
-[connection signal="pressed" from="CloseSkilltree" to="CloseSkilltree" method="_on_CloseSkilltree_pressed"]
+[connection signal="pressed" from="NinePatchRect/ResetPoints" to="NinePatchRect/ResetPoints" method="_on_ResetPoints_pressed"]
+[connection signal="pressed" from="NinePatchRect2/CloseSkilltree" to="NinePatchRect2/CloseSkilltree" method="_on_CloseSkilltree_pressed"]
