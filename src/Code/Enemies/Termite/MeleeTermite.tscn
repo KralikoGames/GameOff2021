@@ -1,9 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Code/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/Enemies/Termite/MeleeTermite.gd" type="Script" id=2]
 [ext_resource path="res://Art/Sprite Frames/Termite_small_spriteframes.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://Art/Shaders/WhiteFlash.shader" type="Shader" id=4]
+[ext_resource path="res://Audio/GRUB_DIE_BGJ_SFX.wav" type="AudioStream" id=5]
+[ext_resource path="res://Audio/GRUB_ATTACK_BGJ_SFX.wav" type="AudioStream" id=6]
+[ext_resource path="res://Audio/GRUB_FS1_BGJ_SFX.wav" type="AudioStream" id=7]
+[ext_resource path="res://Audio/GRUB_FS2_BGJ_SFX.wav" type="AudioStream" id=8]
+[ext_resource path="res://Code/Audio/SpriteSound.gd" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.55595
@@ -63,6 +68,37 @@ wait_time = 0.6
 material = SubResource( 3 )
 frames = ExtResource( 3 )
 animation = "Run"
+
+[node name="Grubattack" type="AudioStreamPlayer2D" parent="Display" index="0"]
+stream = ExtResource( 6 )
+volume_db = -15.01
+script = ExtResource( 9 )
+animation_name = "Attack"
+frame = 1
+
+[node name="Grubdie" type="AudioStreamPlayer2D" parent="Display" index="1"]
+stream = ExtResource( 5 )
+volume_db = -20.371
+pitch_scale = 1.37
+attenuation = 1.8025
+script = ExtResource( 9 )
+animation_name = "Die"
+frame = 1
+
+[node name="Grubfs1" type="AudioStreamPlayer2D" parent="Display" index="2"]
+stream = ExtResource( 7 )
+volume_db = -37.526
+pitch_scale = 1.49
+script = ExtResource( 9 )
+animation_name = "Run"
+
+[node name="Grubfs2" type="AudioStreamPlayer2D" parent="Display" index="3"]
+stream = ExtResource( 8 )
+volume_db = -33.236
+pitch_scale = 1.78
+script = ExtResource( 9 )
+animation_name = "Run"
+frame = 3
 
 [node name="OnHitFeedback" type="AnimationPlayer" parent="." index="9"]
 anims/OnHit = SubResource( 4 )

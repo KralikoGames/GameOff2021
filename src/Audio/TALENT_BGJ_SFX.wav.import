@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/TALENT_BGJ_SFX.wav-e9d7d8f0ab99889f583ee3c23a012c11.sample"
+
+[deps]
+
+source_file="res://Audio/TALENT_BGJ_SFX.wav"
+dest_files=[ "res://.import/TALENT_BGJ_SFX.wav-e9d7d8f0ab99889f583ee3c23a012c11.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

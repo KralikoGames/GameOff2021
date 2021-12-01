@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/GRUB_ATTACK_BGJ_SFX.wav-25951e22b2add997d711cafb510314a5.sample"
+
+[deps]
+
+source_file="res://Audio/GRUB_ATTACK_BGJ_SFX.wav"
+dest_files=[ "res://.import/GRUB_ATTACK_BGJ_SFX.wav-25951e22b2add997d711cafb510314a5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,10 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Code/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/Enemies/Spider/Spider.gd" type="Script" id=2]
 [ext_resource path="res://Art/Shaders/WhiteFlash.shader" type="Shader" id=3]
 [ext_resource path="res://Art/Sprite Frames/Grey_spriteframes.tres" type="SpriteFrames" id=4]
 [ext_resource path="res://Code/Enemies/Spider/DamagePlayerArea.gd" type="Script" id=5]
+[ext_resource path="res://Audio/GREY_HUNTER_DIE_BGJ_SFX.wav" type="AudioStream" id=6]
+[ext_resource path="res://Audio/GREY_HUNTER_ATTACK_BGJ_SFX.wav" type="AudioStream" id=7]
+[ext_resource path="res://Audio/GREY_HUNTER_FS2_BGJ_SFX.wav" type="AudioStream" id=8]
+[ext_resource path="res://Audio/GREY_HUNTER_FS1_BGJ_SFX.wav" type="AudioStream" id=9]
+[ext_resource path="res://Audio/GREY_HUNTER_HIT_BGJ_SFX.wav" type="AudioStream" id=10]
+[ext_resource path="res://Code/Audio/SpriteSound.gd" type="Script" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -70,6 +76,43 @@ material = SubResource( 4 )
 frames = ExtResource( 4 )
 animation = "Walk"
 
+[node name="BossDie" type="AudioStreamPlayer2D" parent="Display" index="0"]
+stream = ExtResource( 6 )
+volume_db = -15.01
+script = ExtResource( 11 )
+animation_name = "Die"
+frame = 1
+
+[node name="BossLunge" type="AudioStreamPlayer2D" parent="Display" index="1"]
+stream = ExtResource( 7 )
+volume_db = -13.938
+script = ExtResource( 11 )
+animation_name = "Lunge"
+frame = 4
+
+[node name="BossSpin" type="AudioStreamPlayer2D" parent="Display" index="2"]
+stream = ExtResource( 7 )
+volume_db = -13.938
+pitch_scale = 1.66
+script = ExtResource( 11 )
+animation_name = "Spin"
+frame = 2
+
+[node name="Bossfs1" type="AudioStreamPlayer2D" parent="Display" index="3"]
+stream = ExtResource( 9 )
+volume_db = -23.587
+pitch_scale = 1.17
+script = ExtResource( 11 )
+animation_name = "Walk"
+
+[node name="Bossfs2" type="AudioStreamPlayer2D" parent="Display" index="4"]
+stream = ExtResource( 8 )
+volume_db = -27.875
+pitch_scale = 1.5
+script = ExtResource( 11 )
+animation_name = "Walk"
+frame = 3
+
 [node name="AttackTimer" type="Timer" parent="." index="6"]
 wait_time = 2.0
 one_shot = true
@@ -92,5 +135,9 @@ one_shot = true
 
 [node name="OnHitFeedback" type="AnimationPlayer" parent="." index="11"]
 anims/OnHit = SubResource( 5 )
+
+[node name="Bosshit" type="AudioStreamPlayer2D" parent="." index="12"]
+stream = ExtResource( 10 )
+volume_db = -24.233
 
 [connection signal="area_entered" from="DamagePlayerArea" to="DamagePlayerArea" method="_on_DamagePlayerArea_area_entered"]

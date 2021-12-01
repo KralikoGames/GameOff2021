@@ -34,4 +34,5 @@ func _on_Hitbox_invincibility_started():
 
 
 func _on_Enemy_damaged():
+	$Bosshit.play()
 	start_invincibility(0.4)

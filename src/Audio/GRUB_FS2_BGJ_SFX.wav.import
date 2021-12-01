@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/GRUB_FS2_BGJ_SFX.wav-b1f2c57c48112ed937de1960a23fdc4f.sample"
+
+[deps]
+
+source_file="res://Audio/GRUB_FS2_BGJ_SFX.wav"
+dest_files=[ "res://.import/GRUB_FS2_BGJ_SFX.wav-b1f2c57c48112ed937de1960a23fdc4f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

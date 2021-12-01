@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Code/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/Enemies/Termite/VolatileTermite.gd" type="Script" id=2]
 [ext_resource path="res://Art/Sprite Frames/Termite_volotile_spriteframes.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://Art/Shaders/WhiteFlash.shader" type="Shader" id=4]
+[ext_resource path="res://Code/Audio/SpriteSound.gd" type="Script" id=5]
+[ext_resource path="res://Audio/GRUB_EXPLODE_BGJ_SFX.wav" type="AudioStream" id=6]
+[ext_resource path="res://Audio/GRUB_FS1_BGJ_SFX.wav" type="AudioStream" id=7]
+[ext_resource path="res://Audio/GRUB_DIE_BGJ_SFX.wav" type="AudioStream" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 6.63
@@ -58,6 +62,29 @@ wait_time = 0.6
 material = SubResource( 3 )
 frames = ExtResource( 3 )
 animation = "Run"
+
+[node name="Grubexplode" type="AudioStreamPlayer2D" parent="Display" index="0"]
+stream = ExtResource( 6 )
+volume_db = -16.082
+pitch_scale = 0.75
+script = ExtResource( 5 )
+animation_name = "Explode"
+frame = 4
+
+[node name="Grubfs1" type="AudioStreamPlayer2D" parent="Display" index="1"]
+stream = ExtResource( 7 )
+volume_db = -20.0
+pitch_scale = 0.79
+script = ExtResource( 5 )
+animation_name = "Run"
+
+[node name="Grubdie" type="AudioStreamPlayer2D" parent="Display" index="2"]
+stream = ExtResource( 8 )
+volume_db = -24.289
+pitch_scale = 0.75
+script = ExtResource( 5 )
+animation_name = "Die"
+frame = 1
 
 [node name="OnHitFeedback" type="AnimationPlayer" parent="." index="7"]
 anims/OnHit = SubResource( 4 )
