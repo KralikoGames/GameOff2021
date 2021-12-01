@@ -89,6 +89,7 @@ frame = 1
 stream = ExtResource( 7 )
 volume_db = -37.526
 pitch_scale = 1.49
+attenuation = 1.46409
 script = ExtResource( 9 )
 animation_name = "Run"
 
@@ -96,6 +97,7 @@ animation_name = "Run"
 stream = ExtResource( 8 )
 volume_db = -33.236
 pitch_scale = 1.78
+attenuation = 2.0
 script = ExtResource( 9 )
 animation_name = "Run"
 frame = 3
