@@ -154,19 +154,19 @@ position = Vector2( -1337.99, -735.163 )
 enemy_tscn = ExtResource( 9 )
 
 [node name="Spawner2" parent="Spawners/MeleeTermiteSpawners" instance=ExtResource( 4 )]
-position = Vector2( 148.135, -356.986 )
+position = Vector2( 115.593, -325.238 )
 enemy_tscn = ExtResource( 9 )
 number_of_waves = 10
 time_between_spawns = 5.0
 
 [node name="Spawner4" parent="Spawners/MeleeTermiteSpawners" instance=ExtResource( 4 )]
-position = Vector2( -6.48926, -474.87 )
+position = Vector2( 43.117, -445.503 )
 enemy_tscn = ExtResource( 9 )
 number_of_waves = 10
 time_between_spawns = 8.0
 
 [node name="Spawner5" parent="Spawners/MeleeTermiteSpawners" instance=ExtResource( 4 )]
-position = Vector2( -92.8865, -473.788 )
+position = Vector2( 166.654, -380.528 )
 enemy_tscn = ExtResource( 9 )
 number_of_waves = 5
 time_between_spawns = 7.0
@@ -181,7 +181,7 @@ position = Vector2( -1337.99, -693.539 )
 enemy_tscn = ExtResource( 10 )
 
 [node name="Spawner2" parent="Spawners/ExplodingTermiteSpawners" instance=ExtResource( 4 )]
-position = Vector2( -107.109, -261.571 )
+position = Vector2( -38.8508, -329.829 )
 enemy_tscn = ExtResource( 10 )
 
 [node name="DialogueTriggers" type="Node2D" parent="."]
@@ -198,7 +198,7 @@ __meta__ = {
 position = Vector2( 503.695, -605.053 )
 frames = ExtResource( 12 )
 animation = "Idle"
-frame = 1
+frame = 3
 playing = true
 
 [node name="level1_butler" parent="DialogueTriggers/DialogueInteractables/ButlerNPC" instance=ExtResource( 5 )]

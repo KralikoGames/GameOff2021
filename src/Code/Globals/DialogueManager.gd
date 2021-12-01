@@ -12,7 +12,6 @@ func _ready():
 func start_dialogue(dialogue_name: String):
 	if(isOn):
 		return 
-	print("ON")
 	isOn = true
 	var conversation = Dialogic.start(dialogue_name)
 	conversation.connect("tree_exited", self, "on_conversation_complete")
@@ -21,7 +20,6 @@ func start_dialogue(dialogue_name: String):
 
 
 func on_conversation_complete():
-	print("Off")
 	isOn = false
 
 
