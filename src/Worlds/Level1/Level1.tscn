@@ -197,7 +197,6 @@ __meta__ = {
 position = Vector2( 503.695, -605.053 )
 frames = ExtResource( 12 )
 animation = "Idle"
-frame = 3
 playing = true
 
 [node name="level1_butler" parent="DialogueTriggers/DialogueInteractables/ButlerNPC" instance=ExtResource( 5 )]
@@ -364,6 +363,7 @@ __meta__ = {
 
 [node name="Spider" parent="." instance=ExtResource( 13 )]
 position = Vector2( -363.585, -384.571 )
+knockback_efficiency = 0.5
 
 [editable path="DialogueTriggers/DialogueInteractables/ButlerNPC/level1_butler"]
 [editable path="DialogueTriggers/ProximityDialogues/ruinedmansion_tutorial_secondlook"]
