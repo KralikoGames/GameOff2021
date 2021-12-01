@@ -147,7 +147,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GameOff2021"
-run/main_scene="res://Worlds/Level1/Level1.tscn"
+run/main_scene="res://Code/Menu/Main_Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
