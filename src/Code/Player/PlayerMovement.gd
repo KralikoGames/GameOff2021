@@ -12,6 +12,7 @@ signal attacked
 signal area_entered
 signal iframes_started
 signal iframes_ended
+signal dashed
 
 
 export var wasd_movement: bool = true
@@ -111,6 +112,7 @@ func unfreeze_player():
 
 
 func dash(speed: float=0.0, dash_range:float=48.0):
+	emit_signal("dashed")
 	var distance = min(get_global_mouse_position().distance_to(global_position), dash_range)
 	if speed == 0.0:
 		teleport(look_dir * distance)

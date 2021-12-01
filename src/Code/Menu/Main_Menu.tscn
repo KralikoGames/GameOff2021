@@ -29,6 +29,9 @@ __meta__ = {
 [node name="buttons" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NinePatchRect" type="NinePatchRect" parent="buttons"]
 margin_left = 13.7864

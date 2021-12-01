@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Code/GUI/SkillTree/PassiveButton/PassiveButton.gd" type="Script" id=1]
+[ext_resource path="res://Art/UI/Icon frames1.png" type="Texture" id=2]
+[ext_resource path="res://Art/Fonts/dpcomic.tres" type="DynamicFont" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.219608, 0.219608, 0.219608, 0.831373 )
@@ -20,23 +22,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Icon frames1" type="Sprite" parent="."]
+position = Vector2( 20, 20 )
+scale = Vector2( 1.25, 1.25 )
+texture = ExtResource( 2 )
+
 [node name="Points" type="Label" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -14.0
-margin_right = 21.0
-margin_bottom = 3.8147e-06
+margin_left = 1.0
+margin_top = -13.4364
+margin_right = 25.0
+margin_bottom = 2.5636
+custom_fonts/font = ExtResource( 3 )
 text = "0/1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="bg" type="Panel" parent="Points"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 2.0
+margin_bottom = -3.0
 mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="button_down" from="." to="." method="_on_PassiveButton_button_down"]
 [connection signal="button_up" from="." to="." method="_on_PassiveButton_button_up"]
 [connection signal="mouse_entered" from="." to="." method="_on_PassiveButton_mouse_entered"]

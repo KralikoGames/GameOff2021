@@ -16,6 +16,7 @@ func set_invincible(value):
 	invincible = value
 	if invincible == true:
 		emit_signal("invincibility_started")
+		print("test")
 	else:
 		emit_signal("invincibility_ended")
 
@@ -34,5 +35,5 @@ func _on_Hitbox_invincibility_started():
 
 
 func _on_Enemy_damaged():
-	$Bosshit.play()
+	print("test2")
 	start_invincibility(0.4)

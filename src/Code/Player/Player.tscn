@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Code/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Code/Player/EnemyTriggerRadius.gd" type="Script" id=2]
@@ -6,7 +6,9 @@
 [ext_resource path="res://Code/Player/Sprite.gd" type="Script" id=4]
 [ext_resource path="res://Audio/PLAYER_FS2_BGJ_SFX.wav" type="AudioStream" id=5]
 [ext_resource path="res://Audio/PLAYER_FS1_BGJ_SFX.wav" type="AudioStream" id=6]
+[ext_resource path="res://Audio/SHADOW_STEP_BGJ_SFX.wav" type="AudioStream" id=7]
 [ext_resource path="res://Code/Audio/SpriteSound.gd" type="Script" id=8]
+[ext_resource path="res://Code/Player/play.gd" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 6.0
@@ -84,14 +86,14 @@ wait_time = 0.1
 
 [node name="FS1" type="AudioStreamPlayer2D" parent="Sprite"]
 stream = ExtResource( 6 )
-volume_db = -20.194
+volume_db = -30.916
 pitch_scale = 1.93
 script = ExtResource( 8 )
 animation_name = "Run"
 
 [node name="FS2" type="AudioStreamPlayer2D" parent="Sprite"]
 stream = ExtResource( 5 )
-volume_db = -19.184
+volume_db = -27.761
 pitch_scale = 1.46
 script = ExtResource( 8 )
 animation_name = "Run"
@@ -101,4 +103,10 @@ frame = 3
 wait_time = 0.35
 one_shot = true
 
+[node name="Shadowstep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = -20.194
+script = ExtResource( 9 )
+
+[connection signal="dashed" from="." to="Shadowstep" method="_on_Player_dashed"]
 [connection signal="area_entered" from="EnemyTriggerRadius" to="EnemyTriggerRadius" method="_on_EnemyTriggerRadius_area_entered"]

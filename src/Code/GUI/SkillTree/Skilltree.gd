@@ -19,7 +19,8 @@ func _ready():
 
 
 func _on_player_passive_points_changed():
-	$TalentSound.play()
+	if GameInit.player.passive_points != 0:
+		$TalentSound.play()
 	$Skillpoints/Skillpoints.text = str(GameInit.player.passive_points)
 	get_tree().call_group("passives", "_update_disabled")
 
