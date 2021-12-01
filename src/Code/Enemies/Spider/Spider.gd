@@ -223,3 +223,8 @@ func _create_warning(shape, visible ,scale, time, position, damage ,knockback_di
 	EffectsNode.add_child(effect)
 	
 	emit_signal("create_warning")
+
+ 
+
+func _on_Spider_damaged():
+	pass # Replace with function body.

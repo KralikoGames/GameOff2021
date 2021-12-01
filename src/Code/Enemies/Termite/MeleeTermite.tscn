@@ -87,7 +87,7 @@ frame = 1
 
 [node name="Grubfs1" type="AudioStreamPlayer2D" parent="Display" index="2"]
 stream = ExtResource( 7 )
-volume_db = -37.526
+volume_db = -41.815
 pitch_scale = 1.49
 attenuation = 1.46409
 script = ExtResource( 9 )
@@ -95,7 +95,7 @@ animation_name = "Run"
 
 [node name="Grubfs2" type="AudioStreamPlayer2D" parent="Display" index="3"]
 stream = ExtResource( 8 )
-volume_db = -33.236
+volume_db = -37.525
 pitch_scale = 1.78
 attenuation = 2.0
 script = ExtResource( 9 )

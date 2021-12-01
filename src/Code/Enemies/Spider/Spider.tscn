@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Code/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/Enemies/Spider/Spider.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Code/Audio/SpriteSound.gd" type="Script" id=11]
 [ext_resource path="res://Audio/GREY_HUNTER_DASH_BGJ_SFX.wav" type="AudioStream" id=12]
 [ext_resource path="res://Audio/GREY_HUNTER_SPIN_BGJ_SFX.wav" type="AudioStream" id=13]
+[ext_resource path="res://Code/Enemies/Spider/play.gd" type="Script" id=14]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -94,7 +95,7 @@ frame = 4
 
 [node name="BossSpin" type="AudioStreamPlayer2D" parent="Display" index="2"]
 stream = ExtResource( 13 )
-volume_db = -13.938
+volume_db = -18.227
 pitch_scale = 1.66
 script = ExtResource( 11 )
 animation_name = "Spin"
@@ -149,6 +150,9 @@ anims/OnHit = SubResource( 5 )
 
 [node name="Bosshit" type="AudioStreamPlayer2D" parent="." index="12"]
 stream = ExtResource( 10 )
-volume_db = -24.233
+volume_db = -16.155
+script = ExtResource( 14 )
 
+[connection signal="damaged" from="." to="." method="_on_Spider_damaged"]
+[connection signal="damaged" from="." to="Bosshit" method="_on_Spider_damaged"]
 [connection signal="area_entered" from="DamagePlayerArea" to="DamagePlayerArea" method="_on_DamagePlayerArea_area_entered"]

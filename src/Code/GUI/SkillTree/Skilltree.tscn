@@ -372,7 +372,7 @@ __meta__ = {
 
 [node name="TalentSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
-volume_db = -25.617
+volume_db = -30.978
 
 [connection signal="pressed" from="NinePatchRect/ResetPoints" to="NinePatchRect/ResetPoints" method="_on_ResetPoints_pressed"]
 [connection signal="pressed" from="NinePatchRect2/CloseSkilltree" to="NinePatchRect2/CloseSkilltree" method="_on_CloseSkilltree_pressed"]
