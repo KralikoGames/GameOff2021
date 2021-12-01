@@ -30,7 +30,13 @@
 			"character": "character-1636479358.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Strange..."
+			"text": "Strange... Hey I see someone!"
+		},
+		{
+			"character": "character-1636479358.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I should use the E key to ask them what's happened!"
 		}
 	],
 	"metadata": {

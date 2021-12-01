@@ -107,9 +107,14 @@ func _set_points(v):
 
 
 ### Procedural hover/click for the button
-
-func _darken(): self_modulate *= 0.9
-func _lighten(): self_modulate *= 1.1
+func _darken(): 
+	if(self_modulate.a > 0.9):
+		self_modulate *= 0.9
+		
+func _lighten(): 
+	if(self_modulate.a < 1.1):
+		self_modulate *= 1.1
+		
 func _on_PassiveButton_mouse_entered(): if _can_I_accept_points(): _darken()
 func _on_PassiveButton_mouse_exited():  if _can_I_accept_points(): _lighten()
 func _on_PassiveButton_button_down():   if _can_I_accept_points(): _darken()

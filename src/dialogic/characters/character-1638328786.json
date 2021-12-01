@@ -1,11 +1,11 @@
 {
-	"color": "#ff619ede",
+	"color": "#ffffffff",
 	"description": "",
-	"display_name": "Kric",
-	"display_name_bool": true,
-	"id": "character-1636479358.json",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1638328786.json",
 	"mirror_portraits": false,
-	"name": "MainCharacter",
+	"name": "GreyHunter",
 	"nickname": "",
 	"nickname_bool": false,
 	"offset_x": -40,
@@ -13,7 +13,7 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://Art/UI/Portraits/Player portrait.png"
+			"path": "res://Art/UI/Portraits/Grey portrait.png"
 		}
 	],
 	"scale": 100

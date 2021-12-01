@@ -16,7 +16,7 @@
 		},
 		{
 			"action": "join",
-			"character": "character-1636572864.json",
+			"character": "character-1638328786.json",
 			"event_id": "dialogic_002",
 			"mirror": false,
 			"portrait": "",
@@ -32,36 +32,24 @@
 			"character": "character-1636479358.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "What happened here?"
+			"text": "It's the Grey Hunter... How could you destroy my home!? I won't forgive this!"
 		},
 		{
-			"character": "character-1636572864.json",
+			"character": "character-1638328786.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Thousands of termites swarmed the mansion."
+			"text": "HraHraHraHra... "
 		},
 		{
-			"character": "character-1636479358.json",
+			"character": "character-1638328786.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Why would they attack like that?"
-		},
-		{
-			"character": "character-1636572864.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "I don't know..."
-		},
-		{
-			"character": "character-1636572864.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "The whole thing is very strange."
+			"text": "SCREE!!!"
 		}
 	],
 	"metadata": {
 		"dialogic-version": "1.4 - DEV",
-		"file": "timeline-1637965943.json",
-		"name": "level1_butler"
+		"file": "timeline-1638308955.json",
+		"name": "ruinedmansion_tutorial_bosswarning"
 	}
 }

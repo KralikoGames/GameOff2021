@@ -78,6 +78,8 @@ func damage(amt: float, ability_source:String=""):
 
 
 func die(ability_source):
+	if(GameInit.player != null):
+		GameInit.player.passive_points += 1
 	queue_free()
 	emit_signal("died", ability_source)
 
