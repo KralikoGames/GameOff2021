@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Code/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/Enemies/Spider/Spider.gd" type="Script" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Audio/GREY_HUNTER_FS1_BGJ_SFX.wav" type="AudioStream" id=9]
 [ext_resource path="res://Audio/GREY_HUNTER_HIT_BGJ_SFX.wav" type="AudioStream" id=10]
 [ext_resource path="res://Code/Audio/SpriteSound.gd" type="Script" id=11]
+[ext_resource path="res://Audio/GREY_HUNTER_DASH_BGJ_SFX.wav" type="AudioStream" id=12]
+[ext_resource path="res://Audio/GREY_HUNTER_SPIN_BGJ_SFX.wav" type="AudioStream" id=13]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -91,7 +93,7 @@ animation_name = "Lunge"
 frame = 4
 
 [node name="BossSpin" type="AudioStreamPlayer2D" parent="Display" index="2"]
-stream = ExtResource( 7 )
+stream = ExtResource( 13 )
 volume_db = -13.938
 pitch_scale = 1.66
 script = ExtResource( 11 )
@@ -102,6 +104,7 @@ frame = 2
 stream = ExtResource( 9 )
 volume_db = -23.587
 pitch_scale = 1.17
+attenuation = 2.0
 script = ExtResource( 11 )
 animation_name = "Walk"
 
@@ -109,9 +112,17 @@ animation_name = "Walk"
 stream = ExtResource( 8 )
 volume_db = -27.875
 pitch_scale = 1.5
+attenuation = 2.07053
 script = ExtResource( 11 )
 animation_name = "Walk"
 frame = 3
+
+[node name="BossDash" type="AudioStreamPlayer2D" parent="Display" index="5"]
+stream = ExtResource( 12 )
+volume_db = -16.082
+script = ExtResource( 11 )
+animation_name = "Dash"
+frame = 1
 
 [node name="AttackTimer" type="Timer" parent="." index="6"]
 wait_time = 2.0
