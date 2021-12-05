@@ -29,5 +29,5 @@ func _on_Area2D_area_entered(_area):
 
 
 func _on_Area2D_area_exited(_area):
-	isOn = true
+	isOn = false
 	$Sprite/anim.play("fade_out")

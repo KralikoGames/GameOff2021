@@ -90,6 +90,11 @@ func change_scene(scene_name):
 	current_scene.queue_free()
 	get_tree().root.add_child(new_scene)
 	current_scene = new_scene
+	
+	for keybind in keybinds:
+		keybinds[keybind] = ""
+		var t: Timer = get_node("timer_%s" % keybind)
+		t.wait_time = 0
 
 
 ########################## Scene Handling ##########################
@@ -112,7 +117,8 @@ func _cast_abilities(event):
 		# get the timers and start them
 		var t: Timer = get_node("timer_%s" % keybind)
 		if not t.is_stopped(): continue # ability is on cooldown
-		t.start()
+		if(keybinds[keybind] != ""):
+			t.start()
 		
 		match keybinds[keybind]:
 			"Spinning_Scythe", "Assassinate":
